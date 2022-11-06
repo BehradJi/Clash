@@ -318,6 +318,7 @@ rules:
 
 
 # Ads rule-set 
+- RULE-SET,easylist,REJECT
 
 - MATCH,Global Selection
 rule-providers:
@@ -342,7 +343,7 @@ rule-providers:
   Iran-domain:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/BehradJi/Clash/main/clash_rules.yaml"
+    url: "https://raw.githubusercontent.com/BehradJi/Clash/main/Rules/clash_rules.yaml"
     path: ./ruleset/iran-rules.yaml
     interval: 604800
   sanctions:
@@ -350,4 +351,10 @@ rule-providers:
     behavior: domain-text
     url: "https://raw.githubusercontent.com/sajad-sadra/iran-domains-sanction/master/sanction.txt"
     path: ./ruleset/sanctions.txt
+    interval: 604800
+  easylist:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/sajad-sadra/iran-domains-sanction/master/sanction.txt"
+    path: ./ruleset/easylist.yaml
     interval: 604800
