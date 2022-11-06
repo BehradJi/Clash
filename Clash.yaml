@@ -313,13 +313,13 @@ rules:
 - RULE-SET,sanctions,DIRECT
 - RULE-SET,Apple,DIRECT
 - RULE-SET,Spotify,DIRECT
-- RULE-SET,Iran-domains,DIRECT
+- RULE-SET,Iran-domain,DIRECT
 - DOMAIN-SUFFIX,bpi.ir,DIRECT
 
 
 # Ads rule-set 
 - RULE-SET,iran-ads,REJECT
-- RULE-SET,easylist-domains,REJECT
+- RULE-SET,easylist-domain,REJECT
 
 - MATCH,Global Selection
 rule-providers:
@@ -341,7 +341,7 @@ rule-providers:
     interval: 604800
     path: ./ruleset/Google.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Google/Google.yaml
-  Iran-domains:
+  Iran-domain:
     type: http
     behavior: classical
     url: "https://github.com/SamadiPour/iran-hosted-domains/releases/latest/download/clash_rules.yaml"
