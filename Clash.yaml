@@ -346,15 +346,15 @@ rule-providers:
     url: "https://raw.githubusercontent.com/BehradJi/Clash/main/Rules/clash_rules.yaml"
     path: ./ruleset/iran-rules.yaml
     interval: 604800
-  sanctions:
-    type: http
-    behavior: domain-text
-    url: "https://raw.githubusercontent.com/sajad-sadra/iran-domains-sanction/master/sanction.txt"
-    path: ./ruleset/sanctions.txt
-    interval: 604800
   easylist:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/sajad-sadra/iran-domains-sanction/master/sanction.txt"
+    url: "https://raw.githubusercontent.com/BehradJi/Clash/main/Rules/easylist.yaml"
     path: ./ruleset/easylist.yaml
+    interval: 604800
+  sanctions:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/BehradJi/Clash/main/Rules/sanction-domains.yaml"
+    path: ./ruleset/sanctions.yaml
     interval: 604800
