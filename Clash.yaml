@@ -342,8 +342,8 @@ rule-providers:
   Iran-domain:
     type: http
     behavior: domain
-    url: "https://github.com/SamadiPour/iran-hosted-domains/releases/latest/download/clash_rules.yaml"
-    path: ./ruleset/iran.yaml
+    url: "https://raw.githubusercontent.com/BehradJi/Clash/main/clash_rules.yaml"
+    path: ./ruleset/iran-rules.yaml
     interval: 604800
   sanctions:
     type: http
