@@ -300,7 +300,6 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
     interval: 3600
 rules:
-- RULE-SET,anti-ad,REJECT
 - DOMAIN-SUFFIX,googlevideo.com,Global Selection
 - DOMAIN-KEYWORD,youtube,Global Selection
 - DOMAIN,oauthaccountmanager.googleapis.com,Global Selection
@@ -335,9 +334,3 @@ rule-providers:
     url: "https://github.com/SamadiPour/iran-hosted-domains/releases/latest/download/clash_rules.yaml"
     path: ./ruleset/iran.yaml
     interval: 604800
-  anti-ad:
-    type: http
-    behavior: classical
-    interval: 604800
-    path: ./ruleset/anti-ad.yaml
-    url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
