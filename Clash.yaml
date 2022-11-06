@@ -144,11 +144,9 @@ proxy-groups:
   interval: 300
   proxies: []
 - name: SSR
-  type: url-test
+  type: select
   use:
   - ssr
-  url: 'http://www.gstatic.com/generate_204'
-  interval: 300
   proxies: []
 - name: Load Balancing
   type: load-balance
