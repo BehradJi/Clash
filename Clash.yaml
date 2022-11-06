@@ -21,7 +21,7 @@ proxy-groups:
   - Choose a Country
   - Select Node
   - Load Balancing
-  - 'Failover '
+  - Failover
   - SSR
 - name: Choose a Country
   type: select
@@ -156,7 +156,7 @@ proxy-groups:
   url: 'http://www.gstatic.com/generate_204'
   interval: 300
   proxies: []
-- name: 'Failover '
+- name: Failover
   type: fallback
   use:
   - all
