@@ -312,14 +312,17 @@ rules:
 - MATCH,Global Selection
 rule-providers:
   Spotify:
+    type: http
     behavior: classical
     interval: 604800
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Spotify/Spotify.yaml
   Apple:
+    type: http
     behavior: classical
     interval: 604800
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Apple/Apple.yaml
   Google:
+    type: http
     behavior: classical
     interval: 604800
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Google/Google.yaml
@@ -330,6 +333,7 @@ rule-providers:
     path: ./ruleset/iran.yaml
     interval: 604800
   anti-ad:
+    type: http
     behavior: classical
     interval: 604800
     url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
