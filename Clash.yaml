@@ -117,6 +117,7 @@ proxy-groups:
   use:
   - all
   url: 'http://www.gstatic.com/generate_204'
+  tolerance: 50
   interval: 300
   proxies: []
 - name: SSR
