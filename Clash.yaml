@@ -318,8 +318,6 @@ rules:
 
 
 # Ads rule-set 
-- RULE-SET,iran-ads,REJECT
-- RULE-SET,easylist-domain,REJECT
 
 - MATCH,Global Selection
 rule-providers:
@@ -352,16 +350,4 @@ rule-providers:
     behavior: domain
     url: "https://raw.githubusercontent.com/sajad-sadra/iran-domains-sanction/master/sanction.txt"
     path: ./ruleset/sanctions.txt
-    interval: 604800
-  iran-ads:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt"
-    path: ./ruleset/iran-ads.txt
-    interval: 604800
-  easylist-domain:
-    type: http
-    behavior: domain
-    url: "https://justdomains.github.io/blocklists/lists/easylist-justdomains.txt"
-    path: ./ruleset/easylist.txt
     interval: 604800
