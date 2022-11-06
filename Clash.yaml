@@ -315,16 +315,19 @@ rule-providers:
     type: http
     behavior: classical
     interval: 604800
+    path: ./ruleset/Spotify.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Spotify/Spotify.yaml
   Apple:
     type: http
     behavior: classical
     interval: 604800
+    path: ./ruleset/Apple.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Apple/Apple.yaml
   Google:
     type: http
     behavior: classical
     interval: 604800
+    path: ./ruleset/Google.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Google/Google.yaml
   Iran:
     type: http
@@ -336,4 +339,5 @@ rule-providers:
     type: http
     behavior: classical
     interval: 604800
+    path: ./ruleset/anti-ad.yaml
     url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
