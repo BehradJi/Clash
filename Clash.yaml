@@ -301,14 +301,26 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
     interval: 3600
 rules:
+
+# proxy rules
 - DOMAIN-SUFFIX,googlevideo.com,Global Selection
 - DOMAIN-KEYWORD,youtube,Global Selection
 - DOMAIN,oauthaccountmanager.googleapis.com,Global Selection
+- DOMAIN,play.google.com,Global Selection
+
+# Rules for direct connection
 - RULE-SET,Google,DIRECT
+- RULE-SET,sanctions,DIRECT
 - RULE-SET,Apple,DIRECT
 - RULE-SET,Spotify,DIRECT
+- RULE-SET,Iran-domains,DIRECT
 - DOMAIN-SUFFIX,bpi.ir,DIRECT
-- RULE-SET,Iran,DIRECT
+
+
+# Ads rule-set 
+- RULE-SET,iran-ads,REJECT
+- RULE-SET,easylist-domains,REJECT
+
 - MATCH,Global Selection
 rule-providers:
   Spotify:
@@ -329,9 +341,27 @@ rule-providers:
     interval: 604800
     path: ./ruleset/Google.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Google/Google.yaml
-  Iran:
+  Iran-domains:
     type: http
     behavior: classical
     url: "https://github.com/SamadiPour/iran-hosted-domains/releases/latest/download/clash_rules.yaml"
     path: ./ruleset/iran.yaml
+    interval: 604800
+  sanctions:
+    type: http
+    behavior: domain-text
+    url: "https://raw.githubusercontent.com/sajad-sadra/iran-domains-sanction/master/sanction.txt"
+    path: ./ruleset/sanctions.yaml
+    interval: 604800
+  iran-ads:
+    type: http
+    behavior: domain-text
+    url: "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt"
+    path: ./ruleset/iran-ads.yaml
+    interval: 604800
+  easylist-domain:
+    type: http
+    behavior: domain-text
+    url: "https://justdomains.github.io/blocklists/lists/easylist-justdomains.txt"
+    path: ./ruleset/easylist.yaml
     interval: 604800
