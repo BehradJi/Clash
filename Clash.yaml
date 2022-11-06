@@ -8,10 +8,11 @@ dns:
   enable: true
   listen: 127.0.0.1:53
   default-nameserver:
-  - 178.22.122.100
-  - 185.51.200.2
+  - 9.9.9.9
+  - 1.1.1.1
   nameserver:
   - free.shecan.ir
+  - https://free.shecan.ir/dns-query
 proxies:
 proxy-groups:
 - name: Global Selection
