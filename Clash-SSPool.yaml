@@ -1,0 +1,336 @@
+port: 7890
+socks-port: 7891
+allow-lan: false
+mode: rule
+log-level: silent
+external-controller: 127.0.0.1:9090
+dns:
+  enable: true
+  listen: 127.0.0.1:53
+  default-nameserver:
+  - 8.8.8.8
+  - 1.1.1.1
+  nameserver:
+  - free.shecan.ir
+proxies:
+proxy-groups:
+- name: Global Selection
+  type: select
+  proxies:
+  - Lowest Latency
+  - Choose a Country
+  - Select Node
+  - Load Balancing
+  - 'Failover '
+  - SSR
+- name: Choose a Country
+  type: select
+  proxies:
+  - "\U0001F1F3\U0001F1F1 Netherland"
+  - "\U0001F1EC\U0001F1E7 UK"
+  - "\U0001F1EB\U0001F1F7 France"
+  - "\U0001F1E8\U0001F1ED Switzerland"
+  - "\U0001F1E9\U0001F1EA Germany"
+  - "\U0001F1E6\U0001F1FA Australia "
+  - "\U0001F1F7\U0001F1FA Russia"
+  - "\U0001F1E8\U0001F1E6 Canada"
+  - "\U0001F1FA\U0001F1F8 US"
+  - "\U0001F1F8\U0001F1EC Singapore"
+  - "\U0001F1EF\U0001F1F5 Japan"
+  - "\U0001F1E8\U0001F1F3 China"
+  - 'Other Countries '
+- name: Select Node
+  type: select
+  use:
+  - all
+  proxies: []
+- name: "\U0001F1E8\U0001F1F3 China"
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - cn
+  proxies: []
+- name: "\U0001F1EF\U0001F1F5 Japan"
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - jp
+  proxies: []
+- name: "\U0001F1F8\U0001F1EC Singapore"
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - sg
+  proxies: []
+- name: "\U0001F1FA\U0001F1F8 US"
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - us
+  proxies: []
+- name: "\U0001F1E8\U0001F1E6 Canada"
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - ca
+  proxies: []
+- name: "\U0001F1F7\U0001F1FA Russia"
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - ru
+  proxies: []
+- name: "\U0001F1E6\U0001F1FA Australia "
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - au
+  proxies: []
+- name: "\U0001F1E8\U0001F1ED Switzerland"
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - ch
+  proxies: []
+- name: "\U0001F1E9\U0001F1EA Germany"
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - de
+  proxies: []
+- name: "\U0001F1EB\U0001F1F7 France"
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - fr
+  proxies: []
+- name: "\U0001F1EC\U0001F1E7 UK"
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - gb
+  proxies: []
+- name: "\U0001F1F3\U0001F1F1 Netherland"
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - nl
+  proxies: []
+- name: 'Other Countries '
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - others
+  proxies: []
+- name: Lowest Latency
+  type: url-test
+  use:
+  - all
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  proxies: []
+- name: SSR
+  type: url-test
+  use:
+  - ssr
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  proxies: []
+- name: Load Balancing
+  type: load-balance
+  use:
+  - all
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  proxies: []
+- name: 'Failover '
+  type: fallback
+  use:
+  - all
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  proxies: []
+proxy-providers:
+  au:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?c=AU&type=vmess,trojan"
+    path: sspool.herokuapp.com/provider-au.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  cn:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?c=CN,HK,TW&type=vmess,trojan"
+    path: sspool.herokuapp.com/provider-cn.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  us:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?c=US&type=vmess,trojan"
+    path: sspool.herokuapp.com/provider-us.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  ca:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?c=CA&type=vmess,trojan"
+    path: sspool.herokuapp.com/provider-ca.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  jp:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?c=JP&type=vmess,trojan"
+    path: sspool.herokuapp.com/provider-jp.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  sg:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?c=SG&type=vmess,trojan"
+    path: sspool.herokuapp.com/provider-sg.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  ru:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?c=RU&type=vmess,trojan"
+    path: sspool.herokuapp.com/provider-ru.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  ch:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?c=CH&type=vmess,trojan"
+    path: sspool.herokuapp.com/provider-ch.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  de:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?c=DE&type=vmess,trojan"
+    path: sspool.herokuapp.com/provider-de.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  fr:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?c=FR&type=vmess,trojan"
+    path: sspool.herokuapp.com/provider-fr.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  gb:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?c=GB&type=vmess,trojan"
+    path: sspool.herokuapp.com/provider-gb.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  nl:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?c=NL&type=vmess,trojan"
+    path: sspool.herokuapp.com/provider-nl.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  others:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?nc=CN,HK,TW,US,CA,JP,SG,AU,CH,DE,GB,NL,FR,RU&type=vmess,trojan"
+    path: sspool.herokuapp.com/provider-others.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  all:
+    type: http
+    url: "https://sspool.herokuapp.com/clash/proxies?type=vmess,trojan"
+    path: sspool.herokuapp.com/provider.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  ssr:
+    type: http
+    url: "https:/proxies.bihai.cf/clash/proxies?type=ssr"
+    path: sspool.herokuapp.com/provider-ssr.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+rules:
+- DOMAIN-SUFFIX,googlevideo.com,Global Selection
+- DOMAIN-KEYWORD,youtube,Global Selection
+- DOMAIN,oauthaccountmanager.googleapis.com,Global Selection
+- RULE-SET,Google,DIRECT
+- RULE-SET,Apple,DIRECT
+- RULE-SET,Spotify,DIRECT
+- DOMAIN-SUFFIX,bpi.ir,DIRECT
+- RULE-SET,Iran,DIRECT
+- MATCH,Global Selection
+rule-providers:
+  Spotify:
+    type: http
+    behavior: classical
+    interval: 604800
+    path: ./ruleset/Spotify.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Spotify/Spotify.yaml
+  Apple:
+    type: http
+    behavior: classical
+    interval: 604800
+    path: ./ruleset/Apple.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Apple/Apple.yaml
+  Google:
+    type: http
+    behavior: classical
+    interval: 604800
+    path: ./ruleset/Google.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Google/Google.yaml
+  Iran:
+    type: http
+    behavior: classical
+    url: "https://github.com/SamadiPour/iran-hosted-domains/releases/latest/download/clash_rules.yaml"
+    path: ./ruleset/iran.yaml
+    interval: 604800
