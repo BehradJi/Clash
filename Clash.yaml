@@ -32,14 +32,11 @@ proxy-groups:
   - "\U0001F1EB\U0001F1F7 France"
   - "\U0001F1E8\U0001F1ED Switzerland"
   - "\U0001F1E9\U0001F1EA Germany"
-  - "\U0001F1E6\U0001F1FA Australia "
   - "\U0001F1F7\U0001F1FA Russia"
   - "\U0001F1E8\U0001F1E6 Canada"
   - "\U0001F1FA\U0001F1F8 US"
-  - "\U0001F1F8\U0001F1EC Singapore"
-  - "\U0001F1EF\U0001F1F5 Japan"
   - "\U0001F1E8\U0001F1F3 China"
-  - 'Other Countries '
+  - Other Countries
 - name: Select Node
   type: select
   use:
@@ -51,20 +48,6 @@ proxy-groups:
   interval: 300
   use:
   - cn
-  proxies: []
-- name: "\U0001F1EF\U0001F1F5 Japan"
-  type: url-test
-  url: 'http://www.gstatic.com/generate_204'
-  interval: 300
-  use:
-  - jp
-  proxies: []
-- name: "\U0001F1F8\U0001F1EC Singapore"
-  type: url-test
-  url: 'http://www.gstatic.com/generate_204'
-  interval: 300
-  use:
-  - sg
   proxies: []
 - name: "\U0001F1FA\U0001F1F8 US"
   type: url-test
@@ -86,13 +69,6 @@ proxy-groups:
   interval: 300
   use:
   - ru
-  proxies: []
-- name: "\U0001F1E6\U0001F1FA Australia "
-  type: url-test
-  url: 'http://www.gstatic.com/generate_204'
-  interval: 300
-  use:
-  - au
   proxies: []
 - name: "\U0001F1E8\U0001F1ED Switzerland"
   type: url-test
@@ -129,7 +105,7 @@ proxy-groups:
   use:
   - nl
   proxies: []
-- name: 'Other Countries '
+- name: Other Countries
   type: url-test
   url: 'http://www.gstatic.com/generate_204'
   interval: 300
