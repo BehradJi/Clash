@@ -302,11 +302,8 @@ proxy-providers:
     interval: 3600
 rules:
 
-# proxy rules
-- DOMAIN-SUFFIX,googlevideo.com,Global Selection
-- DOMAIN-KEYWORD,youtube,Global Selection
-- DOMAIN,oauthaccountmanager.googleapis.com,Global Selection
-- DOMAIN,play.google.com,Global Selection
+#proxy rules
+- RULE-SET,Proxy,Global Selection
 
 # Rules for direct connection
 - RULE-SET,Google,DIRECT
@@ -314,7 +311,6 @@ rules:
 - RULE-SET,Apple,DIRECT
 - RULE-SET,Spotify,DIRECT
 - RULE-SET,Iran-domain,DIRECT
-- DOMAIN-SUFFIX,bpi.ir,DIRECT
 
 
 # Ads rule-set 
@@ -357,4 +353,10 @@ rule-providers:
     behavior: domain
     url: "https://raw.githubusercontent.com/BehradJi/Clash/main/Rules/sanction-domains.yaml"
     path: ./ruleset/sanctions.yaml
+    interval: 604800
+  Proxy:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/BehradJi/Clash/main/Rules/proxy-rules.yaml"
+    path: ./ruleset/proxy.yaml
     interval: 604800
