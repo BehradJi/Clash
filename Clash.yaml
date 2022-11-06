@@ -8,7 +8,7 @@ dns:
   enable: true
   listen: 127.0.0.1:53
   default-nameserver:
-  - 9.9.9.9
+  - 8.8.8.8
   - 1.1.1.1
   nameserver:
   - free.shecan.ir
