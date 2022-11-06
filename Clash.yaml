@@ -347,7 +347,7 @@ rule-providers:
     interval: 604800
   sanctions:
     type: http
-    behavior: domain
+    behavior: domain-text
     url: "https://raw.githubusercontent.com/sajad-sadra/iran-domains-sanction/master/sanction.txt"
     path: ./ruleset/sanctions.txt
     interval: 604800
