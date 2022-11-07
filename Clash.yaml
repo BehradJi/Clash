@@ -151,7 +151,7 @@ proxy-providers:
     interval: 3600
   cn:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=CN,HK,TW&type=vmess,trojan"
+    url: "https://proxies.bihai.cf/clash/proxies?c=HK,TW&type=vmess,trojan"
     path: proxies.bihai.cf/provider-cn.yaml
     health-check:
       enable: true
