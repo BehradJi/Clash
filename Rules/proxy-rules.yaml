@@ -2,4 +2,3 @@
 payload:
   - DOMAIN,oauthaccountmanager.googleapis.com,Proxy
   - DOMAIN,play.google.com,Proxy
-  - DOMAIN-SUFFIX,bpi.ir,DIRECT
