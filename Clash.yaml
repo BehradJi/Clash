@@ -252,7 +252,7 @@ proxy-providers:
     interval: 3600
   others:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?nc=CN,HK,TW,US,CA,JP,SG,AU,CH,DE,GB,NL,FR,RU&type=vmess,trojan"
+    url: "https://proxies.bihai.cf/clash/proxies?nc=CN,HK,TW,US,CA,CH,DE,GB,NL,FR,RU&type=vmess,trojan"
     path: proxies.bihai.cf/provider-others.yaml
     health-check:
       enable: true
