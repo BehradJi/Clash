@@ -339,7 +339,7 @@ rule-providers:
     interval: 604800
   Iran-domain:
     type: http
-    behavior: classical
+    behavior: domain
     url: "https://github.com/BehradJi/Clash/blob/main/Rules/clash_rules.yaml?raw=true"
     path: ./ruleset/iran-rules.yaml
     interval: 604800
