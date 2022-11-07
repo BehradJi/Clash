@@ -279,17 +279,19 @@ rules:
 
 #proxy rules
 - RULE-SET,Proxy,Global Selection
+- RULE-SET,Youtube,Golbal Selection
 
 # Rules for direct connection
 - RULE-SET,Google,DIRECT
-- RULE-SET,sanctions,DIRECT
+- RULE-SET,Sanctions,DIRECT
 - RULE-SET,Apple,DIRECT
 - RULE-SET,Spotify,DIRECT
 - RULE-SET,Iran-domain,DIRECT
-
+- RULE-SET,Xiaomi,DIRECT
+- RULE-SET,Github,DIRECT
 
 # Ads rule-set 
-- RULE-SET,easylist,REJECT
+- RULE-SET,Adguard,REJECT
 
 - MATCH,Global Selection
 rule-providers:
@@ -311,23 +313,41 @@ rule-providers:
     interval: 604800
     path: ./ruleset/Google.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Google/Google.yaml
+  Youtube:
+    type: http
+    behavior: classical
+    interval: 604800
+    path: ./ruleset/Youtube.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml
+  Github:
+    type: http
+    behavior: classical
+    interval: 604800
+    path: ./ruleset/Github.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml
+  Xiaomi:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/XiaoMi/XiaoMi.yaml"
+    path: ./ruleset/Xiaomi.yaml
+    interval: 604800
+  Adguard:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdGuardSDNSFilter/AdGuardSDNSFilter_Domain.yaml"
+    path: ./ruleset/Adguard.yaml
+    interval: 604800
   Iran-domain:
     type: http
     behavior: domain
     url: "https://raw.githubusercontent.com/BehradJi/Clash/main/Rules/clash_rules.yaml"
     path: ./ruleset/iran-rules.yaml
     interval: 604800
-  easylist:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/BehradJi/Clash/main/Rules/easylist.yaml"
-    path: ./ruleset/easylist.yaml
-    interval: 604800
-  sanctions:
+  Sanctions:
     type: http
     behavior: domain
     url: "https://raw.githubusercontent.com/BehradJi/Clash/main/Rules/sanction-domains.yaml"
-    path: ./ruleset/sanctions.yaml
+    path: ./ruleset/Sanctions.yaml
     interval: 604800
   Proxy:
     type: http
