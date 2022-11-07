@@ -37,7 +37,7 @@ proxy-groups:
   - "\U0001F1E8\U0001F1E6 Canada"
   - "\U0001F1FA\U0001F1F8 US"
   - "\U0001F1E8\U0001F1F3 China"
-  - Other Countries
+  - 🌏 Other Countries
 - name: ⏏️ Select Node
   type: select
   use:
@@ -99,7 +99,7 @@ proxy-groups:
   use:
   - nl
   proxies: []
-- name: Other Countries
+- name: 🌏 Other Countries
   type: url-test
   url: 'http://www.gstatic.com/generate_204'
   interval: 300
