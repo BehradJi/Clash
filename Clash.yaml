@@ -350,8 +350,8 @@ rule-providers:
     interval: 604800 
   Iran:
     type: http
-    behavior: domain
-    url: "https://github.com/BehradJi/Clash/raw/main/Rules/clash_rules.yaml"
+    behavior: classical
+    url: "https://github.com/SamadiPour/iran-hosted-domains/releases/latest/download/clash_rules.yaml"
     path: ./ruleset/iran.yaml
     interval: 604800
   Sanctions:
