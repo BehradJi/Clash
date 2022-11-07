@@ -15,7 +15,7 @@ dns:
   - https://free.shecan.ir/dns-query
 proxies:
 proxy-groups:
-- name: Global Selection
+- name: Proxy
   type: select
   proxies:
   - Lowest Latency
@@ -278,8 +278,8 @@ proxy-providers:
 rules:
 
 #proxy rules
-- RULE-SET,Proxy,Global Selection
-- RULE-SET,Youtube,Global Selection
+- RULE-SET,Proxy,Proxy
+- RULE-SET,Youtube,Proxy
 
 # Rules for direct connection
 - RULE-SET,Google,DIRECT
@@ -293,7 +293,7 @@ rules:
 # Ads rule-set 
 - RULE-SET,Adguard,REJECT
 
-- MATCH,Global Selection
+- MATCH,Proxy
 rule-providers:
   Spotify:
     type: http
@@ -339,8 +339,8 @@ rule-providers:
     interval: 604800
   Iran-domain:
     type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/BehradJi/Clash/main/Rules/clash_rules.yaml"
+    behavior: classical
+    url: "https://github.com/SamadiPour/iran-hosted-domains/releases/latest/download/clash_rules.yaml"
     path: ./ruleset/iran-rules.yaml
     interval: 604800
   Sanctions:
