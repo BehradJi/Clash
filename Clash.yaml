@@ -20,26 +20,25 @@ proxy-groups:
 - name: Proxy
   type: select
   proxies:
-  - Lowest Latency
-  - Choose a Country
-  - Select Node
-  - Load Balancing
-  - Failover
+  - 🥇 Lowest Latency
+  - 🌏 Choose a Country
+  - ⏏️ Select Node
+  - ⚖️ Load Balancing
+  - 🛻 Failover
   - SSR
-- name: Choose a Country
+- name: 🌏 Choose a Country
   type: select
   proxies:
   - "\U0001F1F3\U0001F1F1 Netherland"
   - "\U0001F1EC\U0001F1E7 UK"
   - "\U0001F1EB\U0001F1F7 France"
-  - "\U0001F1E8\U0001F1ED Switzerland"
   - "\U0001F1E9\U0001F1EA Germany"
   - "\U0001F1F7\U0001F1FA Russia"
   - "\U0001F1E8\U0001F1E6 Canada"
   - "\U0001F1FA\U0001F1F8 US"
   - "\U0001F1E8\U0001F1F3 China"
   - Other Countries
-- name: Select Node
+- name: ⏏️ Select Node
   type: select
   use:
   - all
@@ -71,13 +70,6 @@ proxy-groups:
   interval: 300
   use:
   - ru
-  proxies: []
-- name: "\U0001F1E8\U0001F1ED Switzerland"
-  type: url-test
-  url: 'http://www.gstatic.com/generate_204'
-  interval: 300
-  use:
-  - ch
   proxies: []
 - name: "\U0001F1E9\U0001F1EA Germany"
   type: url-test
@@ -114,7 +106,7 @@ proxy-groups:
   use:
   - others
   proxies: []
-- name: Lowest Latency
+- name: 🥇 Lowest Latency
   type: url-test
   use:
   - all
@@ -127,14 +119,14 @@ proxy-groups:
   use:
   - ssr
   proxies: []
-- name: Load Balancing
+- name: ⚖️ Load Balancing
   type: load-balance
   use:
   - all
   url: 'http://www.gstatic.com/generate_204'
   interval: 300
   proxies: []
-- name: Failover
+- name: 🛻 Failover
   type: fallback
   use:
   - all
@@ -153,7 +145,7 @@ proxy-providers:
     interval: 3600
   cn:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=HK,TW&type=vmess,trojan"
+    url: "https://proxies.bihai.cf/clash/proxies?c=HK,TW,CN&type=vmess,trojan"
     path: proxies.bihai.cf/provider-cn.yaml
     health-check:
       enable: true
@@ -200,15 +192,6 @@ proxy-providers:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?c=RU&type=vmess,trojan"
     path: proxies.bihai.cf/provider-ru.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 3600
-  ch:
-    type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=CH&type=vmess,trojan"
-    path: proxies.bihai.cf/provider-ch.yaml
     health-check:
       enable: true
       interval: 600
