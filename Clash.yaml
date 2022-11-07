@@ -279,7 +279,7 @@ rules:
 
 #proxy rules
 - RULE-SET,Proxy,Global Selection
-- RULE-SET,Youtube,Golbal Selection
+- RULE-SET,Youtube,Global Selection
 
 # Rules for direct connection
 - RULE-SET,Google,DIRECT
