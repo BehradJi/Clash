@@ -1,4 +1,5 @@
 # proxy rules
 payload:
-  - DOMAIN,oauthaccountmanager.googleapis.com,Proxy
-  - DOMAIN,play.google.com,Proxy
+  - DOMAIN,oauthaccountmanager.googleapis.com
+  - DOMAIN,play.google.com
+  - DOMAIN-KEYWORD,play.google
