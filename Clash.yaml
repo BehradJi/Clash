@@ -3,16 +3,15 @@ socks-port: 7891
 allow-lan: false
 mode: rule
 log-level: silent
-#external-controller: 127.0.0.1:9090
+external-controller: 127.0.0.1:9090
 dns:
   enable: true
   listen: 127.0.0.1:53
   default-nameserver:
   - 8.8.8.8
   - 1.1.1.1
-  
   enhanced-mode: fake-ip
-
+  fake-ip-range: 198.18.0.1/16 
   nameserver:
   - free.shecan.ir
   - https://free.shecan.ir/dns-query
@@ -33,6 +32,7 @@ proxy-groups:
   - "\U0001F1F3\U0001F1F1 Netherland"
   - "\U0001F1EC\U0001F1E7 UK"
   - "\U0001F1EB\U0001F1F7 France"
+  - "\U0001F1E8\U0001F1ED Switzerland"
   - "\U0001F1E9\U0001F1EA Germany"
   - "\U0001F1F7\U0001F1FA Russia"
   - "\U0001F1E8\U0001F1E6 Canada"
@@ -71,6 +71,13 @@ proxy-groups:
   interval: 300
   use:
   - ru
+  proxies: []
+- name: "\U0001F1E8\U0001F1ED Switzerland"
+  type: url-test
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  use:
+  - ch
   proxies: []
 - name: "\U0001F1E9\U0001F1EA Germany"
   type: url-test
@@ -135,9 +142,18 @@ proxy-groups:
   interval: 300
   proxies: []
 proxy-providers:
+  au:
+    type: http
+    url: "https://proxies.bihai.cf/clash/proxies?c=AU&type=vmess,trojan"
+    path: proxies.bihai.cf/provider-au.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
   cn:
     type: http
-    url: "https://suo.yt/4H7jzH4"
+    url: "https://proxies.bihai.cf/clash/proxies?c=HK,TW&type=vmess,trojan"
     path: proxies.bihai.cf/provider-cn.yaml
     health-check:
       enable: true
@@ -146,7 +162,7 @@ proxy-providers:
     interval: 3600
   us:
     type: http
-    url: "https://suo.yt/DcdM4nT"
+    url: "https://proxies.bihai.cf/clash/proxies?c=US&type=vmess,trojan"
     path: proxies.bihai.cf/provider-us.yaml
     health-check:
       enable: true
@@ -155,8 +171,26 @@ proxy-providers:
     interval: 3600
   ca:
     type: http
-    url: "https://suo.yt/ram3ncl"
+    url: "https://proxies.bihai.cf/clash/proxies?c=CA&type=vmess,trojan"
     path: proxies.bihai.cf/provider-ca.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  jp:
+    type: http
+    url: "https://proxies.bihai.cf/clash/proxies?c=JP&type=vmess,trojan"
+    path: proxies.bihai.cf/provider-jp.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  sg:
+    type: http
+    url: "https://proxies.bihai.cf/clash/proxies?c=SG&type=vmess,trojan"
+    path: proxies.bihai.cf/provider-sg.yaml
     health-check:
       enable: true
       interval: 600
@@ -164,8 +198,17 @@ proxy-providers:
     interval: 3600
   ru:
     type: http
-    url: "https://suo.yt/OyIFy4P"
+    url: "https://proxies.bihai.cf/clash/proxies?c=RU&type=vmess,trojan"
     path: proxies.bihai.cf/provider-ru.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+    interval: 3600
+  ch:
+    type: http
+    url: "https://proxies.bihai.cf/clash/proxies?c=CH&type=vmess,trojan"
+    path: proxies.bihai.cf/provider-ch.yaml
     health-check:
       enable: true
       interval: 600
@@ -173,7 +216,7 @@ proxy-providers:
     interval: 3600
   de:
     type: http
-    url: "https://suo.yt/uZkiYAi"
+    url: "https://proxies.bihai.cf/clash/proxies?c=DE&type=vmess,trojan"
     path: proxies.bihai.cf/provider-de.yaml
     health-check:
       enable: true
@@ -182,7 +225,7 @@ proxy-providers:
     interval: 3600
   fr:
     type: http
-    url: "https://suo.yt/IxcIQJc"
+    url: "https://proxies.bihai.cf/clash/proxies?c=FR&type=vmess,trojan"
     path: proxies.bihai.cf/provider-fr.yaml
     health-check:
       enable: true
@@ -191,7 +234,7 @@ proxy-providers:
     interval: 3600
   gb:
     type: http
-    url: "https://suo.yt/rVBtEtI"
+    url: "https://proxies.bihai.cf/clash/proxies?c=GB&type=vmess,trojan"
     path: proxies.bihai.cf/provider-gb.yaml
     health-check:
       enable: true
@@ -200,7 +243,7 @@ proxy-providers:
     interval: 3600
   nl:
     type: http
-    url: "https://suo.yt/b8pctJW"
+    url: "https://proxies.bihai.cf/clash/proxies?c=NL&type=vmess,trojan"
     path: proxies.bihai.cf/provider-nl.yaml
     health-check:
       enable: true
@@ -209,7 +252,7 @@ proxy-providers:
     interval: 3600
   others:
     type: http
-    url: "https://suo.yt/m93z1Jw"
+    url: "https://proxies.bihai.cf/clash/proxies?nc=CN,HK,TW,US,CA,CH,DE,GB,NL,FR,RU&type=vmess,trojan"
     path: proxies.bihai.cf/provider-others.yaml
     health-check:
       enable: true
@@ -218,7 +261,7 @@ proxy-providers:
     interval: 3600
   all:
     type: http
-    url: "https://suo.yt/kjtyZAV"
+    url: "https://proxies.bihai.cf/clash/proxies?type=vmess,trojan"
     path: proxies.bihai.cf/provider.yaml
     health-check:
       enable: true
@@ -227,7 +270,7 @@ proxy-providers:
     interval: 3600
   ssr:
     type: http
-    url: "https://suo.yt/Dfoq49R"
+    url: "https://proxies.bihai.cf/clash/proxies?type=ssr"
     path: proxies.bihai.cf/provider-ssr.yaml
     health-check:
       enable: true
