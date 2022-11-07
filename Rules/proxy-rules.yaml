@@ -1,4 +1,5 @@
 # proxy rules
 payload:
-  - DOMAIN,oauthaccountmanager.googleapis.com,Global Selection
-  - DOMAIN,play.google.com,Global Selection
+  - DOMAIN,oauthaccountmanager.googleapis.com,Proxy
+  - DOMAIN,play.google.com,Proxy
+  - DOMAIN-SUFFIX,bpi.ir,DIRECT

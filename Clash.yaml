@@ -286,7 +286,7 @@ rules:
 - RULE-SET,Sanctions,DIRECT
 - RULE-SET,Apple,DIRECT
 - RULE-SET,Spotify,DIRECT
-- RULE-SET,Iran-domain,DIRECT
+- RULE-SET,Iran,DIRECT
 - RULE-SET,Xiaomi,DIRECT
 - RULE-SET,Github,DIRECT
 
@@ -337,11 +337,11 @@ rule-providers:
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdGuardSDNSFilter/AdGuardSDNSFilter_Domain.yaml"
     path: ./ruleset/Adguard.yaml
     interval: 604800
-  Iran-domain:
+  Iran:
     type: http
     behavior: domain
-    url: "https://github.com/BehradJi/Clash/blob/main/Rules/clash_rules.yaml?raw=true"
-    path: ./ruleset/iran-rules.yaml
+    url: "https://github.com/SamadiPour/iran-hosted-domains/releases/latest/download/clash_rules.yaml"
+    path: ./ruleset/iran.yaml
     interval: 604800
   Sanctions:
     type: http
