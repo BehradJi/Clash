@@ -22,6 +22,7 @@ proxy-groups:
   type: select
   proxies:
   - 🥇 Lowest Latency
+  - 🥈 Lowest Latency EU
   - 🌏 Choose a Country
   - ⏏️ Select Node
   - ⚖️ Load Balancing
@@ -121,6 +122,17 @@ proxy-groups:
   use:
   - all
   - all-sspool
+  url: 'http://www.gstatic.com/generate_204'
+  tolerance: 20
+  interval: 1800
+  proxies: []
+- name: 🥈 Lowest Latency EU
+  type: url-test
+  use:
+  - nl
+  - fr
+  - de
+  - gb
   url: 'http://www.gstatic.com/generate_204'
   tolerance: 20
   interval: 1800
