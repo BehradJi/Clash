@@ -1,0 +1,4 @@
+# direct rules
+payload:
+  - DOMAIN-SUFFIX,farsicdn.xyz
+  - DOMAIN-SUFFIX,bpi.ir
