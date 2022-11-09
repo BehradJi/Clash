@@ -44,6 +44,7 @@ proxy-groups:
   type: select
   use:
   - all
+  - all-sspool
   proxies: []
 - name: "\U0001F1E8\U0001F1F3 China"
   type: url-test
