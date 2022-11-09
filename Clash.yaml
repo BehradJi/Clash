@@ -47,7 +47,7 @@ proxy-groups:
 - name: "\U0001F1E8\U0001F1F3 China"
   type: url-test
   url: 'http://www.gstatic.com/generate_204'
-  interval: 300
+  interval: 1800
   use:
   - cn
   - cn-sspool
@@ -55,7 +55,7 @@ proxy-groups:
 - name: "\U0001F1FA\U0001F1F8 US"
   type: url-test
   url: 'http://www.gstatic.com/generate_204'
-  interval: 300
+  interval: 1800
   use:
   - us
   - us-sspool
@@ -63,7 +63,7 @@ proxy-groups:
 - name: "\U0001F1E8\U0001F1E6 Canada"
   type: url-test
   url: 'http://www.gstatic.com/generate_204'
-  interval: 300
+  interval: 1800
   use:
   - ca
   - ca-sspool
@@ -71,7 +71,7 @@ proxy-groups:
 - name: "\U0001F1F7\U0001F1FA Russia"
   type: url-test
   url: 'http://www.gstatic.com/generate_204'
-  interval: 300
+  interval: 1800
   use:
   - ru
   - ru-sspool
@@ -79,7 +79,7 @@ proxy-groups:
 - name: "\U0001F1E9\U0001F1EA Germany"
   type: url-test
   url: 'http://www.gstatic.com/generate_204'
-  interval: 300
+  interval: 1800
   use:
   - de
   - de-sspool
@@ -87,7 +87,7 @@ proxy-groups:
 - name: "\U0001F1EB\U0001F1F7 France"
   type: url-test
   url: 'http://www.gstatic.com/generate_204'
-  interval: 300
+  interval: 1800
   use:
   - fr
   - fr-sspool
@@ -95,7 +95,7 @@ proxy-groups:
 - name: "\U0001F1EC\U0001F1E7 UK"
   type: url-test
   url: 'http://www.gstatic.com/generate_204'
-  interval: 300
+  interval: 1800
   use:
   - gb
   - gb-sspool
@@ -103,7 +103,7 @@ proxy-groups:
 - name: "\U0001F1F3\U0001F1F1 Netherland"
   type: url-test
   url: 'http://www.gstatic.com/generate_204'
-  interval: 300
+  interval: 1800
   use:
   - nl
   - nl-sspool
@@ -111,7 +111,7 @@ proxy-groups:
 - name: 🌏 Other Countries
   type: url-test
   url: 'http://www.gstatic.com/generate_204'
-  interval: 300
+  interval: 1800
   use:
   - others
   - others-sspool
@@ -122,8 +122,8 @@ proxy-groups:
   - all
   - all-sspool
   url: 'http://www.gstatic.com/generate_204'
-  tolerance: 30
-  interval: 300
+  tolerance: 20
+  interval: 1800
   proxies: []
 - name: SSR
   type: select
@@ -136,7 +136,7 @@ proxy-groups:
   - all
   - all-sspool
   url: 'http://www.gstatic.com/generate_204'
-  interval: 300
+  interval: 1800
   proxies: []
 - name: 🛻 Failover
   type: fallback
@@ -144,7 +144,7 @@ proxy-groups:
   - all
   - all-sspool
   url: 'http://www.gstatic.com/generate_204'
-  interval: 300
+  interval: 1800
   proxies: []
 proxy-providers:
  # proxies.bihai.cf
@@ -156,7 +156,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   cn:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?c=HK,TW,CN&type=vmess,trojan"
@@ -165,7 +165,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   us:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?c=US&type=vmess,trojan"
@@ -174,7 +174,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   ca:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?c=CA&type=vmess,trojan"
@@ -183,7 +183,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   jp:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?c=JP&type=vmess,trojan"
@@ -192,7 +192,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   sg:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?c=SG&type=vmess,trojan"
@@ -201,7 +201,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   ru:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?c=RU&type=vmess,trojan"
@@ -210,7 +210,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   de:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?c=DE&type=vmess,trojan"
@@ -219,7 +219,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   fr:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?c=FR&type=vmess,trojan"
@@ -228,7 +228,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   gb:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?c=GB&type=vmess,trojan"
@@ -237,7 +237,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   nl:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?c=NL&type=vmess,trojan"
@@ -246,7 +246,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   others:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?nc=CN,HK,TW,US,CA,CH,DE,GB,NL,FR,RU&type=vmess,trojan"
@@ -255,7 +255,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   all:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?type=vmess,trojan"
@@ -264,7 +264,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   ssr:
     type: http
     url: "https://proxies.bihai.cf/clash/proxies?type=ssr"
@@ -273,7 +273,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-    interval: 3600
+    interval: 21600
   
   # sspool.herokuapp.com:
 
@@ -484,10 +484,10 @@ rule-providers:
     behavior: classical
     url: "https://raw.githubusercontent.com/BehradJi/Clash/main/Rules/proxy-rules.yaml"
     path: ./ruleset/proxy.yaml
-    interval: 604800
+    interval: 86400
   Direct:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/BehradJi/Clash/main/Rules/direct-rules.yaml"
     path: ./ruleset/direct.yaml
-    interval: 604800
+    interval: 86400
