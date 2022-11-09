@@ -1,5 +1,5 @@
 # proxy rules
 payload:
   - DOMAIN,oauthaccountmanager.googleapis.com
-  - DOMAIN,play.google.com
   - DOMAIN-KEYWORD,play.google
+  - DOMAIN-SUFFIX,waze.com
