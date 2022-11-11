@@ -44,7 +44,7 @@ proxy-groups:
   type: select
   use:
   - all
-  - all-sspool
+
   proxies: []
 - name: "\U0001F1E8\U0001F1F3 China"
   type: url-test
@@ -52,7 +52,7 @@ proxy-groups:
   interval: 300
   use:
   - cn
-  - cn-sspool
+
   proxies: []
 - name: "\U0001F1FA\U0001F1F8 US"
   type: url-test
@@ -60,7 +60,7 @@ proxy-groups:
   interval: 300
   use:
   - us
-  - us-sspool
+
   proxies: []
 - name: "\U0001F1E8\U0001F1E6 Canada"
   type: url-test
@@ -68,7 +68,7 @@ proxy-groups:
   interval: 300
   use:
   - ca
-  - ca-sspool
+
   proxies: []
 - name: "\U0001F1F7\U0001F1FA Russia"
   type: url-test
@@ -76,7 +76,7 @@ proxy-groups:
   interval: 300
   use:
   - ru
-  - ru-sspool
+
   proxies: []
 - name: "\U0001F1E9\U0001F1EA Germany"
   type: url-test
@@ -84,7 +84,7 @@ proxy-groups:
   interval: 300
   use:
   - de
-  - de-sspool
+
   proxies: []
 - name: "\U0001F1EB\U0001F1F7 France"
   type: url-test
@@ -92,7 +92,7 @@ proxy-groups:
   interval: 300
   use:
   - fr
-  - fr-sspool
+
   proxies: []
 - name: "\U0001F1EC\U0001F1E7 UK"
   type: url-test
@@ -100,7 +100,7 @@ proxy-groups:
   interval: 300
   use:
   - gb
-  - gb-sspool
+
   proxies: []
 - name: "\U0001F1F3\U0001F1F1 Netherland"
   type: url-test
@@ -108,7 +108,7 @@ proxy-groups:
   interval: 300
   use:
   - nl
-  - nl-sspool
+
   proxies: []
 - name: 🌏 Other Countries
   type: url-test
@@ -116,13 +116,13 @@ proxy-groups:
   interval: 300
   use:
   - others
-  - others-sspool
+
   proxies: []
 - name: 🥇 Lowest Latency
   type: url-test
   use:
   - all
-  - all-sspool
+
   url: 'http://www.gstatic.com/generate_204'
   tolerance: 20
   interval: 300
@@ -147,7 +147,7 @@ proxy-groups:
   type: load-balance
   use:
   - all
-  - all-sspool
+
   url: 'http://www.gstatic.com/generate_204'
   interval: 300
   proxies: []
@@ -155,16 +155,16 @@ proxy-groups:
   type: fallback
   use:
   - all
-  - all-sspool
+
   url: 'http://www.gstatic.com/generate_204'
   interval: 300
   proxies: []
 proxy-providers:
- # proxies.bihai.cf
+ # hellopool.herokuapp.com
   au:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=AU&type=vmess,trojan"
-    path: proxies.bihai.cf/provider-au.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?c=AU&type=vmess,trojan"
+    path: hellopool.herokuapp.com/provider-au.yaml
     health-check:
       enable: true
       interval: 600
@@ -172,8 +172,8 @@ proxy-providers:
     interval: 21600
   cn:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=HK,TW,CN&type=vmess,trojan"
-    path: proxies.bihai.cf/provider-cn.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?c=HK,TW,CN&type=vmess,trojan"
+    path: hellopool.herokuapp.com/provider-cn.yaml
     health-check:
       enable: true
       interval: 600
@@ -181,8 +181,8 @@ proxy-providers:
     interval: 21600
   us:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=US&type=vmess,trojan"
-    path: proxies.bihai.cf/provider-us.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?c=US&type=vmess,trojan"
+    path: hellopool.herokuapp.com/provider-us.yaml
     health-check:
       enable: true
       interval: 600
@@ -190,8 +190,8 @@ proxy-providers:
     interval: 21600
   ca:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=CA&type=vmess,trojan"
-    path: proxies.bihai.cf/provider-ca.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?c=CA&type=vmess,trojan"
+    path: hellopool.herokuapp.com/provider-ca.yaml
     health-check:
       enable: true
       interval: 600
@@ -199,8 +199,8 @@ proxy-providers:
     interval: 21600
   jp:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=JP&type=vmess,trojan"
-    path: proxies.bihai.cf/provider-jp.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?c=JP&type=vmess,trojan"
+    path: hellopool.herokuapp.com/provider-jp.yaml
     health-check:
       enable: true
       interval: 600
@@ -208,8 +208,8 @@ proxy-providers:
     interval: 21600
   sg:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=SG&type=vmess,trojan"
-    path: proxies.bihai.cf/provider-sg.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?c=SG&type=vmess,trojan"
+    path: hellopool.herokuapp.com/provider-sg.yaml
     health-check:
       enable: true
       interval: 600
@@ -217,8 +217,8 @@ proxy-providers:
     interval: 21600
   ru:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=RU&type=vmess,trojan"
-    path: proxies.bihai.cf/provider-ru.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?c=RU&type=vmess,trojan"
+    path: hellopool.herokuapp.com/provider-ru.yaml
     health-check:
       enable: true
       interval: 600
@@ -226,8 +226,8 @@ proxy-providers:
     interval: 21600
   de:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=DE&type=vmess,trojan"
-    path: proxies.bihai.cf/provider-de.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?c=DE&type=vmess,trojan"
+    path: hellopool.herokuapp.com/provider-de.yaml
     health-check:
       enable: true
       interval: 600
@@ -235,8 +235,8 @@ proxy-providers:
     interval: 21600
   fr:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=FR&type=vmess,trojan"
-    path: proxies.bihai.cf/provider-fr.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?c=FR&type=vmess,trojan"
+    path: hellopool.herokuapp.com/provider-fr.yaml
     health-check:
       enable: true
       interval: 600
@@ -244,8 +244,8 @@ proxy-providers:
     interval: 21600
   gb:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=GB&type=vmess,trojan"
-    path: proxies.bihai.cf/provider-gb.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?c=GB&type=vmess,trojan"
+    path: hellopool.herokuapp.com/provider-gb.yaml
     health-check:
       enable: true
       interval: 600
@@ -253,8 +253,8 @@ proxy-providers:
     interval: 21600
   nl:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?c=NL&type=vmess,trojan"
-    path: proxies.bihai.cf/provider-nl.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?c=NL&type=vmess,trojan"
+    path: hellopool.herokuapp.com/provider-nl.yaml
     health-check:
       enable: true
       interval: 600
@@ -262,8 +262,8 @@ proxy-providers:
     interval: 21600
   others:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?nc=CN,HK,TW,US,CA,CH,DE,GB,NL,FR,RU&type=vmess,trojan"
-    path: proxies.bihai.cf/provider-others.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?nc=CN,HK,TW,US,CA,CH,DE,GB,NL,FR,RU&type=vmess,trojan"
+    path: hellopool.herokuapp.com/provider-others.yaml
     health-check:
       enable: true
       interval: 600
@@ -271,8 +271,8 @@ proxy-providers:
     interval: 21600
   all:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?type=vmess,trojan"
-    path: proxies.bihai.cf/provider.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?type=vmess,trojan"
+    path: hellopool.herokuapp.com/provider.yaml
     health-check:
       enable: true
       interval: 600
@@ -280,128 +280,8 @@ proxy-providers:
     interval: 21600
   ssr:
     type: http
-    url: "https://proxies.bihai.cf/clash/proxies?type=ssr"
-    path: proxies.bihai.cf/provider-ssr.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 21600
-  
-  # sspool.herokuapp.com:
-
-  au-sspool:
-    type: http
-    url: "https://sspool.herokuapp.com/clash/proxies?c=AU&type=vmess,trojan"
-    path: sspool.herokuapp.com/provider-au.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 21600
-  cn-sspool:
-    type: http
-    url: "https://sspool.herokuapp.com/clash/proxies?c=HK,TW,CN&type=vmess,trojan"
-    path: sspool.herokuapp.com/provider-cn.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 21600
-  us-sspool:
-    type: http
-    url: "https://sspool.herokuapp.com/clash/proxies?c=US&type=vmess,trojan"
-    path: sspool.herokuapp.com/provider-us.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 21600
-  ca-sspool:
-    type: http
-    url: "https://sspool.herokuapp.com/clash/proxies?c=CA&type=vmess,trojan"
-    path: sspool.herokuapp.com/provider-ca.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 21600
-  jp-sspool:
-    type: http
-    url: "https://sspool.herokuapp.com/clash/proxies?c=JP&type=vmess,trojan"
-    path: sspool.herokuapp.com/provider-jp.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 21600
-  sg-sspool:
-    type: http
-    url: "https://sspool.herokuapp.com/clash/proxies?c=SG&type=vmess,trojan"
-    path: sspool.herokuapp.com/provider-sg.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 21600
-  ru-sspool:
-    type: http
-    url: "https://sspool.herokuapp.com/clash/proxies?c=RU&type=vmess,trojan"
-    path: sspool.herokuapp.com/provider-ru.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 21600
-  de-sspool:
-    type: http
-    url: "https://sspool.herokuapp.com/clash/proxies?c=DE&type=vmess,trojan"
-    path: sspool.herokuapp.com/provider-de.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 21600
-  fr-sspool:
-    type: http
-    url: "https://sspool.herokuapp.com/clash/proxies?c=FR&type=vmess,trojan"
-    path: sspool.herokuapp.com/provider-fr.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 21600
-  gb-sspool:
-    type: http
-    url: "https://sspool.herokuapp.com/clash/proxies?c=GB&type=vmess,trojan"
-    path: sspool.herokuapp.com/provider-gb.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 21600
-  nl-sspool:
-    type: http
-    url: "https://sspool.herokuapp.com/clash/proxies?c=NL&type=vmess,trojan"
-    path: sspool.herokuapp.com/provider-nl.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 21600
-  others-sspool:
-    type: http
-    url: "https://sspool.herokuapp.com/clash/proxies?nc=CN,HK,TW,US,CA,CH,DE,GB,NL,FR,RU&type=vmess,trojan"
-    path: sspool.herokuapp.com/provider-others.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-    interval: 21600
-  all-sspool:
-    type: http
-    url: "https://sspool.herokuapp.com/clash/proxies?type=vmess,trojan"
-    path: sspool.herokuapp.com/provider.yaml
+    url: "https://hellopool.herokuapp.com/clash/proxies?type=ssr"
+    path: hellopool.herokuapp.com/provider-ssr.yaml
     health-check:
       enable: true
       interval: 600
