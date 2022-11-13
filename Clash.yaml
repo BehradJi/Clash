@@ -159,11 +159,11 @@ proxy-groups:
   interval: 300
   proxies: []
 proxy-providers:
- # hellopool.herokuapp.com
+ # proxy.yugogo.xyz
   au:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?c=AU&type=vmess,trojan"
-    path: hellopool.herokuapp.com/provider-au.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?c=AU&type=trojan"
+    path: proxy.yugogo.xyz/provider-au.yaml
     health-check:
       enable: true
       interval: 600
@@ -171,8 +171,8 @@ proxy-providers:
     interval: 21600
   cn:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?c=HK,TW,CN&type=vmess,trojan"
-    path: hellopool.herokuapp.com/provider-cn.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?c=HK,TW,CN&type=trojan"
+    path: proxy.yugogo.xyz/provider-cn.yaml
     health-check:
       enable: true
       interval: 600
@@ -180,8 +180,8 @@ proxy-providers:
     interval: 21600
   us:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?c=US&type=vmess,trojan"
-    path: hellopool.herokuapp.com/provider-us.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?c=US&type=trojan"
+    path: proxy.yugogo.xyz/provider-us.yaml
     health-check:
       enable: true
       interval: 600
@@ -189,8 +189,8 @@ proxy-providers:
     interval: 21600
   ca:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?c=CA&type=vmess,trojan"
-    path: hellopool.herokuapp.com/provider-ca.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?c=CA&type=trojan"
+    path: proxy.yugogo.xyz/provider-ca.yaml
     health-check:
       enable: true
       interval: 600
@@ -198,8 +198,8 @@ proxy-providers:
     interval: 21600
   jp:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?c=JP&type=vmess,trojan"
-    path: hellopool.herokuapp.com/provider-jp.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?c=JP&type=trojan"
+    path: proxy.yugogo.xyz/provider-jp.yaml
     health-check:
       enable: true
       interval: 600
@@ -207,8 +207,8 @@ proxy-providers:
     interval: 21600
   sg:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?c=SG&type=vmess,trojan"
-    path: hellopool.herokuapp.com/provider-sg.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?c=SG&type=trojan"
+    path: proxy.yugogo.xyz/provider-sg.yaml
     health-check:
       enable: true
       interval: 600
@@ -216,8 +216,8 @@ proxy-providers:
     interval: 21600
   ru:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?c=RU&type=vmess,trojan"
-    path: hellopool.herokuapp.com/provider-ru.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?c=RU&type=trojan"
+    path: proxy.yugogo.xyz/provider-ru.yaml
     health-check:
       enable: true
       interval: 600
@@ -225,8 +225,8 @@ proxy-providers:
     interval: 21600
   de:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?c=DE&type=vmess,trojan"
-    path: hellopool.herokuapp.com/provider-de.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?c=DE&type=trojan"
+    path: proxy.yugogo.xyz/provider-de.yaml
     health-check:
       enable: true
       interval: 600
@@ -234,8 +234,8 @@ proxy-providers:
     interval: 21600
   fr:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?c=FR&type=vmess,trojan"
-    path: hellopool.herokuapp.com/provider-fr.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?c=FR&type=trojan"
+    path: proxy.yugogo.xyz/provider-fr.yaml
     health-check:
       enable: true
       interval: 600
@@ -243,8 +243,8 @@ proxy-providers:
     interval: 21600
   gb:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?c=GB&type=vmess,trojan"
-    path: hellopool.herokuapp.com/provider-gb.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?c=GB&type=trojan"
+    path: proxy.yugogo.xyz/provider-gb.yaml
     health-check:
       enable: true
       interval: 600
@@ -252,8 +252,8 @@ proxy-providers:
     interval: 21600
   nl:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?c=NL&type=vmess,trojan"
-    path: hellopool.herokuapp.com/provider-nl.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?c=NL&type=trojan"
+    path: proxy.yugogo.xyz/provider-nl.yaml
     health-check:
       enable: true
       interval: 600
@@ -261,8 +261,8 @@ proxy-providers:
     interval: 21600
   others:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?nc=CN,HK,TW,US,CA,CH,DE,GB,NL,FR,RU&type=vmess,trojan"
-    path: hellopool.herokuapp.com/provider-others.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?nc=CN,HK,TW,US,CA,CH,DE,GB,NL,FR,RU&type=trojan"
+    path: proxy.yugogo.xyz/provider-others.yaml
     health-check:
       enable: true
       interval: 600
@@ -270,8 +270,8 @@ proxy-providers:
     interval: 21600
   all:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?type=vmess,trojan"
-    path: hellopool.herokuapp.com/provider.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?type=trojan"
+    path: proxy.yugogo.xyz/provider.yaml
     health-check:
       enable: true
       interval: 600
@@ -279,8 +279,8 @@ proxy-providers:
     interval: 21600
   ssr:
     type: http
-    url: "https://hellopool.herokuapp.com/clash/proxies?type=ssr"
-    path: hellopool.herokuapp.com/provider-ssr.yaml
+    url: "https://proxy.yugogo.xyz/clash/proxies?type=ssr"
+    path: proxy.yugogo.xyz/provider-ssr.yaml
     health-check:
       enable: true
       interval: 600
