@@ -11,4 +11,8 @@ payload:
   - DOMAIN-SUFFIX,king.com
   - DOMAIN-SUFFIX,pitchfork.com
   - DOMAIN,imap.gmail.com
+
+# Goodreads
   - DOMAIN-SUFFIX,goodreads.com
+  - DOMAIN-SUFFIX,doubleclick.net
+  - DOMAIN-SUFFIX,gr-assets.com
