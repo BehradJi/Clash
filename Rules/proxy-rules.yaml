@@ -9,4 +9,5 @@ payload:
   - DOMAIN-SUFFIX,acast.com
   - DOMAIN-SUFFIX,soltaan.com
   - DOMAIN-SUFFIX,king.com
+  - DOMAIN-SUFFIX,pitchfork.com
   - DOMAIN,imap.gmail.com
