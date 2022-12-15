@@ -16,3 +16,4 @@ payload:
   - DOMAIN-SUFFIX,goodreads.com
   - DOMAIN-SUFFIX,doubleclick.net
   - DOMAIN-SUFFIX,gr-assets.com
+  - DOMAIN-SUFFIX,unsplash.com
