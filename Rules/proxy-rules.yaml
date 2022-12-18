@@ -11,11 +11,13 @@ payload:
   - DOMAIN-SUFFIX,king.com
   - DOMAIN-SUFFIX,pitchfork.com
   - DOMAIN,imap.gmail.com
+  - DOMAIN-SUFFIX,unsplash.com
+  - DOMAIN-SUFFIX,shazam.com
+  - DOMAIN-SUFFIX,disqus.com
+  - DOMAIN-SUFFIX,quora.com
 
 # Goodreads
   - DOMAIN-SUFFIX,goodreads.com
   - DOMAIN-SUFFIX,doubleclick.net
   - DOMAIN-SUFFIX,gr-assets.com
-  - DOMAIN-SUFFIX,unsplash.com
-  - DOMAIN-SUFFIX,shazam.com
-  - DOMAIN-SUFFIX,disqus.com
+  
