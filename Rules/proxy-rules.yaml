@@ -23,3 +23,4 @@ payload:
   
 # Whatsapp extra IPs
   - IP-CIDR,144.126.247.145/32
+  - IP-CIDR,138.68.126.86/32
