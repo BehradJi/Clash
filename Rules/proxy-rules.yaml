@@ -10,7 +10,6 @@ payload:
   - DOMAIN-SUFFIX,soltaan.com
   - DOMAIN-SUFFIX,king.com
   - DOMAIN-SUFFIX,pitchfork.com
-  - DOMAIN,imap.gmail.com
   - DOMAIN-SUFFIX,unsplash.com
   - DOMAIN-SUFFIX,shazam.com
   - DOMAIN-SUFFIX,disqus.com
