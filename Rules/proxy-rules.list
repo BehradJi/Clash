@@ -3,3 +3,25 @@
 DOMAIN-KEYWORD,play.google
 DOMAIN-KEYWORD,play-fe.google
 DOMAIN-KEYWORD,play-lh.google
+# proxy rules
+
+DOMAIN,oauthaccountmanager.googleapis.com
+DOMAIN-KEYWORD,play.google
+DOMAIN-SUFFIX,waze.com
+DOMAIN,xn--4gq62f52gdss.com
+DOMAIN-SUFFIX,farsiland.com
+DOMAIN-SUFFIX,megaphone.fm
+DOMAIN-SUFFIX,acast.com
+DOMAIN-SUFFIX,soltaan.com
+DOMAIN-SUFFIX,king.com
+DOMAIN-SUFFIX,pitchfork.com
+DOMAIN-SUFFIX,unsplash.com
+DOMAIN-SUFFIX,shazam.com
+DOMAIN-SUFFIX,disqus.com
+DOMAIN-SUFFIX,quora.com
+
+# Goodreads
+DOMAIN-SUFFIX,goodreads.com
+DOMAIN-SUFFIX,doubleclick.net
+DOMAIN-SUFFIX,gr-assets.com
+  
