@@ -1,0 +1,3 @@
+# Direct rules
+payload:
+  - DOMAIN-SUFFIX,bpi.ir
