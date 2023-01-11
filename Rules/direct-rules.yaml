@@ -1,3 +1,4 @@
 # Direct rules
 payload:
   - DOMAIN-SUFFIX,bpi.ir
+  - DOMAIN-KEYWORD,farsicdn
