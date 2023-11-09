@@ -1,0 +1,61 @@
+mode: rule
+log-level: error
+dns:
+  enable: true
+  default-nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+  enhanced-mode: fake-ip # or redir-host
+  fake-ip-range: 198.18.0.1/16 # fake-ip 池设置
+  nameserver:
+    - https://sky.rethinkdns.com
+  fallback:
+    - 8.8.8.8
+  proxy-server-nameserver:
+    - 8.8.8.8
+  fallback-filter:
+    geoip: true 
+    geoip-code: IR
+    geosite:
+      - category-ir 
+
+proxy-groups:
+  - name: "auto"
+    type: url-test
+    proxies: []
+    use:
+      - paid
+    tolerance: 10
+    lazy: true
+    url: 'http://cp.cloudflare.com'
+    interval: 300
+
+  - name: Proxy
+    type: select
+    proxies:
+      - auto
+      - manual
+
+  - name: "manual"
+    type: select
+    proxies: []
+    use:
+      - paid
+
+proxy-providers:
+  paid:
+    type: http
+    url: "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity"
+    interval: 3600
+    path: ./proxies/paid2.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com
+rules:
+  - DOMAIN-SUFFIX,google.com,DIRECT
+  - SRC-IP-CIDR,192.168.1.0/24,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - GEOSITE,category-ir,DIRECT
+  - GEOIP,IR,DIRECT
+  - MATCH,Proxy
