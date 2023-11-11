@@ -2,6 +2,7 @@ mode: rule
 log-level: error
 dns:
   enable: true
+  prefer-h3: true
   default-nameserver:
     - 8.8.8.8
     - 1.1.1.1
