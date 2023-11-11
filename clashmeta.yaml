@@ -11,10 +11,11 @@ dns:
   nameserver:
     - 'https://cloudflare-dns.com/dns-query#Proxy'
   proxy-server-nameserver:
-    - 8.8.8.8
+    - tls://max.rethinkdns.com
+    - https://sky.rethinkdns.com
   nameserver-policy:
-    'geosite:category-ir': [8.8.4.4, 8.8.8.8]
-    'geoip:ir': [8.8.8.8, 8.8.4.4]
+    'geosite:category-ir': [5.200.200.200, 217.218.127.127]
+    'geoip:ir': [5.200.200.200, 217.218.127.127]
 
 proxy-groups:
   - name: "auto"
