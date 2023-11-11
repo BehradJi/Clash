@@ -1,5 +1,5 @@
 mode: rule
-log-level: error
+log-level: debug
 dns:
   enable: true
   prefer-h3: true
