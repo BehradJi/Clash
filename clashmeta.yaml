@@ -12,7 +12,7 @@ dns:
     - 'https://cloudflare-dns.com/dns-query#Proxy'
   proxy-server-nameserver:
     - tls://max.rethinkdns.com
-    - https://sky.rethinkdns.com
+  #  - https://sky.rethinkdns.com
   nameserver-policy:
     'geosite:category-ir': [5.200.200.200, 217.218.127.127]
     'geoip:ir': [5.200.200.200, 217.218.127.127]
