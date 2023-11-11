@@ -10,15 +10,11 @@ dns:
   fake-ip-range: 198.18.0.1/16 # fake-ip 池设置
   nameserver:
     - https://sky.rethinkdns.com
-  fallback:
-    - 8.8.8.8
   proxy-server-nameserver:
     - 8.8.8.8
-  fallback-filter:
-    geoip: true 
-    geoip-code: IR
-    geosite:
-      - category-ir 
+  nameserver-policy:
+    'geosite:category-ir': [8.8.4.4, 8.8.8.8]
+    'geoip:ir': [8.8.8.8, 8.8.4.4]
 
 proxy-groups:
   - name: "auto"
