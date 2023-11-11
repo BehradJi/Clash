@@ -9,7 +9,7 @@ dns:
   enhanced-mode: fake-ip # or redir-host
   fake-ip-range: 198.18.0.1/16 # fake-ip 池设置
   nameserver:
-    - https://sky.rethinkdns.com
+    - 'https://cloudflare-dns.com/dns-query#Proxy'
   proxy-server-nameserver:
     - 8.8.8.8
   nameserver-policy:
