@@ -2,7 +2,6 @@ mode: rule
 log-level: debug
 dns:
   enable: true
-  prefer-h3: true
   default-nameserver:
     - 8.8.8.8
     - 1.1.1.1
@@ -15,6 +14,8 @@ dns:
   nameserver-policy:
     'geosite:category-ir': [5.200.200.200, 217.218.127.127]
     'geoip:ir': [5.200.200.200, 217.218.127.127]
+    'geosite:spotify': [78.157.42.100, 78.157.42.101]
+    'geosite:openai': [178.22.122.100, 185.51.200.2]
 
 proxy-groups:
   - name: "auto"
@@ -50,6 +51,8 @@ proxy-providers:
 rules:
   - SRC-IP-CIDR,192.168.1.0/24,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT
+  - GEOSITE,openai,DIRECT
+  - GEOSITE,spotify,DIRECT
   - GEOSITE,category-ir,DIRECT
   - GEOIP,IR,DIRECT
   - MATCH,Proxy
