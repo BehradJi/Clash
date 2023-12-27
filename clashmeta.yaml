@@ -20,29 +20,22 @@ dns:
 proxy-groups:
   - name: "auto"
     type: url-test
+    url: https://cp.cloudflare.com
     proxies: []
     use:
       - paid
     tolerance: 10
-    lazy: true
     interval: 300
 
   - name: Proxy
     type: select
     proxies:
       - auto
-      - manual
-
-  - name: "manual"
-    type: select
-    proxies: []
-    use:
-      - paid
 
 proxy-providers:
   paid:
     type: http
-    url: "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity"
+    url: "https://api.yebekhe.link/shervin"
     interval: 3600
     path: ./proxies/paid2.yaml
     health-check:
