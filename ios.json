@@ -10,7 +10,7 @@
       },
       {
         "tag": "dns-direct",
-        "address": "5.200.200.200",
+        "address": "local",
         "detour": "direct"
       },
       {
@@ -41,7 +41,6 @@
       "inet4_address": "172.19.0.1/30",
       "auto_route": true,
       "strict_route": false,
-      "stack":"system",
       "sniff": true
     }
   ],
