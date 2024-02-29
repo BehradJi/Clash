@@ -17,12 +17,18 @@
         "tag": "dns-electro",
         "address": "78.157.42.100",
         "detour": "direct"
-      }
+      },
+      {
+        "tag": "dns-resolve",
+        "address": "https://sky.rethinkdns.com/",
+        "detour":"direct"
+      },
+
     ],
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-direct"
+        "server": "dns-resolve"
       },
       {
         "rule_set": "spotify",
@@ -31,9 +37,18 @@
       {
         "rule_set": "geosite-ir",
         "server": "dns-direct"
+      },
+      {
+        "domain": "cp.cloudflare.com",
+        "server": "dns-remote",
+        "rewrite_ttl": 3000
       }
+
     ],
-    "strategy": "ipv4_only"
+    "final": "dns-remote",
+    "strategy": "ipv4_only",
+    "independent_cache": true
+
   },
   "inbounds": [
     {
@@ -41,7 +56,7 @@
       "inet4_address": "172.19.0.1/30",
       "auto_route": true,
       "strict_route": true,
-       "sniff": true
+      "sniff": true
     }
   ],
   "outbounds": [
