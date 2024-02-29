@@ -68,6 +68,7 @@
     {
       "type": "urltest",
       "tag": "Auto",
+      "url":"http://cp.cloudflare.com",
       "interval":"10m0s",
       "outbounds": [
         "{all}"
