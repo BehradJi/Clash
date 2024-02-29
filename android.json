@@ -23,8 +23,7 @@
         "address": "https://sky.rethinkdns.com/",
         "address_resolver": "dns-direct",
         "detour":"direct"
-      },
-
+      }
     ],
     "rules": [
       {
