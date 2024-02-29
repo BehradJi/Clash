@@ -60,6 +60,7 @@
     {
       "type": "selector",
       "tag": "Proxy",
+      "url":"http://cp.cloudflare.com",
       "outbounds": [
         "Auto",
         "{all}"
