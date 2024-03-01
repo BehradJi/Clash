@@ -10,7 +10,7 @@
       },
       {
         "tag": "dns-direct",
-        "address": "local",
+        "address": "5.200.200.200",
         "detour": "direct"
       },
       {
@@ -31,6 +31,11 @@
       {
         "rule_set": "geosite-ir",
         "server": "dns-direct"
+      },
+      {
+        "domain": "gstatic.com",
+        "server": "dns-direct",
+        "rewrite_ttl": 3000
       }
     ],
     "strategy": "ipv4_only"
@@ -56,7 +61,6 @@
     {
       "type": "urltest",
       "tag": "Auto",
-      "interval":"10m0s",
       "outbounds": [
         "{all}"
       ]
