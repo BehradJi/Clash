@@ -10,25 +10,19 @@
       },
       {
         "tag": "dns-direct",
-        "address": "local",
+        "address": "5.200.200.200",
         "detour": "direct"
       },
       {
         "tag": "dns-electro",
         "address": "78.157.42.100",
         "detour": "direct"
-      },
-      {
-        "tag": "dns-resolve",
-        "address": "https://sky.rethinkdns.com/",
-        "address_resolver": "dns-direct",
-        "detour":"direct"
       }
     ],
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-resolve"
+        "server": "dns-direct"
       },
       {
         "rule_set": "spotify",
@@ -37,18 +31,9 @@
       {
         "rule_set": "geosite-ir",
         "server": "dns-direct"
-      },
-      {
-        "domain": "cp.cloudflare.com",
-        "server": "dns-remote",
-        "rewrite_ttl": 3000
       }
-
     ],
-    "final": "dns-remote",
-    "strategy": "ipv4_only",
-    "independent_cache": true
-
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
@@ -71,8 +56,6 @@
     {
       "type": "urltest",
       "tag": "Auto",
-      "url":"http://cp.cloudflare.com",
-      "interval":"10m0s",
       "outbounds": [
         "{all}"
       ]
