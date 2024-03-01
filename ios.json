@@ -33,13 +33,15 @@
         "server": "dns-direct"
       }
     ],
-    "strategy": "ipv4_only"
+    "strategy": "ipv4_only",
+    "independent_cache": true
   },
   "inbounds": [
     {
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
       "auto_route": true,
+      "stack": "system",
       "sniff": true
     }
   ],
@@ -56,6 +58,7 @@
       "type": "urltest",
       "tag": "Auto",
       "url": "http://cp.cloudflare.com",
+      "interval": "10m0s",
       "outbounds": [
         "{all}"
       ]
