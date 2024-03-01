@@ -31,11 +31,6 @@
       {
         "rule_set": "geosite-ir",
         "server": "dns-direct"
-      },
-      {
-        "domain": "gstatic.com",
-        "server": "dns-direct",
-        "rewrite_ttl": 3000
       }
     ],
     "strategy": "ipv4_only"
