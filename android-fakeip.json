@@ -113,7 +113,7 @@
       {
         "port": 53,
         "outbound": "dns-out"
-      }
+      },
       {
         "rule_set": [
           "geosite-ir",
