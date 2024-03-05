@@ -26,8 +26,7 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-direct",
-        "disable_cache": true
+        "server": "dns-direct"
       },
       {
         "rule_set": "spotify",
@@ -38,13 +37,11 @@
         "server": "dns-direct"
       },
       {
-        "inbound": "tun",
         "query_type": [
           "A",
           "AAAA"
         ],
-        "server": "fakeip",
-        "rewrite_ttl": 1
+        "server": "dns-fakeip"
       }
     ],
     "fakeip": {
@@ -56,7 +53,6 @@
   },
   "inbounds": [
     {
-      "tag": "tun",
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
       "inet6_address": "fdfe:dcba:9876::0/126",
@@ -95,10 +91,6 @@
     "rules": [
       {
         "protocol": "dns",
-        "outbound": "dns-out"
-      },
-      {
-        "port": 53,
         "outbound": "dns-out"
       },
       {
