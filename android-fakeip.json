@@ -102,10 +102,6 @@
     {
       "type": "dns",
       "tag": "dns-out"
-    },
-    {
-      "port": 53,
-      "outbound": "dns-out"
     }
   ],
   "route": {
@@ -114,6 +110,10 @@
         "protocol": "dns",
         "outbound": "dns-out"
       },
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      }
       {
         "rule_set": [
           "geosite-ir",
