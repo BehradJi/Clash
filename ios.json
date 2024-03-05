@@ -55,9 +55,7 @@
     },
     {
       "type": "urltest",
-      "tag": "Auto",
-      "url": "http://cp.cloudflare.com/generate_204",
-      "interval": "5m0s",
+      "tag": "Auto",   
       "outbounds": [
         "{all}"
       ]
