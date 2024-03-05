@@ -22,7 +22,8 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-direct"
+        "server": "dns-direct",
+        "disable_cache": true
       },
       {
         "rule_set": "spotify",
@@ -33,8 +34,7 @@
         "server": "dns-direct"
       }
     ],
-    "strategy": "ipv4_only",
-    "independent_cache": true
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
@@ -43,6 +43,8 @@
       "auto_route": true,
       "strict_route": true,
       "sniff": true,
+      "endpoint_independent_nat": false,
+      "stack": "system",
       "inet4_route_exclude_address": [
         "192.168.0.0/16",
         "10.0.0.0/8",
@@ -91,10 +93,6 @@
         "outbound": "dns-out"
       },
       {
-        "ip_is_private": true,
-        "outbound": "direct"
-      },
-      {
         "rule_set": [
           "geosite-ir",
           "geoip-ir",
@@ -129,5 +127,10 @@
     "final": "Proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true
+    }
   }
 }
