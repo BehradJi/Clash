@@ -42,7 +42,6 @@
       "inet4_address": "172.19.0.1/30",
       "auto_route": true,
       "strict_route": true,
-      "stack": "system",
       "sniff": true,
       "inet4_route_exclude_address": [
         "192.168.0.0/16",
