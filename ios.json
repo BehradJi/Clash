@@ -46,8 +46,17 @@
   ],
   "outbounds": [
     {
-      "type": "urltest",
+      "type": "selector",
       "tag": "Proxy",   
+      "outbounds": [
+        "Auto",
+        "{all}"
+      ]
+    },
+    {
+      "type": "urltest",
+      "tag": "Auto",   
+      "url":"http://gstatic.com/generate_204",
       "outbounds": [
         "{all}"
       ]
