@@ -33,8 +33,7 @@
         "server": "dns-direct"
       }
     ],
-    "strategy": "ipv4_only",
-    "independent_cache": true
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
@@ -42,6 +41,7 @@
       "inet4_address": "172.19.0.1/30",
       "auto_route": true,
       "sniff": true,
+      "stack":"system",
       "inet4_route_exclude_address": [
         "192.168.0.0/16",
         "10.0.0.0/8",
@@ -88,10 +88,6 @@
       {
         "protocol": "dns",
         "outbound": "dns-out"
-      },
-      {
-        "ip_is_private": true,
-        "outbound": "direct"
       },
       {
         "rule_set": [
