@@ -46,16 +46,8 @@
   ],
   "outbounds": [
     {
-      "type": "selector",
-      "tag": "Proxy",
-      "outbounds": [
-        "Auto",
-        "{all}"
-      ]
-    },
-    {
       "type": "urltest",
-      "tag": "Auto",   
+      "tag": "Proxy",   
       "outbounds": [
         "{all}"
       ]
