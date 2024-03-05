@@ -22,7 +22,8 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-direct"
+        "server": "dns-direct",
+        "disable_cache": true
       },
       {
         "rule_set": "spotify",
