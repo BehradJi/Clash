@@ -59,22 +59,10 @@
       "tag": "tun",
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
+      "inet6_address": "fdfe:dcba:9876::0/126",
       "auto_route": true,
       "strict_route": true,
-      "sniff": true,
-      "stack": "system",
-      "inet4_route_exclude_address": [
-        "192.168.0.0/16",
-        "10.0.0.0/8",
-        "100.64.0.0/10",
-        "169.254.0.0/16",
-        "172.16.0.0/12",
-        "192.0.0.0/24",
-        "224.0.0.0/24",
-        "240.0.0.0/4",
-        "239.255.255.250/32",
-        "255.255.255.255/32"
-      ]
+      "sniff": true
     }
   ],
   "outbounds": [
