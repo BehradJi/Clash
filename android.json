@@ -6,7 +6,7 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "https://1.1.1.1/dns-query"
+        "address": "tls://8.8.8.8"
       },
       {
         "tag": "dns-direct",
@@ -17,13 +17,17 @@
         "tag": "dns-electro",
         "address": "78.157.42.100",
         "detour": "direct"
+      },
+      {
+        "tag": "dns-resolve",
+        "address": "tcp://8.8.8.8",
+        "detour": "direct"
       }
     ],
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-direct",
-        "disable_cache": true
+        "server": "dns-resolve"
       },
       {
         "rule_set": "spotify",
@@ -34,7 +38,8 @@
         "server": "dns-direct"
       }
     ],
-    "strategy": "ipv4_only"
+    "strategy": "ipv4_only",
+    "independent_cache": true
   },
   "inbounds": [
     {
@@ -42,26 +47,13 @@
       "inet4_address": "172.19.0.1/30",
       "auto_route": true,
       "strict_route": true,
-      "sniff": true,
-      "stack": "system",
-      "inet4_route_exclude_address": [
-        "192.168.0.0/16",
-        "10.0.0.0/8",
-        "100.64.0.0/10",
-        "169.254.0.0/16",
-        "172.16.0.0/12",
-        "192.0.0.0/24",
-        "224.0.0.0/24",
-        "240.0.0.0/4",
-        "239.255.255.250/32",
-        "255.255.255.255/32"
-      ]
+      "sniff": true
     }
   ],
   "outbounds": [
     {
       "type": "selector",
-      "tag": "Proxy",
+      "tag": "Proxy",   
       "outbounds": [
         "Auto",
         "{all}"
@@ -69,9 +61,8 @@
     },
     {
       "type": "urltest",
-      "tag": "Auto",
-      "url": "http://cp.cloudflare.com/generate_204",
-      "interval": "5m0s",
+      "tag": "Auto",   
+      "url":"http://gstatic.com/generate_204",
       "outbounds": [
         "{all}"
       ]
@@ -126,10 +117,5 @@
     "final": "Proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true
-  },
-  "experimental": {
-    "cache_file": {
-      "enabled": true
-    }
   }
 }
