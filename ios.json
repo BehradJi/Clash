@@ -17,12 +17,17 @@
         "tag": "dns-electro",
         "address": "78.157.42.100",
         "detour": "direct"
+      },
+      {
+        "tag": "dns-resolve",
+        "address": "tcp://8.8.8.8",
+        "detour": "direct"
       }
     ],
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-direct"
+        "server": "dns-resolve"
       },
       {
         "rule_set": "spotify",
