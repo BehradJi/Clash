@@ -56,7 +56,6 @@
     {
       "type": "urltest",
       "tag": "Auto",   
-      "url":"http://www.gstatic.com/generate_204",
       "outbounds": [
         "{all}"
       ]
