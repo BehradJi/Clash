@@ -76,6 +76,10 @@
         "outbound": "dns-out"
       },
       {
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
         "rule_set": [
           "geosite-ir",
           "geoip-ir",
