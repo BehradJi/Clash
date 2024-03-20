@@ -6,7 +6,7 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "tls://8.8.8.8"
+        "address": "1.1.1.1"
       },
       {
         "tag": "dns-direct",
@@ -46,17 +46,9 @@
   ],
   "outbounds": [
     {
-      "type": "selector",
-      "tag": "Proxy",   
-      "outbounds": [
-        "Auto",
-        "{all}"
-      ]
-    },
-    {
-      "type": "urltest",
+      "type": "Proxy",
       "tag": "Auto",
-      "url": "http://cp.cloudflare.com",
+      "url": "http://www.gstatic.com/generate_204",
       "interval": "10m",
       "outbounds": [
         "{all}"
