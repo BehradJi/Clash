@@ -46,8 +46,8 @@
   ],
   "outbounds": [
     {
-      "type": "Proxy",
-      "tag": "Auto",
+      "type": "urltest",
+      "tag": "Proxy",
       "url": "http://www.gstatic.com/generate_204",
       "interval": "10m",
       "outbounds": [
