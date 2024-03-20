@@ -55,7 +55,9 @@
     },
     {
       "type": "urltest",
-      "tag": "Auto",   
+      "tag": "Auto",
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "5m",
       "outbounds": [
         "{all}"
       ]
