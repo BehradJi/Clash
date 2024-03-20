@@ -56,8 +56,8 @@
     {
       "type": "urltest",
       "tag": "Auto",
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "5m",
+      "url": "http://cp.cloudflare.com",
+      "interval": "10m",
       "outbounds": [
         "{all}"
       ]
