@@ -38,7 +38,6 @@
     {
       "type": "urltest",
       "tag": "Proxy",
-      "interval":"10m",
       "outbounds": [
         "{all}"
       ]
