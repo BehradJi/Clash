@@ -12,21 +12,12 @@
         "tag": "dns-direct",
         "address": "5.200.200.200",
         "detour": "direct"
-      },
-      {
-        "tag": "dns-electro",
-        "address": "78.157.42.100",
-        "detour": "direct"
       }
     ],
     "rules": [
       {
         "outbound": "any",
         "server": "dns-direct"
-      },
-      {
-        "rule_set": "spotify",
-        "server": "dns-electro"
       },
       {
         "rule_set": "geosite-ir",
@@ -74,8 +65,7 @@
       {
         "rule_set": [
           "geosite-ir",
-          "geoip-ir",
-          "spotify"
+          "geoip-ir"
         ],
         "outbound": "direct"
       }
@@ -93,13 +83,6 @@
         "tag": "geosite-ir",
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-ir.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "spotify",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-spotify.srs",
         "download_detour": "direct"
       }
     ],
