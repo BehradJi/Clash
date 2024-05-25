@@ -68,7 +68,6 @@
     {
       "type": "urltest",
       "tag": "Auto",
-      "interval": "10m",
       "outbounds": [
         "{all}"
       ]
