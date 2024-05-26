@@ -6,7 +6,8 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "https://dns.adguard-dns.com/dns-query"
+        "address": "https://dns.adguard-dns.com/dns-query",
+        "address_resolver": "dns-direct"
       },
       {
         "tag": "dns-direct",
