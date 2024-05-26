@@ -49,19 +49,16 @@
         "server": "dns-direct"
       },
       {
-        "query_type": [
-          "A"
-        ],
+        "query_type": "A",
         "server": "dns-fakeip"
       }
     ],
     "fakeip": {
       "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
+      "inet4_range": "198.18.0.0/15"
     },
-    "independent_cache": true,
-    "strategy": "ipv4_only"
+    "strategy": "ipv4_only",
+    "independent_cache": true
   },
   "inbounds": [
     {
