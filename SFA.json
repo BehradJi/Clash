@@ -10,7 +10,7 @@
       },
       {
         "tag": "dns-direct",
-        "address": "local",
+        "address": "5.200.200.200",
         "detour": "direct"
       },
       {
