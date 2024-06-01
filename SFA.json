@@ -68,7 +68,9 @@
       "tag": "Auto",
       "outbounds": [
         "{all}"
-      ]
+      ],
+      "url": "http://cf.cloudflare.com/generate_204",
+      "interval": "10m0s"
     },
     {
       "type": "direct",
