@@ -39,7 +39,7 @@
         "server": "dns-electro"
       },
       {
-        "rule_set": "geosite-ir",
+        "rule_set": "geoip-ir",
         "server": "dns-direct"
       }
     ],
