@@ -30,10 +30,8 @@
         "server": "dns-direct"
       },
       {
-        "domain_suffix": [
-          "gemini.google.com",
-          "bard.google.com"
-        ],
+        "domain_suffix": "gemini.google.com",
+        "rule_set": "openai",
         "server": "dns-403"
       },
       {
@@ -88,15 +86,13 @@
         "outbound": "dns-out"
       },
       {
-        "domain_suffix": [
-          "gemini.google.com",
-          "bard.google.com"
-        ],
+        "domain_suffix": "gemini.google.com",
         "ip_is_private": true,
         "rule_set": [
           "geosite-ir",
           "geoip-ir",
-          "spotify"
+          "spotify",
+          "openai"
         ],
         "outbound": "direct"
       }
@@ -114,6 +110,13 @@
         "tag": "geosite-ir",
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "openai",
+        "format": "binary",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-openai.srs",
         "download_detour": "direct"
       },
       {
