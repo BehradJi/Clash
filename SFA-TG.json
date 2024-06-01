@@ -10,7 +10,7 @@
       },
       {
         "tag": "dns-direct",
-        "address": "5.200.200.200",
+        "address": "8.8.8.8",
         "detour": "direct"
       },
       {
@@ -30,10 +30,8 @@
         "server": "dns-direct"
       },
       {
-        "domain_suffix": [
-          "gemini.google.com",
-          "bard.google.com"
-        ],
+        "domain_suffix": "gemini.google.com",
+        "rule_set": "openai",
         "server": "dns-403"
       },
       {
@@ -75,6 +73,7 @@
       "outbounds": [
         "{all}"
       ],
+      "interval": "10m0s",
       "filter":[
         {"action":"include","keywords":["CDN2"]},
         {"action":"exclude","keywords":["UAE|Russia|Miami|HongKong|Phoenix|Kenya|Singapore|LosAngeles|Moldova|Bulgaria"]}
@@ -96,15 +95,12 @@
         "outbound": "dns-out"
       },
       {
-        "domain_suffix": [
-          "gemini.google.com",
-          "bard.google.com"
-        ],
+        "domain_suffix": "gemini.google.com",
         "ip_is_private": true,
         "rule_set": [
-          "geosite-ir",
           "geoip-ir",
-          "spotify"
+          "spotify",
+          "openai"
         ],
         "outbound": "direct"
       }
@@ -119,9 +115,9 @@
       },
       {
         "type": "remote",
-        "tag": "geosite-ir",
+        "tag": "openai",
         "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-ir.srs",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geoip-openai.srs",
         "download_detour": "direct"
       },
       {
@@ -142,3 +138,4 @@
     }
   }
 }
+
