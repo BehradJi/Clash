@@ -69,7 +69,7 @@
       "outbounds": [
         "{all}"
       ],
-      "url": "http://cp.cloudflare.com/generate_204",
+      "url": "http://cp.cloudflare.com",
       "interval": "10m0s"
     },
     {
