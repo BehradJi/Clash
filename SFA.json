@@ -1,4 +1,4 @@
-{
+Conrad{
   "log": {
     "disabled": true
   },
@@ -69,7 +69,7 @@
       "outbounds": [
         "{all}"
       ],
-      "url": "http://cf.cloudflare.com/generate_204",
+      "url": "http://cp.cloudflare.com/generate_204",
       "interval": "10m0s"
     },
     {
