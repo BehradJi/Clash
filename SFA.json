@@ -6,11 +6,13 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "tls://8.8.8.8"
+        "address": "https://max.rethinkdns.com/1:EAEwAAIA",
+        "address_resolver": "dns-direct",
+        "detour": "direct"
       },
       {
         "tag": "dns-direct",
-        "address": "8.8.8.8",
+        "address": "local",
         "detour": "direct"
       },
       {
@@ -27,7 +29,7 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-direct"
+        "server": "dns-remote"
       },
       {
         "domain_suffix": "gemini.google.com",
@@ -50,6 +52,12 @@
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
       "auto_route": true,
+      "inet4_route_exclude_address": [
+        "10.0.0.0/8",
+        "192.168.0.0/16",
+        "172.16.0.0/12",
+        "fc00::/7"
+      ],
       "stack": "system",
       "sniff": true
     }
@@ -68,7 +76,8 @@
       "tag": "Auto",
       "outbounds": [
         "{all}"
-      ]
+      ],
+      "interval": "10m0s"
     },
     {
       "type": "direct",
@@ -129,3 +138,4 @@
     }
   }
 }
+
