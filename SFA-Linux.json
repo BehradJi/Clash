@@ -6,11 +6,13 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "tls://8.8.8.8"
+        "address": "https://max.rethinkdns.com/1:EAEwAAIA",
+        "address_resolver": "dns-direct",
+        "detour": "direct"
       },
       {
         "tag": "dns-direct",
-        "address": "8.8.8.8",
+        "address": "5.200.200.200",
         "detour": "direct"
       },
       {
@@ -27,7 +29,7 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-direct"
+        "server": "dns-remote"
       },
       {
         "domain_suffix": "gemini.google.com",
@@ -39,7 +41,10 @@
         "server": "dns-electro"
       },
       {
-        "rule_set": "geoip-ir",
+        "rule_set": [
+          "geoip-ir",
+          "geosite-ir"
+        ],
         "server": "dns-direct"
       }
     ],
@@ -96,6 +101,7 @@
         "domain_suffix": "gemini.google.com",
         "ip_is_private": true,
         "rule_set": [
+          "geosite-ir",
           "geoip-ir",
           "spotify",
           "openai"
@@ -109,6 +115,13 @@
         "tag": "geoip-ir",
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geoip-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-ir",
+        "format": "binary",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-ir.srs",
         "download_detour": "direct"
       },
       {
