@@ -47,13 +47,13 @@
         ],
         "server": "dns-direct"
       }
-    ]
+    ],
+     "strategy": "ipv4_only"
   },
   "inbounds": [
     {
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
-      "inet6_address": "fdfe:dcba:9876::1/126",
       "auto_route": true,
       "sniff": true
     }
