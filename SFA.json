@@ -12,7 +12,7 @@
       },
       {
         "tag": "dns-direct",
-        "address": "local",
+        "address": "5.200.200.200",
         "detour": "direct"
       },
       {
@@ -42,8 +42,8 @@
       },
       {
         "rule_set": [
-          "geoip-ir",
-          "geosite-ir"
+          "geosite-ir",
+          "geoip-ir"
         ],
         "server": "dns-direct"
       }
