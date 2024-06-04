@@ -6,7 +6,9 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "tls://8.8.8.8"
+        "address": "https://max.rethinkdns.com",
+        "address_resolver": "dns-direct",
+        "detour": "direct"
       },
       {
         "tag": "dns-direct",
@@ -27,7 +29,7 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-direct"
+        "server": "dns-remote"
       },
       {
         "domain_suffix": "gemini.google.com",
