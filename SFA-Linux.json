@@ -6,7 +6,7 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "https://max.rethinkdns.com/1:EAEwAAIA",
+        "address": "https://max.rethinkdns.com",
         "address_resolver": "dns-direct",
         "detour": "direct"
       },
@@ -16,14 +16,8 @@
         "detour": "direct"
       },
       {
-        "tag": "dns-electro",
-        "address": "78.157.42.100",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-403",
-        "address": "10.202.10.202",
-        "detour": "direct"
+        "tag": "dns-fakeip",
+        "address": "fakeip"
       }
     ],
     "rules": [
@@ -32,23 +26,20 @@
         "server": "dns-remote"
       },
       {
-        "domain_suffix": "gemini.google.com",
-        "rule_set": "openai",
-        "server": "dns-403"
-      },
-      {
-        "rule_set": "spotify",
-        "server": "dns-electro"
-      },
-      {
-        "rule_set": [
-          "geoip-ir",
-          "geosite-ir"
-        ],
+        "rule_set": "geoip-ir",
         "server": "dns-direct"
+      },
+      {
+        "query_type": "A",
+        "server": "dns-fakeip"
       }
     ],
-    "strategy": "ipv4_only"
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15"
+    },
+    "strategy": "ipv4_only",
+    "independent_cache": true
   },
   "inbounds": [
     {
@@ -80,7 +71,9 @@
       "tag": "Auto",
       "outbounds": [
         "{all}"
-      ]
+      ],
+      "url": "http://gstatic.com/generate_204",
+      "interval": "10m0s"
     },
     {
       "type": "direct",
@@ -98,14 +91,8 @@
         "outbound": "dns-out"
       },
       {
-        "domain_suffix": "gemini.google.com",
         "ip_is_private": true,
-        "rule_set": [
-          "geosite-ir",
-          "geoip-ir",
-          "spotify",
-          "openai"
-        ],
+        "rule_set": "geoip-ir",
         "outbound": "direct"
       }
     ],
@@ -115,27 +102,6 @@
         "tag": "geoip-ir",
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geoip-ir.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geosite-ir",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-ir.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "openai",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geoip-openai.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "spotify",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-spotify.srs",
         "download_detour": "direct"
       }
     ],
@@ -152,4 +118,5 @@
     }
   }
 }
+
 
