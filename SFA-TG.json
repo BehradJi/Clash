@@ -21,8 +21,8 @@
         "detour": "direct"
       },
       {
-        "tag": "dns-403",
-        "address": "10.202.10.202",
+        "tag": "dns-shecan",
+        "address": "178.22.122.100",
         "detour": "direct"
       }
     ],
@@ -34,7 +34,7 @@
       {
         "domain_suffix": "gemini.google.com",
         "rule_set": "openai",
-        "server": "dns-403"
+        "server": "dns-shecan"
       },
       {
         "rule_set": "spotify",
