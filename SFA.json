@@ -16,6 +16,11 @@
         "detour": "direct"
       },
       {
+        "tag": "dns-shecan",
+        "address": "178.22.122.100",
+        "detour": "direct"
+      },
+      {
         "tag": "dns-fakeip",
         "address": "fakeip"
       }
@@ -24,6 +29,11 @@
       {
         "outbound": "any",
         "server": "dns-remote"
+      },
+      {
+        "domain": "gemini.google.com",
+        "rule_set": "openai",
+        "server": "dns-shecan"
       },
       {
         "rule_set": "geoip-ir",
@@ -86,7 +96,10 @@
       },
       {
         "ip_is_private": true,
-        "rule_set": "geoip-ir",
+        "rule_set": [
+          "geoip-ir",
+          "openai"
+        ],
         "outbound": "direct"
       }
     ],
@@ -96,6 +109,13 @@
         "tag": "geoip-ir",
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geoip-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "openai",
+        "format": "binary",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-openai.srs",
         "download_detour": "direct"
       }
     ],
