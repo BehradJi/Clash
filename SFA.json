@@ -33,7 +33,10 @@
       },
       {
         "domain_suffix": "gemini.google.com",
-        "rule_set": "openai",
+        "rule_set": [
+          "geosite-openai",
+          "geoip-openai"
+        ],
         "server": "dns-403"
       },
       {
@@ -48,7 +51,7 @@
         "server": "dns-direct"
       }
     ],
-     "strategy": "ipv4_only"
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
@@ -99,7 +102,8 @@
           "geoip-ir",
           "geosite-ir",
           "spotify",
-          "openai"
+          "geosite-openai",
+          "geoip-openai"
         ],
         "outbound": "direct"
       }
@@ -121,9 +125,16 @@
       },
       {
         "type": "remote",
-        "tag": "openai",
+        "tag": "geosite-openai",
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-openai.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-openai",
+        "format": "binary",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geoip-openai.srs",
         "download_detour": "direct"
       },
       {
@@ -144,4 +155,3 @@
     }
   }
 }
-
