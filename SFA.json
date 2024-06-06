@@ -21,8 +21,8 @@
         "detour": "direct"
       },
       {
-        "tag": "dns-403",
-        "address": "10.202.10.202",
+        "tag": "dns-shecan",
+        "address": "178.22.122.100",
         "detour": "direct"
       }
     ],
@@ -33,11 +33,8 @@
       },
       {
         "domain_suffix": "gemini.google.com",
-        "rule_set": [
-          "geosite-openai",
-          "geoip-openai"
-        ],
-        "server": "dns-403"
+        "rule_set": "openai",
+        "server": "dns-shecan"
       },
       {
         "rule_set": "spotify",
@@ -102,8 +99,7 @@
           "geoip-ir",
           "geosite-ir",
           "spotify",
-          "geosite-openai",
-          "geoip-openai"
+          "openai"
         ],
         "outbound": "direct"
       }
@@ -125,16 +121,9 @@
       },
       {
         "type": "remote",
-        "tag": "geosite-openai",
+        "tag": "openai",
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-openai.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geoip-openai",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geoip-openai.srs",
         "download_detour": "direct"
       },
       {
