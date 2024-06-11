@@ -19,10 +19,6 @@
         "tag": "dns-shecan",
         "address": "178.22.122.100",
         "detour": "direct"
-      },
-      {
-        "tag": "dns-fakeip",
-        "address": "fakeip"
       }
     ],
     "rules": [
@@ -38,25 +34,23 @@
       {
         "rule_set": "geoip-ir",
         "server": "dns-direct"
-      },
-      {
-        "query_type": "A",
-        "server": "dns-fakeip"
       }
     ],
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15"
-    },
-    "strategy": "ipv4_only",
-    "independent_cache": true
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
+      "inet4_route_exclude_address": [
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "192.168.0.0/16"
+      ],
+      "inet6_route_exclude_address": [
+        "fc00::/7"
+      ],
       "auto_route": true,
-      "strict_route": true,
       "stack": "system",
       "sniff": true
     }
@@ -125,8 +119,7 @@
   },
   "experimental": {
     "cache_file": {
-      "enabled": true,
-      "store_fakeip": true
+      "enabled": true
     }
   }
 }
