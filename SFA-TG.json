@@ -6,9 +6,7 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "https://sky.rethinkdns.com",
-        "address_resolver": "dns-direct",
-        "detour": "direct"
+        "address": "tls://8.8.8.8"
       },
       {
         "tag": "dns-direct",
@@ -29,7 +27,7 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-remote"
+        "server": "dns-direct"
       },
       {
         "domain_suffix": "gemini.google.com",
