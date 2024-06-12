@@ -49,7 +49,6 @@
         "fc00::/7"
       ],
       "auto_route": true,
-      "stack": "system",
       "sniff": true
     }
   ],
