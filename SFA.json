@@ -40,15 +40,13 @@
     {
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
+      "auto_route": true,
       "inet4_route_exclude_address": [
         "10.0.0.0/8",
         "172.16.0.0/12",
         "192.168.0.0/16"
       ],
-      "inet6_route_exclude_address": [
-        "fc00::/7"
-      ],
-      "auto_route": true,
+      "inet6_route_exclude_address": "fc00::/7",
       "sniff": true
     }
   ],
@@ -120,5 +118,3 @@
     }
   }
 }
-
-
