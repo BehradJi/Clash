@@ -30,17 +30,20 @@
         "server": "dns-direct"
       },
       {
-        "domain_suffix": "gemini.google.com",
+        "domain": "gemini.google.com",
         "rule_set": "openai",
         "server": "dns-shecan"
       },
       {
-        "rule_set": "spotify",
-        "server": "dns-electro"
+        "rule_set": [
+          "geoip-ir",
+          "geosite-ir"
+        ],
+        "server": "dns-direct"
       },
       {
-        "rule_set": "geoip-ir",
-        "server": "dns-direct"
+        "rule_set": "spotify",
+        "server": "dns-electro"
       }
     ],
     "strategy": "ipv4_only"
@@ -50,6 +53,28 @@
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
       "auto_route": true,
+      "inet4_route_exclude_address": [
+        "10.0.0.0/8",
+        "100.64.0.0/10",
+        "169.254.0.0/16",
+        "172.16.0.0/12",
+        "192.0.0.0/24",
+        "192.168.0.0/16",
+        "224.0.0.0/24",
+        "240.0.0.0/4",
+        "239.255.255.250/32",
+        "255.255.255.255/32"
+      ],
+      "inet6_route_exclude_address": [
+        "fe80::/10",
+        "fd00::/8",
+        "ff01::/16",
+        "ff02::/16",
+        "ff03::/16",
+        "ff04::/16",
+        "ff05::/16",
+        "fc00::/7"
+      ],
       "stack": "system",
       "sniff": true
     }
@@ -96,10 +121,10 @@
         "outbound": "dns-out"
       },
       {
-        "domain_suffix": "gemini.google.com",
         "ip_is_private": true,
         "rule_set": [
           "geoip-ir",
+          "geosite-ir",
           "spotify",
           "openai"
         ],
@@ -112,6 +137,13 @@
         "tag": "geoip-ir",
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geoip-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-ir",
+        "format": "binary",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-ir.srs",
         "download_detour": "direct"
       },
       {
