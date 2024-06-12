@@ -6,7 +6,7 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "https://max.rethinkdns.com",
+        "address": "https://sky.rethinkdns.com",
         "address_resolver": "dns-direct",
         "detour": "direct"
       },
