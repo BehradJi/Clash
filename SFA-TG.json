@@ -56,6 +56,7 @@
         "ff05::/16",
         "fc00::/7"
       ],
+      "stack": "system",
       "sniff": true
     }
   ],
@@ -69,7 +70,7 @@
       ],
       "filter":[
         {"action":"include","keywords":["CDN2"]},
-        {"action":"include","keywords":["Austria|Sweden|Belgium|Romania|Netherlands|Turkey|Germany|Canada|Italy|Norway"]}
+        {"action":"include","keywords":["Austria|Sweden|Belgium|Romania|Netherlands|Turkey|Germany|Canada|Italy|Norway|Miami|Phoenix|LosAngeles"]}
       ]
     },
     {
@@ -82,7 +83,7 @@
       "interval": "10m0s",
       "filter":[
         {"action":"include","keywords":["CDN2"]},
-        {"action":"include","keywords":["Austria|Sweden|Belgium|Romania|Netherlands|Turkey|Germany|Canada|Italy|Norway"]}
+        {"action":"include","keywords":["Austria|Sweden|Belgium|Romania|Netherlands|Turkey|Germany|Canada|Italy|Norway|Miami|Phoenix|LosAngeles"]}
       ]
     },
     {
