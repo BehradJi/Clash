@@ -12,6 +12,16 @@
         "tag": "dns-direct",
         "address": "5.200.200.200",
         "detour": "direct"
+      },
+      {
+        "tag": "dns-electro",
+        "address": "78.157.42.100",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-shecan",
+        "address": "178.22.122.100",
+        "detour": "direct"
       }
     ],
     "rules": [
@@ -20,11 +30,20 @@
         "server": "dns-direct"
       },
       {
+        "domain": "gemini.google.com",
+        "rule_set": "openai",
+        "server": "dns-shecan"
+      },
+      {
         "rule_set": [
           "geoip-ir",
           "geosite-ir"
         ],
         "server": "dns-direct"
+      },
+      {
+        "rule_set": "spotify",
+        "server": "dns-electro"
       }
     ],
     "strategy": "ipv4_only"
@@ -70,7 +89,7 @@
       ],
       "filter":[
         {"action":"include","keywords":["CDN2"]},
-        {"action":"include","keywords":["Austria|Sweden|Belgium|Romania|Netherlands|Turkey|Germany|Canada|Italy|Norway|Miami|Phoenix|LosAngeles"]}
+        {"action":"include","keywords":["Austria|Sweden|Belgium|Romania|Netherlands|Turkey|Germany|Canada|Italy|Norway"]}
       ]
     },
     {
@@ -83,7 +102,7 @@
       "interval": "10m0s",
       "filter":[
         {"action":"include","keywords":["CDN2"]},
-        {"action":"include","keywords":["Austria|Sweden|Belgium|Romania|Netherlands|Turkey|Germany|Canada|Italy|Norway|Miami|Phoenix|LosAngeles"]}
+        {"action":"include","keywords":["Austria|Sweden|Belgium|Romania|Netherlands|Turkey|Germany|Canada|Italy|Norway"]}
       ]
     },
     {
@@ -105,7 +124,9 @@
         "ip_is_private": true,
         "rule_set": [
           "geoip-ir",
-          "geosite-ir"
+          "geosite-ir",
+          "spotify",
+          "openai"
         ],
         "outbound": "direct"
       }
@@ -124,6 +145,20 @@
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-ir.srs",
         "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "openai",
+        "format": "binary",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-openai.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "spotify",
+        "format": "binary",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-spotify.srs",
+        "download_detour": "direct"
       }
     ],
     "final": "Proxy",
@@ -136,3 +171,5 @@
     }
   }
 }
+
+
