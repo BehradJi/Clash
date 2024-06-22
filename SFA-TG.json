@@ -14,11 +14,6 @@
         "detour": "direct"
       },
       {
-        "tag": "dns-electro",
-        "address": "78.157.42.100",
-        "detour": "direct"
-      },
-      {
         "tag": "dns-shecan",
         "address": "178.22.122.100",
         "detour": "direct"
@@ -48,10 +43,6 @@
           "geosite-ir"
         ],
         "server": "dns-direct"
-      },
-      {
-        "rule_set": "spotify",
-        "server": "dns-electro"
       }
     ],
     "strategy": "ipv4_only"
@@ -120,6 +111,10 @@
     {
       "type": "dns",
       "tag": "dns-out"
+    },
+    {
+      "type": "block",
+      "tag": "block"
     }
   ],
   "route": {
@@ -129,11 +124,18 @@
         "outbound": "dns-out"
       },
       {
+        "rule_set": "spotify-ads",
+        "outbound": "block"
+      },
+      {
+        "rule_set": "spotify",
+        "outbound": "TG-Germany-CDN2-Vless"
+      },
+      {
         "ip_is_private": true,
         "rule_set": [
           "geoip-ir",
           "geosite-ir",
-          "spotify",
           "openai"
         ],
         "outbound": "direct"
