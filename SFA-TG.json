@@ -22,12 +22,20 @@
         "tag": "dns-shecan",
         "address": "178.22.122.100",
         "detour": "direct"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
       }
     ],
     "rules": [
       {
         "outbound": "any",
         "server": "dns-direct"
+      },
+      {
+        "rule_set": "spotify-ads",
+        "server": "dns-block"
       },
       {
         "domain": "gemini.google.com",
@@ -150,14 +158,21 @@
         "type": "remote",
         "tag": "openai",
         "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-openai.srs",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs",
         "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "spotify",
         "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-spotify.srs",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/spotify.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "spotify-ads",
+        "format": "binary",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/spotify-ads.srs",
         "download_detour": "direct"
       }
     ],
