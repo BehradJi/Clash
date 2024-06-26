@@ -88,7 +88,7 @@
         "{all}"
       ],
       "filter":[
-        {"action":"include","keywords":["ARv2ray"]}
+        {"action":"include","keywords":["V2RayTz"]}
       ]
     },
     {
@@ -100,7 +100,7 @@
       "url": "http://gstatic.com/generate_204",
       "interval": "10m0s",
       "filter":[
-        {"action":"include","keywords":["ARv2ray"]}
+        {"action":"include","keywords":["V2RayTz"]}
       ]
     },
     {
