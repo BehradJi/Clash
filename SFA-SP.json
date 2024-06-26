@@ -100,7 +100,7 @@
       "url": "http://gstatic.com/generate_204",
       "interval": "10m0s",
       "filter":[
-        {"action":"include","keywords":["V2RayTz|ARv2ray"]}
+        {"action":"include","keywords":["ARv2ray"]}
       ]
     },
     {
