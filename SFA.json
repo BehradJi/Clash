@@ -14,11 +14,6 @@
         "detour": "direct"
       },
       {
-        "tag": "dns-electro",
-        "address": "78.157.42.100",
-        "detour": "direct"
-      },
-      {
         "tag": "dns-shecan",
         "address": "178.22.122.100",
         "detour": "direct"
@@ -40,10 +35,6 @@
           "geosite-ir"
         ],
         "server": "dns-direct"
-      },
-      {
-        "rule_set": "spotify",
-        "server": "dns-electro"
       }
     ],
     "strategy": "ipv4_only"
@@ -75,7 +66,6 @@
         "ff05::/16",
         "fc00::/7"
       ],
-      "stack": "system",
       "sniff": true
     }
   ],
@@ -94,7 +84,6 @@
       "outbounds": [
         "{all}"
       ],
-      "url": "http://gstatic.com/generate_204",
       "interval": "10m0s"
     },
     {
@@ -117,7 +106,6 @@
         "rule_set": [
           "geoip-ir",
           "geosite-ir",
-          "spotify",
           "openai"
         ],
         "outbound": "direct"
@@ -143,13 +131,6 @@
         "tag": "openai",
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-openai.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "spotify",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-spotify.srs",
         "download_detour": "direct"
       }
     ],

@@ -74,7 +74,6 @@
         "ff05::/16",
         "fc00::/7"
       ],
-      "stack": "system",
       "sniff": true
     }
   ],
@@ -97,7 +96,6 @@
       "outbounds": [
         "{all}"
       ],
-      "url": "http://gstatic.com/generate_204",
       "interval": "10m0s",
       "filter":[
         {"action":"include","keywords":["CDN2"]},
