@@ -21,6 +21,10 @@
       {
         "tag": "dns-block",
         "address": "rcode://success"
+      },
+      {
+        "tag": "dns-fakeip",
+        "address": "fakeip"
       }
     ],
     "rules": [
@@ -43,8 +47,17 @@
           "geosite-ir"
         ],
         "server": "dns-direct"
+      },
+      {
+        "query_type": "A",
+        "server": "dns-fakeip"
       }
     ],
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15"
+    },
+    "independent_cache": true,
     "strategy": "ipv4_only"
   },
   "inbounds": [
@@ -52,6 +65,7 @@
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
       "auto_route": true,
+      "strict_route": true,
       "inet4_route_exclude_address": [
         "10.0.0.0/8",
         "100.64.0.0/10",
