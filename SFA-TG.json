@@ -17,24 +17,12 @@
         "tag": "dns-shecan",
         "address": "178.22.122.100",
         "detour": "direct"
-      },
-      {
-        "tag": "dns-block",
-        "address": "rcode://success"
-      },
-      {
-        "tag": "dns-fakeip",
-        "address": "fakeip"
       }
     ],
     "rules": [
       {
         "outbound": "any",
         "server": "dns-direct"
-      },
-      {
-        "rule_set": "spotify-ads",
-        "server": "dns-block"
       },
       {
         "domain": "gemini.google.com",
@@ -47,17 +35,8 @@
           "geosite-ir"
         ],
         "server": "dns-direct"
-      },
-      {
-        "query_type": "A",
-        "server": "dns-fakeip"
       }
     ],
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15"
-    },
-    "independent_cache": true,
     "strategy": "ipv4_only"
   },
   "inbounds": [
@@ -65,7 +44,6 @@
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
       "auto_route": true,
-      "strict_route": true,
       "inet4_route_exclude_address": [
         "10.0.0.0/8",
         "100.64.0.0/10",
@@ -123,10 +101,6 @@
     {
       "type": "dns",
       "tag": "dns-out"
-    },
-    {
-      "type": "block",
-      "tag": "block"
     }
   ],
   "route": {
@@ -134,10 +108,6 @@
       {
         "protocol": "dns",
         "outbound": "dns-out"
-      },
-      {
-        "rule_set": "spotify-ads",
-        "outbound": "block"
       },
       {
         "rule_set": "spotify",
@@ -180,13 +150,6 @@
         "tag": "spotify",
         "format": "binary",
         "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/spotify.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "spotify-ads",
-        "format": "binary",
-        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/spotify-ads.srs",
         "download_detour": "direct"
       }
     ],
