@@ -44,8 +44,7 @@
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
       "auto_route": true,
-      "strict_route": true,
-      "inet4_route_exclude_address": [
+     "inet4_route_exclude_address": [
         "10.0.0.0/8",
         "100.64.0.0/10",
         "169.254.0.0/16",
