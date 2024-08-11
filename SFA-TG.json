@@ -79,7 +79,7 @@
       ],
       "filter":[
         {"action":"include","keywords":["CDN2"]},
-        {"action":"exclude","keywords":["Russia|HongKong|Kenya|UAE|Singapore"]}
+        {"action":"exclude","keywords":["UK|Miami|Slovakia|Russia|HongKong|Kenya|UAE|Singapore"]}
       ]
     },
     {
@@ -91,7 +91,7 @@
       "interval": "10m0s",
       "filter":[
         {"action":"include","keywords":["CDN2"]},
-        {"action":"exclude","keywords":["Russia|HongKong|Kenya|UAE|Singapore"]}
+        {"action":"exclude","keywords":["UK|Miami|Slovakia|Russia|HongKong|Kenya|UAE|Singapore"]}
       ]
     },
     {
