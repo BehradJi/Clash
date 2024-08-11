@@ -6,7 +6,7 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "tls://8.8.8.8"
+        "address": "8.8.8.8"
       },
       {
         "tag": "dns-direct",
