@@ -78,8 +78,7 @@
         "{all}"
       ],
       "filter":[
-        {"action":"include","keywords":["CDN2"]},
-        {"action":"include","keywords":["Austria|Sweden|Belgium|Romania|Netherlands|Turkey|Germany|Canada|Italy|Norway"]}
+        {"action":"include","keywords":["CDN2"]}
       ]
     },
     {
@@ -90,8 +89,7 @@
       ],
       "interval": "10m0s",
       "filter":[
-        {"action":"include","keywords":["CDN2"]},
-        {"action":"include","keywords":["Austria|Sweden|Belgium|Romania|Netherlands|Turkey|Germany|Canada|Italy|Norway"]}
+        {"action":"include","keywords":["CDN2"]}
       ]
     },
     {
