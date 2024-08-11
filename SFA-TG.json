@@ -111,7 +111,7 @@
       },
       {
         "rule_set": "spotify",
-        "outbound": "TG-Germany-CDN2-Vless"
+        "outbound": "TG-Italy-CDN2-Vless"
       },
       {
         "ip_is_private": true,
