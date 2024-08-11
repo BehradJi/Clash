@@ -10,7 +10,13 @@
       },
       {
         "tag": "dns-direct",
-        "address": "5.200.200.200",
+        "address": "1.1.1.1",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-rethink",
+        "address": "https://sky.rethinkdns.com/",
+        "address_resolver": "dns-direct",
         "detour": "direct"
       },
       {
@@ -22,7 +28,7 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-direct"
+        "server": "dns-rethink"
       },
       {
         "domain": "gemini.google.com",
