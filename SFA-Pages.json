@@ -6,11 +6,11 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "8.8.8.8"
+        "address": "https://8.8.8.8/dns-query"
       },
       {
         "tag": "dns-direct",
-        "address": "1.1.1.1",
+        "address": "10.202.10.202",
         "detour": "direct"
       },
       {
@@ -72,6 +72,7 @@
         "ff05::/16",
         "fc00::/7"
       ],
+      "stack": "system",
       "sniff": true
     }
   ],
