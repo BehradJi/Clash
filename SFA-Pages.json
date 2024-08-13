@@ -10,7 +10,7 @@
       },
       {
         "tag": "dns-direct",
-        "address": "10.202.10.202",
+        "address": "8.8.8.8",
         "detour": "direct"
       },
       {
