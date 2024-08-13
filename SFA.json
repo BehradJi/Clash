@@ -50,7 +50,7 @@
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
       "auto_route": true,
-     "inet4_route_exclude_address": [
+      "inet4_route_exclude_address": [
         "10.0.0.0/8",
         "100.64.0.0/10",
         "169.254.0.0/16",
@@ -91,6 +91,7 @@
       "outbounds": [
         "{all}"
       ],
+      "url": "http://connectivitycheck.gstatic.com/generate_204",
       "interval": "10m0s"
     },
     {
