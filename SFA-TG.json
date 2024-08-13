@@ -85,7 +85,7 @@
         "{all}"
       ],
       "filter":[
-        {"action":"include","keywords":["Sweden-CDN-|Slovakia-CDN-|Sweden-CDN2|Romania-CDN-|Swiss-CDN2|Netherlands-CDN-|Italy-CDN2|Canada-CDN2"]},
+        {"action":"include","keywords":["Sweden-CDN-|Slovakia-CDN-|Sweden-CDN2|Romania-CDN-|Swiss-CDN2|Netherlands-CDN-|Italy-CDN2|Canada-CDN2"]}
       ]
     },
     {
@@ -97,7 +97,7 @@
       "url": "http://connectivitycheck.gstatic.com/generate_204",
       "interval": "10m0s",
       "filter":[
-        {"action":"include","keywords":["Sweden-CDN-|Slovakia-CDN-|Sweden-CDN2|Romania-CDN-|Swiss-CDN2|Netherlands-CDN-|Italy-CDN2|Canada-CDN2"]},
+        {"action":"include","keywords":["Sweden-CDN-|Slovakia-CDN-|Sweden-CDN2|Romania-CDN-|Swiss-CDN2|Netherlands-CDN-|Italy-CDN2|Canada-CDN2"]}
       ]
     },
     {
