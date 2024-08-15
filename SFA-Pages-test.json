@@ -98,18 +98,8 @@
       "type": "selector",
       "tag": "select",
       "outbounds": [
-        "auto",
         "{all}"
       ]
-    },
-    {
-      "type": "urltest",
-      "tag": "auto",
-      "outbounds": [
-        "{all}"
-      ],
-      "url": "http://connectivitycheck.gstatic.com/generate_204",
-      "interval": "10m0s"
     },
     {
       "type": "direct",
