@@ -56,7 +56,8 @@
       "enabled": true,
       "inet4_range": "198.18.0.0/15"
     },
-    "independent_cache": true
+    "independent_cache": true,
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
