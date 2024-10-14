@@ -6,18 +6,24 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "tls://8.8.8.8"
+        "address": "https://8.8.8.8/dns-query"
       },
       {
         "tag": "dns-direct",
-        "address": "5.200.200.200",
+        "address": "8.8.8.8",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-rethink",
+        "address": "https://sky.rethinkdns.com/",
+        "address_resolver": "dns-direct",
         "detour": "direct"
       }
     ],
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-direct"
+        "server": "dns-rethink"
       },
       {
         "rule_set": [
