@@ -72,7 +72,6 @@
         "ff05::/16",
         "fc00::/7"
       ],
-      "stack": "system",
       "sniff": true
     }
   ],
@@ -141,7 +140,7 @@
         "type": "remote",
         "tag": "geosite-ir",
         "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-category-ir.srs",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-ir.srs",
         "download_detour": "direct"
       },
       {
