@@ -37,7 +37,6 @@
       },
       {
         "rule_set": [
-          "geoip-ir",
           "geosite-ir"
         ],
         "server": "dns-direct"
