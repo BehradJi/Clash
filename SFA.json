@@ -23,6 +23,10 @@
         "tag": "dns-shecan",
         "address": "178.22.122.100",
         "detour": "direct"
+      },
+      {
+        "tag": "dns-fakeip",
+        "address": "fakeip"
       }
     ],
     "rules": [
@@ -42,14 +46,25 @@
       {
         "rule_set": "geosite-ir",
         "server": "dns-direct"
+      },
+      {
+        "query_type": "A",
+        "server": "dns-fakeip"
       }
     ],
-    "strategy": "ipv4_only"
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15"
+    },
+    "strategy": "ipv4_only",
+    "independent_cache": true
   },
   "inbounds": [
     {
       "type": "tun",
       "auto_route": true,
+      "strict_route": true,
+      "stack": "gvisor",
       "sniff": true,
       "inet4_address": "172.19.0.1/30",
       "inet4_route_exclude_address": [
@@ -164,7 +179,8 @@
   },
   "experimental": {
     "cache_file": {
-      "enabled": true
+      "enabled": true,
+      "store_fakeip": false
     }
   }
 }
