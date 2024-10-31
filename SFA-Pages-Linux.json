@@ -70,23 +70,6 @@
   ],
   "outbounds": [
     {
-      "type": "selector",
-      "tag": "Proxy",
-      "outbounds": [
-        "Auto",
-        "{all}"
-      ]
-    },
-    {
-      "type": "urltest",
-      "tag": "Auto",
-      "outbounds": [
-        "{all}"
-      ],
-      "url": "http://connectivitycheck.gstatic.com/generate_204",
-      "interval": "10m0s"
-    },
-    {
       "type": "direct",
       "tag": "direct"
     },
