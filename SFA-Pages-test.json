@@ -6,7 +6,7 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "tls://8.8.8.8"
+        "address": "https://8.8.8.8/dns-query"
       },
       {
         "tag": "dns-rethink",
@@ -18,6 +18,10 @@
         "tag": "dns-direct",
         "address": "5.200.200.200",
         "detour": "direct"
+      },
+      {
+        "tag": "dns-fakeip",
+        "address": "fakeip"
       },
       {
         "tag": "block",
@@ -33,15 +37,31 @@
       {
         "rule_set": "geosite-ir",
         "server": "dns-direct"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "dns-fakeip"
       }
     ],
-    "strategy": "ipv4_only"
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
+    "strategy": "ipv4_only",
+    "independent_cache": true
   },
   "inbounds": [
     {
       "type": "tun",
       "mtu": 9000,
-      "address": "172.19.0.1/30",
+      "address": [
+        "172.19.0.0/30",
+        "fdfe:dcba:9876::/126"
+      ],
       "auto_route": true,
       "strict_route": true,
       "route_exclude_address": [
@@ -64,6 +84,7 @@
         "ff05::/16",
         "fc00::/7"
       ],
+      "stack": "system",
       "sniff": true
     }
   ],
@@ -111,6 +132,10 @@
         "outbound": "block"
       },
       {
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
         "rule_set": [
           "geosite-ir",
           "geoip-ir"
@@ -139,8 +164,9 @@
   },
   "experimental": {
     "cache_file": {
-      "enabled": true
+      "enabled": true,
+      "store_fakeip": true,
+      "store_rdrc": true
     }
   }
 }
-
