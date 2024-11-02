@@ -156,8 +156,7 @@
   },
   "experimental": {
     "cache_file": {
-      "enabled": true,
-      "store_fakeip": false
+      "enabled": true
     }
   }
 }
