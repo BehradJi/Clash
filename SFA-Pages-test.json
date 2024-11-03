@@ -40,7 +40,12 @@
     ],
     "rules": [
       {
-        "rule_set": "geosite-category-ads-all",
+        "rule_set": [
+          "geosite-category-ads-all",
+          "geosite-malware",
+          "geosite-phishing",
+          "geosite-cryptominers"
+        ],
         "server": "block"
       },
       {
