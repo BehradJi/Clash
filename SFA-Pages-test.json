@@ -1,6 +1,6 @@
 {
   "log": {
-    "disabled": true
+    "level": "panic"
   },
   "dns": {
     "servers": [
@@ -53,19 +53,15 @@
         "server": "dns-iran"
       },
       {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
+        "query_type": "A",
         "server": "dns-fakeip"
       }
     ],
     "fakeip": {
       "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
+      "inet4_range": "198.18.0.0/15"
     },
-    "strategy": "prefer_ipv4",
+    "strategy": "ipv4_only",
     "independent_cache": true
   },
   "inbounds": [
@@ -73,10 +69,8 @@
       "type": "tun",
       "auto_route": true,
       "strict_route": true,
-      "stack": "system",
       "sniff": true,
       "inet4_address": "172.19.0.1/30",
-      "inet6_address": "fdfe:dcba:9876::1/126",
       "inet4_route_exclude_address": [
         "10.0.0.0/8",
         "172.16.0.0/12",
