@@ -1,6 +1,6 @@
 {
   "log": {
-    "disabled": true
+    "level": "panic"
   },
   "dns": {
     "servers": [
@@ -9,14 +9,19 @@
         "address": "https://8.8.8.8/dns-query"
       },
       {
-        "tag": "dns-direct",
-        "address": "8.8.8.8",
-        "detour": "direct"
-      },
-      {
         "tag": "dns-rethink",
         "address": "https://sky.rethinkdns.com/",
         "address_resolver": "dns-direct",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-iran",
+        "address": "5.200.200.200",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-direct",
+        "address": "8.8.8.8",
         "detour": "direct"
       },
       {
@@ -45,7 +50,7 @@
       },
       {
         "rule_set": "geosite-ir",
-        "server": "dns-direct"
+        "server": "dns-iran"
       },
       {
         "query_type": "A",
@@ -71,20 +76,23 @@
   "outbounds": [
     {
       "type": "selector",
-      "tag": "Proxy",
+      "tag": "proxy",
       "outbounds": [
-        "Auto",
-        "{all}"
-      ]
+        "auto",
+        "{all}",
+        "direct"
+      ],
+      "default": "auto"
     },
     {
       "type": "urltest",
-      "tag": "Auto",
+      "tag": "auto",
       "outbounds": [
         "{all}"
       ],
       "url": "http://connectivitycheck.gstatic.com/generate_204",
-      "interval": "10m0s"
+      "interval": "10m0s",
+      "tolerance": 50
     },
     {
       "type": "direct",
@@ -98,14 +106,26 @@
   "route": {
     "rules": [
       {
-        "protocol": "dns",
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
         "outbound": "dns-out"
       },
       {
         "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
         "rule_set": [
-          "geoip-ir",
           "geosite-ir",
+          "geoip-ir",
           "openai",
           "spotify",
           "anthropic"
@@ -125,7 +145,7 @@
         "type": "remote",
         "tag": "geosite-ir",
         "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-category-ir.srs",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-ir.srs",
         "download_detour": "direct"
       },
       {
@@ -150,15 +170,18 @@
         "download_detour": "direct"
       }
     ],
-    "final": "Proxy",
+    "final": "proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true
   },
   "experimental": {
     "cache_file": {
-      "enabled": true
+      "enabled": true,
+      "store_fakeip": true,
+      "store_rdrc": true
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090"
     }
   }
 }
-
-
