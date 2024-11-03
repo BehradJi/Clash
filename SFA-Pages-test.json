@@ -40,14 +40,6 @@
         "server": "dns-rethink"
       },
       {
-        "clash_mode": "direct",
-        "server": "local"
-      },
-      {
-        "clash_mode": "global",
-        "server": "google"
-      },
-      {
         "domain": "gemini.google.com",
         "rule_set": [
           "openai",
