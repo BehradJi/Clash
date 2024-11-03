@@ -69,6 +69,7 @@
       "type": "tun",
       "auto_route": true,
       "strict_route": true,
+      "stack":"gvisor",
       "sniff": true,
       "inet4_address": "172.19.0.1/30",
       "inet4_route_exclude_address": [
