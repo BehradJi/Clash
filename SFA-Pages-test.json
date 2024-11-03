@@ -1,6 +1,6 @@
 {
   "log": {
-    "level": "warn"
+    "disabled": true
   },
   "dns": {
     "servers": [
@@ -65,7 +65,7 @@
       "inet4_range": "198.18.0.0/15",
       "inet6_range": "fc00::/18"
     },
-    "strategy": "ipv4_only",
+    "strategy": "prefer_ipv4",
     "independent_cache": true
   },
   "inbounds": [
