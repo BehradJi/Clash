@@ -11,7 +11,7 @@
       {
         "tag": "dns-outbound",
         "address": "tls://94.140.14.14",
-        "address_resolver": "dns-direct"
+        "detour": "direct"
       },
       {
         "tag": "dns-direct",
@@ -78,7 +78,7 @@
       "type": "tun",
       "auto_route": true,
       "strict_route": true,
-      "stack":"gvisor",
+      "stack": "gvisor",
       "sniff": true,
       "inet4_address": "172.19.0.1/30",
       "inet4_route_exclude_address": [
@@ -214,3 +214,4 @@
     }
   }
 }
+
