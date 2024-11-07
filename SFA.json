@@ -6,22 +6,16 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "https://8.8.8.8/dns-query"
+        "address": "tls://94.140.14.14"
       },
       {
-        "tag": "dns-rethink",
-        "address": "https://sky.rethinkdns.com/",
-        "address_resolver": "dns-direct",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-iran",
-        "address": "5.200.200.200",
-        "detour": "direct"
+        "tag": "dns-outbound",
+        "address": "tls://94.140.14.14",
+        "address_resolver": "dns-direct"
       },
       {
         "tag": "dns-direct",
-        "address": "8.8.8.8",
+        "address": "5.200.200.200",
         "detour": "direct"
       },
       {
@@ -37,7 +31,7 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-rethink"
+        "server": "dns-outbound"
       },
       {
         "domain": "gemini.google.com",
@@ -49,8 +43,15 @@
         "server": "dns-shecan"
       },
       {
-        "rule_set": "geosite-ir",
-        "server": "dns-iran"
+        "domain_suffix": ".ir",
+        "server": "dns-direct"
+      },
+      {
+        "rule_set": [
+          "geosite-ir",
+          "geoip-ir"
+        ],
+        "server": "dns-direct"
       },
       {
         "query_type": "A",
