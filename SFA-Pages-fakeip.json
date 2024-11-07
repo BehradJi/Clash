@@ -29,10 +29,6 @@
         "server": "dns-outbound"
       },
       {
-        "domain_suffix": ".ir",
-        "server": "dns-direct"
-      },
-      {
         "rule_set": [
           "geosite-ir",
           "geoip-ir"
