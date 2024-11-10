@@ -10,7 +10,8 @@
       },
       {
         "tag": "dns-outbound",
-        "address": "tls://94.140.14.14",
+        "address": "https://sky.rethinkdns.com/",
+        "address_resolver": "dns-shecan",
         "detour": "direct"
       },
       {
