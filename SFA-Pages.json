@@ -73,12 +73,10 @@
   "inbounds": [
     {
       "type": "tun",
+      "address": "172.19.0.1/30",
       "auto_route": true,
       "strict_route": true,
-      "stack": "gvisor",
-      "sniff": true,
-      "inet4_address": "172.19.0.1/30",
-      "inet4_route_exclude_address": [
+      "route_exclude_address": [
         "10.0.0.0/8",
         "100.64.0.0/10",
         "169.254.0.0/16",
@@ -88,9 +86,7 @@
         "224.0.0.0/24",
         "240.0.0.0/4",
         "239.255.255.250/32",
-        "255.255.255.255/32"
-      ],
-      "inet6_route_exclude_address": [
+        "255.255.255.255/32",
         "fe80::/10",
         "fd00::/8",
         "ff01::/16",
@@ -99,7 +95,9 @@
         "ff04::/16",
         "ff05::/16",
         "fc00::/7"
-      ]
+      ],
+      "stack": "gvisor",
+      "sniff": true
     }
   ],
   "outbounds": [
@@ -211,4 +209,3 @@
     }
   }
 }
-
