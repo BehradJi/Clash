@@ -6,27 +6,12 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "https://8.8.8.8/dns-query"
-      },
-      {
-        "tag": "dns-rethink",
-        "address": "https://sky.rethinkdns.com/",
-        "address_resolver": "dns-direct",
+        "address": "127.0.0.1",
         "detour": "direct"
       },
       {
         "tag": "dns-iran",
         "address": "5.200.200.200",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-direct",
-        "address": "8.8.8.8",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-shecan",
-        "address": "178.22.122.100",
         "detour": "direct"
       },
       {
@@ -37,16 +22,7 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-rethink"
-      },
-      {
-        "domain": "gemini.google.com",
-        "rule_set": [
-          "openai",
-          "spotify",
-          "anthropic"
-        ],
-        "server": "dns-shecan"
+        "server": "dns-remote"
       },
       {
         "rule_set": "geosite-ir",
@@ -125,10 +101,7 @@
       {
         "rule_set": [
           "geosite-ir",
-          "geoip-ir",
-          "openai",
-          "spotify",
-          "anthropic"
+          "geoip-ir"
         ],
         "outbound": "direct"
       }
@@ -147,27 +120,6 @@
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-ir.srs",
         "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "spotify",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-spotify.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "openai",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-openai.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "anthropic",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-anthropic.srs",
-        "download_detour": "direct"
       }
     ],
     "final": "proxy",
@@ -185,3 +137,4 @@
     }
   }
 }
+
