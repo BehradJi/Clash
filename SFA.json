@@ -9,14 +9,8 @@
         "address": "tls://94.140.14.14"
       },
       {
-        "tag": "dns-outbound",
-        "address": "https://sky.rethinkdns.com/",
-        "address_resolver": "dns-shecan",
-        "detour": "direct"
-      },
-      {
         "tag": "dns-direct",
-        "address": "5.200.200.200",
+        "address": "8.8.8.8",
         "detour": "direct"
       },
       {
@@ -37,7 +31,7 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-outbound"
+        "server": "dns-direct"
       },
       {
         "domain": "gemini.google.com",
@@ -118,8 +112,7 @@
         "{all}"
       ],
       "url": "http://connectivitycheck.gstatic.com/generate_204",
-      "interval": "10m0s",
-      "tolerance": 50
+      "interval": "10m0s"
     },
     {
       "type": "direct",
