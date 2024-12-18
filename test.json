@@ -149,9 +149,11 @@
         "outbound": "Proxy"
       },
       {
-        "rule_set": ["geosite-ir",
-        "geoip-ir"],
-        "server": "dns-direct"
+        "rule_set": [
+          "geosite-ir",
+          "geoip-ir"
+        ],
+        "outbound": "dns-direct"
       },
       {
         "ip_is_private": true,
