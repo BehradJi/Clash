@@ -1,6 +1,7 @@
 {
   "log": {
-    "level": "panic"
+    "level": "error",
+    "timestamp": true
   },
   "dns": {
     "servers": [
@@ -9,14 +10,8 @@
         "address": "tls://94.140.14.14"
       },
       {
-        "tag": "dns-outbound",
-        "address": "https://sky.rethinkdns.com/",
-        "address_resolver": "dns-shecan",
-        "detour": "direct"
-      },
-      {
         "tag": "dns-direct",
-        "address": "5.200.200.200",
+        "address": "8.8.8.8",
         "detour": "direct"
       },
       {
@@ -32,12 +27,20 @@
       {
         "tag": "dns-fakeip",
         "address": "fakeip"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
       }
     ],
     "rules": [
       {
+        "rule_set": "geosite-ads",
+        "server": "dns-block"
+      },
+      {
         "outbound": "any",
-        "server": "dns-outbound"
+        "server": "dns-direct"
       },
       {
         "domain": "gemini.google.com",
@@ -52,33 +55,44 @@
         "server": "dns-electro"
       },
       {
-        "rule_set": [
-          "geosite-ir",
-          "geoip-ir"
-        ],
+        "clash_mode": "direct",
         "server": "dns-direct"
       },
       {
-        "query_type": "A",
-        "server": "dns-fakeip"
+        "clash_mode": "global",
+        "server": "dns-remote"
+      },
+      {
+        "rule_set": "geosite-ir",
+        "server": "dns-direct"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "fakeip"
       }
     ],
     "fakeip": {
       "enabled": true,
-      "inet4_range": "198.18.0.0/15"
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
     },
-    "strategy": "ipv4_only",
+    "strategy": "prefer_ipv4",
     "independent_cache": true
   },
   "inbounds": [
     {
       "type": "tun",
+      "tag": "tun",
+      "address": [
+        "172.19.0.0/30",
+        "fdfe:dcba:9876::/126"
+      ],
       "auto_route": true,
       "strict_route": true,
-      "stack": "gvisor",
-      "sniff": true,
-      "inet4_address": "172.19.0.1/30",
-      "inet4_route_exclude_address": [
+      "route_exclude_address": [
         "10.0.0.0/8",
         "100.64.0.0/10",
         "169.254.0.0/16",
@@ -88,9 +102,7 @@
         "224.0.0.0/24",
         "240.0.0.0/4",
         "239.255.255.250/32",
-        "255.255.255.255/32"
-      ],
-      "inet6_route_exclude_address": [
+        "255.255.255.255/32",
         "fe80::/10",
         "fd00::/8",
         "ff01::/16",
@@ -99,19 +111,34 @@
         "ff04::/16",
         "ff05::/16",
         "fc00::/7"
-      ]
+      ],
+      "stack": "system",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 7890
+        }
+      },
+      "sniff": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 7890,
+      "sniff": true
     }
   ],
   "outbounds": [
     {
       "type": "selector",
-      "tag": "proxy",
+      "tag": "Proxy",
       "outbounds": [
         "auto",
-        "{all}",
-        "direct"
-      ],
-      "default": "auto"
+        "direct",
+        "{all}"
+      ]
     },
     {
       "type": "urltest",
@@ -119,7 +146,7 @@
       "outbounds": [
         "{all}"
       ],
-      "url": "http://connectivitycheck.gstatic.com/generate_204",
+      "url": "http://www.gstatic.com/generate_204",
       "interval": "10m0s",
       "tolerance": 50
     },
@@ -130,6 +157,10 @@
     {
       "type": "dns",
       "tag": "dns-out"
+    },
+    {
+      "type": "block",
+      "tag": "block"
     }
   ],
   "route": {
@@ -148,8 +179,16 @@
         "outbound": "dns-out"
       },
       {
-        "ip_is_private": true,
+        "rule_set": "geosite-ads",
+        "outbound": "block"
+      },
+      {
+        "clash_mode": "direct",
         "outbound": "direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "Proxy"
       },
       {
         "rule_set": [
@@ -160,21 +199,32 @@
           "anthropic"
         ],
         "outbound": "direct"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
       }
     ],
     "rule_set": [
       {
         "type": "remote",
+        "tag": "geosite-ads",
+        "format": "binary",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-ads.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
         "tag": "geoip-ir",
         "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geoip-ir.srs",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geoip-ir.srs",
         "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-ir",
         "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-ir.srs",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-ir.srs",
         "download_detour": "direct"
       },
       {
@@ -199,16 +249,19 @@
         "download_detour": "direct"
       }
     ],
-    "final": "proxy",
-    "auto_detect_interface": true,
-    "override_android_vpn": true
+    "final": "Proxy",
+    "auto_detect_interface": true
   },
   "experimental": {
     "cache_file": {
       "enabled": true,
       "store_fakeip": true,
       "store_rdrc": true
+    },
+    "clash_api": {
+      "default_mode": "rule"
     }
   }
 }
+
 
