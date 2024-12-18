@@ -29,15 +29,19 @@
         "server": "dns-iran"
       },
       {
-        "query_type": "A",
-        "server": "dns-fakeip"
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "fakeip"
       }
     ],
     "fakeip": {
       "enabled": true,
-      "inet4_range": "198.18.0.0/15"
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
     },
-    "strategy": "ipv4_only",
+    "strategy": "prefer_ipv4",
     "independent_cache": true
   },
   "inbounds": [
@@ -137,4 +141,5 @@
     }
   }
 }
+
 
