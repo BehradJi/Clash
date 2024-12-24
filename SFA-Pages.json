@@ -45,22 +45,29 @@
         "server": "dns-direct"
       },
       {
-        "query_type": "A",
-        "server": "fakeip"
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "dns-fakeip"
       }
     ],
     "fakeip": {
       "enabled": true,
-      "inet4_range": "198.18.0.0/15"
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
     },
-    "strategy": "ipv4_only",
+    "strategy": "prefer_ipv4",
     "independent_cache": true
   },
   "inbounds": [
     {
       "type": "tun",
       "tag": "tun",
-      "address": "172.19.0.0/30",
+      "address": [
+        "172.19.0.0/30",
+        "fdfe:dcba:9876::/126"
+      ],
       "auto_route": true,
       "strict_route": true,
       "route_exclude_address": [

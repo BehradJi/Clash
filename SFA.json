@@ -68,7 +68,7 @@
       },
       {
         "query_type": "A",
-        "server": "fakeip"
+        "server": "dns-fakeip"
       }
     ],
     "fakeip": {
