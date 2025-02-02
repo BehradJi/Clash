@@ -118,11 +118,11 @@
   "route": {
     "rules": [
       {
-        "inbound":"tun",
-        "action":"sniff"
+        "inbound": "tun",
+        "action": "sniff"
       },
       {
-            "protocol": "dns",
+        "protocol": "dns",
         "action": "hijack-dns"
       },
       {
@@ -207,3 +207,5 @@
     }
   }
 }
+
+
