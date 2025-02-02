@@ -7,7 +7,7 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "tls://94.140.14.14"
+        "address": "tls://94.140.14.140"
       },
       {
         "tag": "dns-direct",
@@ -21,20 +21,8 @@
     ],
     "rules": [
       {
-        "rule_set": "geosite-ads",
-        "server": "dns-block"
-      },
-      {
         "outbound": "any",
         "server": "dns-direct"
-      },
-      {
-        "clash_mode": "direct",
-        "server": "dns-direct"
-      },
-      {
-        "clash_mode": "global",
-        "server": "dns-remote"
       },
       {
         "rule_set": "geosite-ir",
@@ -55,7 +43,6 @@
   "inbounds": [
     {
       "type": "tun",
-      "tag": "tun",
       "address": "172.19.0.0/30",
       "auto_route": true,
       "strict_route": true,
@@ -78,22 +65,7 @@
         "ff04::/16",
         "ff05::/16",
         "fc00::/7"
-      ],
-      "stack": "system",
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 7890
-        }
-      }
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed",
-      "listen": "127.0.0.1",
-      "listen_port": 7890,
-      "sniff": true
+      ]
     }
   ],
   "outbounds": [
@@ -124,25 +96,8 @@
         "action": "sniff"
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 53
-          },
-          {
-            "protocol": "dns"
-          }
-        ],
+        "protocol": "dns",
         "action": "hijack-dns"
-      },
-      {
-        "clash_mode": "direct",
-        "outbound": "direct"
-      },
-      {
-        "clash_mode": "global",
-        "outbound": "Proxy"
       },
       {
         "rule_set": [
@@ -180,9 +135,6 @@
       "enabled": true,
       "store_fakeip": true,
       "store_rdrc": true
-    },
-    "clash_api": {
-      "default_mode": "rule"
     }
   }
 }
