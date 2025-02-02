@@ -43,6 +43,7 @@
   "inbounds": [
     {
       "type": "tun",
+      "tag": "tun",
       "address": "172.19.0.0/30",
       "auto_route": true,
       "strict_route": true,
@@ -93,6 +94,7 @@
   "route": {
     "rules": [
       {
+        "inbound": "tun",
         "action": "sniff"
       },
       {
