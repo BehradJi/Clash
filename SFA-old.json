@@ -7,7 +7,7 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "tls://94.140.140.14"
+        "address": "tls://94.140.14.14"
       },
       {
         "tag": "dns-direct",
@@ -27,25 +27,40 @@
       {
         "tag": "dns-fakeip",
         "address": "fakeip"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
       }
     ],
     "rules": [
+      {
+        "rule_set": "geosite-ads",
+        "server": "dns-block"
+      },
       {
         "outbound": "any",
         "server": "dns-direct"
       },
       {
+        "domain": "gemini.google.com",
         "rule_set": [
           "openai",
-          "anthropic",
-          "perplexity",
-          "gemini"
+          "anthropic"
         ],
         "server": "dns-shecan"
       },
       {
         "rule_set": "spotify",
         "server": "dns-electro"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "dns-direct"
+      },
+      {
+        "clash_mode": "global",
+        "server": "dns-remote"
       },
       {
         "rule_set": "geosite-ir",
@@ -90,7 +105,8 @@
         "ff05::/16",
         "fc00::/7"
       ],
-      "stack": "system"
+      "stack": "system",
+      "sniff": true
     }
   ],
   "outbounds": [
@@ -113,17 +129,42 @@
     {
       "type": "direct",
       "tag": "direct"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "block",
+      "tag": "block"
     }
   ],
   "route": {
     "rules": [
       {
-        "inbound": "tun",
-        "action": "sniff"
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
+        "outbound": "dns-out"
       },
       {
-        "protocol": "dns",
-        "action": "hijack-dns"
+        "rule_set": "geosite-ads",
+        "outbound": "block"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "Proxy"
       },
       {
         "rule_set": [
@@ -131,9 +172,7 @@
           "geoip-ir",
           "openai",
           "spotify",
-          "anthropic",
-          "perplexity",
-          "gemini"
+          "anthropic"
         ],
         "outbound": "direct"
       },
@@ -143,6 +182,13 @@
       }
     ],
     "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geosite-ads",
+        "format": "binary",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-ads.srs",
+        "download_detour": "direct"
+      },
       {
         "type": "remote",
         "tag": "geoip-ir",
@@ -177,20 +223,6 @@
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-anthropic.srs",
         "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "perplexity",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-perplexity.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "gemini",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-google-gemini.srs",
-        "download_detour": "direct"
       }
     ],
     "final": "Proxy",
@@ -207,5 +239,3 @@
     }
   }
 }
-
-
