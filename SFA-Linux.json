@@ -10,8 +10,8 @@
         "detour": "direct"
       },
       {
-        "tag": "dns-iran",
-        "address": "5.200.200.200",
+        "tag": "dns-direct",
+        "address": "8.8.8.8",
         "detour": "direct"
       },
       {
@@ -26,20 +26,16 @@
       },
       {
         "rule_set": "geosite-ir",
-        "server": "dns-iran"
+        "server": "dns-direct"
       },
       {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
+        "query_type": "A",
         "server": "fakeip"
       }
     ],
     "fakeip": {
       "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
+      "inet4_range": "198.18.0.0/15"
     },
     "strategy": "prefer_ipv4",
     "independent_cache": true
@@ -49,8 +45,7 @@
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "127.0.0.1",
-      "listen_port": 7890,
-      "sniff": true
+      "listen_port": 7890
     }
   ],
   "outbounds": [
@@ -77,26 +72,17 @@
     {
       "type": "direct",
       "tag": "direct"
-    },
-    {
-      "type": "dns",
-      "tag": "dns-out"
     }
   ],
   "route": {
     "rules": [
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 53
-          },
-          {
-            "protocol": "dns"
-          }
-        ],
-        "outbound": "dns-out"
+        "inbound": "mixed-in",
+        "action": "sniff"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
       },
       {
         "ip_is_private": true,
