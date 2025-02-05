@@ -7,11 +7,11 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "tls://94.140.14.140"
+        "address": "tls://94.140.140.140"
       },
       {
         "tag": "dns-direct",
-        "address": "5.200.200.200",
+        "address": "8.8.8.8",
         "detour": "direct"
       },
       {
@@ -23,6 +23,14 @@
       {
         "outbound": "any",
         "server": "dns-direct"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "dns-direct"
+      },
+      {
+        "clash_mode": "global",
+        "server": "dns-remote"
       },
       {
         "rule_set": "geosite-ir",
@@ -103,6 +111,14 @@
         "action": "hijack-dns"
       },
       {
+        "clash_mode": "direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "Proxy"
+      },
+      {
         "rule_set": [
           "geosite-ir",
           "geoip-ir"
@@ -138,6 +154,9 @@
       "enabled": true,
       "store_fakeip": true,
       "store_rdrc": true
+    },
+    "clash_api": {
+      "default_mode": "rule"
     }
   }
 }
