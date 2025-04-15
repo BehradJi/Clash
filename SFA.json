@@ -41,7 +41,6 @@
           "openai",
           "anthropic",
           "perplexity",
-          "gemini",
           "spotify"
         ],
         "server": "dns-shecan"
@@ -148,8 +147,7 @@
           "openai",
           "spotify",
           "anthropic",
-          "perplexity",
-          "gemini"
+          "perplexity"
         ],
         "outbound": "direct"
       },
@@ -199,13 +197,6 @@
         "tag": "perplexity",
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-perplexity.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "gemini",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-google-gemini.srs",
         "download_detour": "direct"
       }
     ],
