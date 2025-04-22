@@ -24,14 +24,6 @@
         "server": "dns-direct"
       },
       {
-        "clash_mode": "direct",
-        "server": "dns-direct"
-      },
-      {
-        "clash_mode": "global",
-        "server": "dns-remote"
-      },
-      {
         "rule_set": "geosite-ir",
         "server": "dns-direct"
       },
@@ -119,14 +111,6 @@
         "action": "hijack-dns"
       },
       {
-        "clash_mode": "direct",
-        "outbound": "direct"
-      },
-      {
-        "clash_mode": "global",
-        "outbound": "Proxy"
-      },
-      {
         "rule_set": [
           "geosite-ir",
           "geoip-ir"
@@ -162,9 +146,6 @@
     "cache_file": {
       "enabled": true,
       "store_fakeip": true
-    },
-    "clash_api": {
-      "default_mode": "rule"
     }
   }
 }
