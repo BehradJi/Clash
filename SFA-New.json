@@ -46,6 +46,7 @@
       "tag": "tun",
       "address": "172.19.0.0/30",
       "auto_route": true,
+      "strict_route":true,
       "route_exclude_address": [
         "10.0.0.0/8",
         "100.64.0.0/10",
