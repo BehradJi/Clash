@@ -1,6 +1,6 @@
 {
   "log": {
-    "level": "panic"
+    "disabled": true 
   },
   "dns": {
     "servers": [
@@ -11,7 +11,7 @@
       },
       {
         "tag": "dns-direct",
-        "address": "8.8.8.8",
+        "address": "5.200.200.200",
         "detour": "direct"
       },
       {
@@ -37,7 +37,7 @@
       "enabled": true,
       "inet4_range": "198.18.0.0/15"
     },
-    "strategy": "prefer_ipv4",
+    "strategy": "ipv4_only",
     "independent_cache": true
   },
   "inbounds": [
@@ -54,8 +54,7 @@
       "tag": "proxy",
       "outbounds": [
         "auto",
-        "{all}",
-        "direct"
+        "{all}"
       ],
       "default": "auto"
     },
@@ -64,10 +63,7 @@
       "tag": "auto",
       "outbounds": [
         "{all}"
-      ],
-      "url": "http://connectivitycheck.gstatic.com/generate_204",
-      "interval": "10m0s",
-      "tolerance": 50
+      ]
     },
     {
       "type": "direct",
