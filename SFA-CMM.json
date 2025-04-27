@@ -91,7 +91,6 @@
       "tag": "Proxy",
       "outbounds": [
         "auto",
-        "direct",
         "{all}"
       ]
     },
