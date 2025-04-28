@@ -87,14 +87,6 @@
   ],
   "outbounds": [
     {
-      "type": "selector",
-      "tag": "Proxy",
-      "outbounds": [
-        "auto",
-        "{all}"
-      ]
-    },
-    {
       "type": "urltest",
       "tag": "auto",
       "outbounds": [
@@ -113,16 +105,7 @@
         "action": "sniff"
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 53
-          },
-          {
-            "protocol": "dns"
-          }
-        ],
+        "protocol": "dns",
         "action": "hijack-dns"
       },
       {
@@ -185,7 +168,6 @@
         "download_detour": "direct"
       }
     ],
-    "final": "Proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true
   },
