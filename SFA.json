@@ -42,13 +42,17 @@
         "server": "dns-direct"
       },
       {
-        "query_type": "A",
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
         "server": "dns-fakeip"
       }
     ],
     "fakeip": {
       "enabled": true,
-      "inet4_range": "198.18.0.0/15"
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
     },
     "strategy": "ipv4_only",
     "independent_cache": true
@@ -112,16 +116,7 @@
         "action": "sniff"
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 53
-          },
-          {
-            "protocol": "dns"
-          }
-        ],
+        "protocol": "dns",
         "action": "hijack-dns"
       },
       {
