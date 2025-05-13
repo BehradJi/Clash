@@ -32,8 +32,7 @@
         "rule_set": [
           "openai",
           "anthropic",
-          "perplexity",
-          "spotify"
+          "perplexity"
         ],
         "server": "dns-shecan"
       },
@@ -124,7 +123,6 @@
           "geosite-ir",
           "geoip-ir",
           "openai",
-          "spotify",
           "anthropic",
           "perplexity"
         ],
@@ -148,13 +146,6 @@
         "tag": "geosite-ir",
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-ir.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "spotify",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-spotify.srs",
         "download_detour": "direct"
       },
       {
@@ -185,8 +176,7 @@
   },
   "experimental": {
     "cache_file": {
-      "enabled": true,
-      "store_fakeip": true
+      "enabled": true
     }
   }
 }
