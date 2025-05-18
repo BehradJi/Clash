@@ -32,8 +32,7 @@
         "rule_set": [
           "openai",
           "anthropic",
-          "perplexity",
-          "spotify"
+          "perplexity"
         ],
         "server": "dns-shecan"
       },
@@ -149,7 +148,6 @@
           "geosite-ir",
           "geoip-ir",
           "openai",
-          "spotify",
           "anthropic",
           "perplexity"
         ],
