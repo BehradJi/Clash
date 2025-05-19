@@ -67,8 +67,7 @@
         "ff04::/16",
         "ff05::/16",
         "fc00::/7"
-      ],
-      "stack": "system"
+      ]
     }
   ],
   "outbounds": [
@@ -133,7 +132,8 @@
       }
     ],
     "final": "proxy",
-    "auto_detect_interface": true
+    "auto_detect_interface": true,
+    "override_android_vpn": true
   },
   "experimental": {
     "cache_file": {
