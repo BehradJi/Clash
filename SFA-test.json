@@ -11,7 +11,17 @@
       },
       {
         "tag": "localDns",
-        "address": "5.200.200.200",
+        "address": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "shecanDns",
+        "address": "178.22.122.100",
+        "detour": "direct"
+      },
+      {
+        "tag": "electroDns",
+        "address": "78.157.42.100",
         "detour": "direct"
       }
     ],
@@ -21,12 +31,12 @@
         "server": "localDns"
       },
       {
-        "clash_mode": "direct",
-        "server": "localDns"
+        "rule_set": "openai",
+        "server": "shecanDns"
       },
       {
-        "clash_mode": "global",
-        "server": "proxyDns"
+        "rule_set": "spotify",
+        "server": "electroDns"
       }
     ],
     "strategy": "ipv4_only"
@@ -35,24 +45,30 @@
     {
       "type": "tun",
       "tag": "tun-in",
-      "mtu": 9000,
       "address": "172.19.0.0/30",
       "auto_route": true,
       "strict_route": true,
-      "stack": "system",
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 2080
-        }
-      }
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "127.0.0.1",
-      "listen_port": 2080
+      "route_exclude_address": [
+        "10.0.0.0/8",
+        "100.64.0.0/10",
+        "169.254.0.0/16",
+        "172.16.0.0/12",
+        "192.0.0.0/24",
+        "192.168.0.0/16",
+        "224.0.0.0/24",
+        "240.0.0.0/4",
+        "239.255.255.250/32",
+        "255.255.255.255/32",
+        "fe80::/10",
+        "fd00::/8",
+        "ff01::/16",
+        "ff02::/16",
+        "ff03::/16",
+        "ff04::/16",
+        "ff05::/16",
+        "fc00::/7"
+      ],
+      "stack": "system"
     }
   ],
   "outbounds": [
@@ -61,7 +77,6 @@
       "tag": "proxy",
       "outbounds": [
         "auto",
-        "direct",
         "{all}"
       ]
     },
@@ -70,10 +85,7 @@
       "tag": "auto",
       "outbounds": [
         "{all}"
-      ],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m0s",
-      "tolerance": 50
+      ]
     },
     {
       "type": "direct",
@@ -83,49 +95,40 @@
   "route": {
     "rules": [
       {
-        "inbound": [
-          "tun-in",
-          "mixed-in"
-        ],
+        "inbound": "tun-in",
         "action": "sniff"
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 53
-          },
-          {
-            "protocol": "dns"
-          }
-        ],
+        "protocol": "dns",
         "action": "hijack-dns"
       },
       {
-        "clash_mode": "rule",
-        "rule_set": "geosite-category-ads-all",
-        "action": "reject"
-      },
-      {
-        "clash_mode": "global",
-        "rule_set": "geosite-category-ads-all",
-        "outbound": "proxy"
-      },
-      {
-        "clash_mode": "direct",
+        "ip_is_private": true,
+        "rule_set": [
+          "geoip-ir",
+          "openai",
+          "spotify"
+        ],
         "outbound": "direct"
-      },
-      {
-        "clash_mode": "global",
-        "outbound": "proxy"
       }
     ],
     "rule_set": [
       {
         "type": "remote",
-        "tag": "geosite-category-ads-all",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
+        "tag": "geoip-ir",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geoip-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "openai",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-openai.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "spotify",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-spotify.srs",
         "download_detour": "direct"
       }
     ],
@@ -138,5 +141,4 @@
     }
   }
 }
-
 
