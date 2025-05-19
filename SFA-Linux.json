@@ -8,41 +8,15 @@
         "tag": "dns-remote",
         "address": "127.0.0.1",
         "detour": "direct"
-      },
-      {
-        "tag": "dns-direct",
-        "address": "5.200.200.200",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-fakeip",
-        "address": "fakeip"
       }
     ],
     "rules": [
       {
         "outbound": "any",
         "server": "dns-remote"
-      },
-      {
-        "rule_set": "geosite-ir",
-        "server": "dns-direct"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
-        "server": "dns-fakeip"
       }
     ],
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
-    },
-    "strategy": "ipv4_only",
-    "independent_cache": true
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
@@ -54,17 +28,8 @@
   ],
   "outbounds": [
     {
-      "type": "selector",
-      "tag": "proxy",
-      "outbounds": [
-        "auto",
-        "{all}"
-      ],
-      "default": "auto"
-    },
-    {
       "type": "urltest",
-      "tag": "auto",
+      "tag": "proxy",
       "outbounds": [
         "{all}"
       ]
@@ -90,7 +55,6 @@
       },
       {
         "rule_set": [
-          "geosite-ir",
           "geoip-ir"
         ],
         "outbound": "direct"
@@ -103,24 +67,14 @@
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geoip-ir.srs",
         "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geosite-ir",
-        "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-ir.srs",
-        "download_detour": "direct"
       }
     ],
     "final": "proxy",
-    "auto_detect_interface": true,
-    "override_android_vpn": true
+    "auto_detect_interface": true
   },
   "experimental": {
     "cache_file": {
-      "enabled": true,
-      "store_fakeip": true,
-      "store_rdrc": true
+      "enabled": true
     },
     "clash_api": {
       "external_controller": "127.0.0.1:9090"
