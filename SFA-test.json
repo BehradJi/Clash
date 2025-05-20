@@ -5,11 +5,11 @@
   "dns": {
     "servers": [
       {
-        "address": "tls://8.8.8.8",
-        "detour": "dns-remote"
+        "tag": "dns-remote",
+        "address": "tls://8.8.8.8"
       },
       {
-        "tag": "dns-local",
+        "tag": "dns-direct",
         "address": "local",
         "detour": "direct"
       },
@@ -22,12 +22,16 @@
         "tag": "dns-electro",
         "address": "78.157.42.100",
         "detour": "direct"
+      },
+      {
+        "tag": "dns-fakeip",
+        "address": "fakeip"
       }
     ],
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-local"
+        "server": "dns-direct"
       },
       {
         "rule_set": "openai",
@@ -36,24 +40,56 @@
       {
         "rule_set": "spotify",
         "server": "dns-electro"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "dns-fakeip"
       }
     ],
-    "strategy": "ipv4_only"
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
+    "strategy": "ipv4_only",
+    "independent_cache": true
   },
   "inbounds": [
     {
       "type": "tun",
-      "tag": "tun-in",
+      "tag": "tun",
       "address": "172.19.0.0/30",
       "auto_route": true,
       "strict_route": true,
-      "stack":"gvisor"
+      "route_exclude_address": [
+        "10.0.0.0/8",
+        "100.64.0.0/10",
+        "169.254.0.0/16",
+        "172.16.0.0/12",
+        "192.0.0.0/24",
+        "192.168.0.0/16",
+        "224.0.0.0/24",
+        "240.0.0.0/4",
+        "239.255.255.250/32",
+        "255.255.255.255/32",
+        "fe80::/10",
+        "fd00::/8",
+        "ff01::/16",
+        "ff02::/16",
+        "ff03::/16",
+        "ff04::/16",
+        "ff05::/16",
+        "fc00::/7"
+      ]
     }
   ],
   "outbounds": [
     {
       "type": "selector",
-      "tag": "proxy",
+      "tag": "Proxy",
       "outbounds": [
         "auto",
         "{all}"
@@ -74,20 +110,32 @@
   "route": {
     "rules": [
       {
-        "inbound": "tun-in",
+        "inbound": "tun",
         "action": "sniff"
       },
       {
-        "protocol": "dns",
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
         "action": "hijack-dns"
       },
       {
-        "ip_is_private": true,
         "rule_set": [
           "geoip-ir",
           "openai",
           "spotify"
         ],
+        "outbound": "direct"
+      },
+      {
+        "ip_is_private": true,
         "outbound": "direct"
       }
     ],
@@ -111,7 +159,7 @@
         "download_detour": "direct"
       }
     ],
-    "final": "proxy",
+    "final": "Proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true
   },
