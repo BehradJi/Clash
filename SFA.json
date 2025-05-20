@@ -42,14 +42,6 @@
         "server": "dns-electro"
       },
       {
-        "clash_mode": "direct",
-        "server": "dns-direct"
-      },
-      {
-        "clash_mode": "global",
-        "server": "dns-remote"
-      },
-      {
         "query_type": [
           "A",
           "AAAA"
@@ -134,14 +126,6 @@
           }
         ],
         "action": "hijack-dns"
-      },
-      {
-        "clash_mode": "direct",
-        "outbound": "direct"
-      },
-      {
-        "clash_mode": "global",
-        "outbound": "Proxy"
       },
       {
         "rule_set": [
