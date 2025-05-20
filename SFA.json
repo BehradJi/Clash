@@ -19,6 +19,11 @@
         "detour": "direct"
       },
       {
+        "tag": "dns-electro",
+        "address": "78.157.42.100",
+        "detour": "direct"
+      },
+      {
         "tag": "dns-fakeip",
         "address": "fakeip"
       }
@@ -29,16 +34,12 @@
         "server": "dns-direct"
       },
       {
-        "rule_set": [
-          "openai",
-          "anthropic",
-          "perplexity"
-        ],
+        "rule_set": "openai",
         "server": "dns-shecan"
       },
       {
-        "rule_set": "geosite-ir",
-        "server": "dns-direct"
+        "rule_set": "spotify",
+        "server": "dns-electro"
       },
       {
         "clash_mode": "direct",
@@ -100,7 +101,6 @@
       "tag": "Proxy",
       "outbounds": [
         "auto",
-        "direct",
         "{all}"
       ]
     },
@@ -145,11 +145,9 @@
       },
       {
         "rule_set": [
-          "geosite-ir",
           "geoip-ir",
           "openai",
-          "anthropic",
-          "perplexity"
+          "spotify"
         ],
         "outbound": "direct"
       },
@@ -167,32 +165,14 @@
       },
       {
         "type": "remote",
-        "tag": "geosite-ir",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-ir.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "spotify",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-spotify.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
         "tag": "openai",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-openai.srs",
         "download_detour": "direct"
       },
       {
         "type": "remote",
-        "tag": "anthropic",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-anthropic.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "perplexity",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-perplexity.srs",
+        "tag": "spotify",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-spotify.srs",
         "download_detour": "direct"
       }
     ],
