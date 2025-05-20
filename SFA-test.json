@@ -5,22 +5,21 @@
   "dns": {
     "servers": [
       {
-        "tag": "proxyDns",
         "address": "tls://8.8.8.8",
-        "detour": "proxy"
+        "detour": "dns-remote"
       },
       {
-        "tag": "localDns",
+        "tag": "dns-local",
         "address": "local",
         "detour": "direct"
       },
       {
-        "tag": "shecanDns",
+        "tag": "dns-shecan",
         "address": "178.22.122.100",
         "detour": "direct"
       },
       {
-        "tag": "electroDns",
+        "tag": "dns-electro",
         "address": "78.157.42.100",
         "detour": "direct"
       }
@@ -28,15 +27,15 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "localDns"
+        "server": "dns-local"
       },
       {
         "rule_set": "openai",
-        "server": "shecanDns"
+        "server": "dns-shecan"
       },
       {
         "rule_set": "spotify",
-        "server": "electroDns"
+        "server": "dns-electro"
       }
     ],
     "strategy": "ipv4_only"
