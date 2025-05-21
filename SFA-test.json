@@ -34,6 +34,10 @@
         "server": "dns-direct"
       },
       {
+        "rule_set": "geosite-ir",
+        "server": "dns-direct"
+      },
+      {
         "rule_set": "openai",
         "server": "dns-shecan"
       },
@@ -129,6 +133,7 @@
       {
         "rule_set": [
           "geoip-ir",
+          "geosite-ir",
           "openai",
           "spotify"
         ],
@@ -144,6 +149,12 @@
         "type": "remote",
         "tag": "geoip-ir",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geoip-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-ir",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-ir.srs",
         "download_detour": "direct"
       },
       {
@@ -169,4 +180,3 @@
     }
   }
 }
-
