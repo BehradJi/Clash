@@ -144,18 +144,21 @@
       {
         "type": "remote",
         "tag": "geoip-ir",
+        "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geoip-ir.srs",
         "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "openai",
+        "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-openai.srs",
         "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "spotify",
+        "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-spotify.srs",
         "download_detour": "direct"
       }
