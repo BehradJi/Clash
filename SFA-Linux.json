@@ -1,6 +1,6 @@
 {
   "log": {
-    "disabled": true 
+    "disabled": true
   },
   "dns": {
     "servers": [
@@ -11,8 +11,22 @@
       },
       {
         "tag": "dns-direct",
-        "address": "5.200.200.200",
+        "address": "local",
         "detour": "direct"
+      },
+      {
+        "tag": "dns-shecan",
+        "address": "178.22.122.100",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-electro",
+        "address": "78.157.42.100",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-fakeip",
+        "address": "fakeip"
       }
     ],
     "rules": [
@@ -23,9 +37,30 @@
       {
         "rule_set": "geosite-ir",
         "server": "dns-direct"
+      },
+      {
+        "rule_set": "openai",
+        "server": "dns-shecan"
+      },
+      {
+        "rule_set": "spotify",
+        "server": "dns-electro"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "dns-fakeip"
       }
     ],
-    "strategy": "ipv4_only"
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
+    "strategy": "ipv4_only",
+    "independent_cache": true
   },
   "inbounds": [
     {
@@ -36,6 +71,14 @@
     }
   ],
   "outbounds": [
+    {
+      "type": "selector",
+      "tag": "Proxy",
+      "outbounds": [
+        "auto",
+        "{all}"
+      ]
+    },
     {
       "type": "urltest",
       "tag": "auto",
@@ -55,18 +98,29 @@
         "action": "sniff"
       },
       {
-        "protocol": "dns",
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
         "action": "hijack-dns"
-      },
-      {
-        "ip_is_private": true,
-        "outbound": "direct"
       },
       {
         "rule_set": [
           "geoip-ir",
-          "geosite-ir"
+          "geosite-ir",
+          "openai",
+          "spotify"
         ],
+        "outbound": "direct"
+      },
+      {
+        "ip_is_private": true,
         "outbound": "direct"
       }
     ],
@@ -75,27 +129,38 @@
         "type": "remote",
         "tag": "geoip-ir",
         "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geoip-ir.srs",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geoip-ir.srs",
         "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-ir",
         "format": "binary",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-ir.srs",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "openai",
+        "format": "binary",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-openai.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "spotify",
+        "format": "binary",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/rule-set/geosite-spotify.srs",
         "download_detour": "direct"
       }
     ],
-    "auto_detect_interface": true
+    "final": "Proxy",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
   },
   "experimental": {
     "cache_file": {
       "enabled": true
-    },
-    "clash_api": {
-      "external_controller": "127.0.0.1:9090"
     }
   }
 }
-
-
