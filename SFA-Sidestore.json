@@ -20,7 +20,7 @@
         "server": "dns-remote"
       },
       {
-        "rule_set": "spotify",
+        "rule_set": "github",
         "server": "dns-remote"
       },
       {
@@ -52,8 +52,7 @@
     {
       "type": "wireguard",
       "tag": "sidestore",
-      "system": true,
-      "name": "wg0",
+      "system": false,
       "mtu": 1408,
       "address": [
         "10.7.0.10/24"
@@ -110,6 +109,12 @@
           "github"
         ],
         "outbound": "proxy"
+      },
+      {
+        "ip_cidr": [
+          "10.7.0.1/32"
+        ],
+        "outbound": "sidestore"
       }
     ],
     "rule_set": [
@@ -121,7 +126,7 @@
         "download_detour": "direct"
       }
     ],
-    "final": "sidestore",
+    "final": "proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true
   },
