@@ -10,7 +10,7 @@
       },
       {
         "tag": "dns-direct",
-        "address": "8.8.8.8",
+        "address": "local",
         "detour": "direct"
       },
       {
@@ -31,6 +31,10 @@
     "rules": [
       {
         "outbound": "any",
+        "server": "dns-direct"
+      },
+      {
+        "rule_set": "geosite-ir",
         "server": "dns-direct"
       },
       {
@@ -83,8 +87,7 @@
         "ff04::/16",
         "ff05::/16",
         "fc00::/7"
-      ],
-      "stack": "gvisor"
+      ]
     }
   ],
   "outbounds": [
@@ -130,6 +133,7 @@
       {
         "rule_set": [
           "geoip-ir",
+          "geosite-ir",
           "openai",
           "spotify"
         ],
@@ -146,6 +150,13 @@
         "tag": "geoip-ir",
         "format": "binary",
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geoip-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-ir",
+        "format": "binary",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-ir.srs",
         "download_detour": "direct"
       },
       {
@@ -173,5 +184,3 @@
     }
   }
 }
-
-
