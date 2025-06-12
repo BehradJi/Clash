@@ -10,7 +10,7 @@
       },
       {
         "tag": "dns-direct",
-        "address": "8.8.8.8",
+        "address": "local",
         "detour": "direct"
       },
       {
@@ -28,13 +28,17 @@
         "server": "dns-direct"
       },
       {
-        "query_type": "A",
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
         "server": "dns-fakeip"
       }
     ],
     "fakeip": {
       "enabled": true,
-      "inet4_range": "198.18.0.0/15"
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
     },
     "strategy": "ipv4_only",
     "independent_cache": true
@@ -65,8 +69,7 @@
         "ff04::/16",
         "ff05::/16",
         "fc00::/7"
-      ],
-      "stack":"system"
+      ]
     }
   ],
   "outbounds": [
@@ -75,7 +78,6 @@
       "tag": "Proxy",
       "outbounds": [
         "auto",
-        "direct",
         "{all}"
       ]
     },
@@ -98,22 +100,13 @@
         "action": "sniff"
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 53
-          },
-          {
-            "protocol": "dns"
-          }
-        ],
+        "protocol": "dns",
         "action": "hijack-dns"
       },
       {
         "rule_set": [
-          "geosite-ir",
-          "geoip-ir"
+          "geoip-ir",
+          "geosite-ir"
         ],
         "outbound": "direct"
       },
@@ -144,10 +137,7 @@
   },
   "experimental": {
     "cache_file": {
-      "enabled": true,
-      "store_fakeip": true
+      "enabled": true
     }
   }
 }
-
-
