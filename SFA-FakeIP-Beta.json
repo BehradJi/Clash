@@ -109,13 +109,13 @@
       {
         "type": "remote",
         "tag": "geoip-ir",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geoip-ir.srs",
+        "url": "https://github.com/SagerNet/sing-geoip/raw/refs/heads/rule-set/geoip-ir.srs",
         "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-ir",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geosite-ir.srs",
+        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-category-ir.srs",
         "download_detour": "direct"
       }
     ],
