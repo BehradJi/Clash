@@ -87,7 +87,7 @@
         "action": "sniff"
       },
       { 
-        "protocol": "dns"،
+        "protocol": "dns",
         "action": "hijack-dns"
       },
       {
