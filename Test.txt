@@ -1,1 +1,1 @@
-https://cm-9c9.pages.dev/9846d004-bf39-4f91-83dd-19d45e775d50#CMM
+vless://9846d004-bf39-4f91-83dd-19d45e775d50@172.67.171.1:443?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=cm-9c9.pages.dev&fp=random&type=ws&sni=cm-9c9.pages.dev#172.67.171.1
