@@ -12,10 +12,6 @@
         "tag": "dns-direct",
         "address": "local",
         "detour": "direct"
-      },
-      {
-        "tag": "dns-fakeip",
-        "address": "fakeip"
       }
     ],
     "rules": [
@@ -26,22 +22,9 @@
       {
         "rule_set": "geosite-ir",
         "server": "dns-direct"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
-        "server": "dns-fakeip"
       }
     ],
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
-    },
-    "strategy": "ipv4_only",
-    "independent_cache": true
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
@@ -51,25 +34,26 @@
       "auto_route": true,
       "strict_route": true,
       "route_exclude_address": [
-        "10.0.0.0/8",
-        "100.64.0.0/10",
-        "169.254.0.0/16",
-        "172.16.0.0/12",
-        "192.0.0.0/24",
         "192.168.0.0/16",
-        "224.0.0.0/24",
-        "240.0.0.0/4",
-        "239.255.255.250/32",
-        "255.255.255.255/32",
-        "fe80::/10",
-        "fd00::/8",
-        "ff01::/16",
-        "ff02::/16",
-        "ff03::/16",
-        "ff04::/16",
-        "ff05::/16",
-        "fc00::/7"
-      ]
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "224.0.0.251/32",
+        "239.255.255.250/32"
+      ],
+      "stack": "system",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 2080
+        }
+      }
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2080
     }
   ],
   "outbounds": [
@@ -96,20 +80,14 @@
   "route": {
     "rules": [
       {
-        "inbound": "tun",
+        "inbound": [
+          "tun",
+          "mixed-in"
+        ],
         "action": "sniff"
       },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 53
-          },
-          {
-            "protocol": "dns"
-          }
-        ],
+      { 
+        "protocol": "dns"،
         "action": "hijack-dns"
       },
       {
@@ -143,10 +121,5 @@
     "final": "Proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true
-  },
-  "experimental": {
-    "cache_file": {
-      "enabled": true
-    }
   }
 }
