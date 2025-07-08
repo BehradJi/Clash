@@ -67,7 +67,7 @@
         "{all}"
       ],
       "filter":[
-        {"action":"action":"include","keywords":["Europe"]}
+        {"action":"include","keywords":["Europe"]}
       ]
     },
     {
