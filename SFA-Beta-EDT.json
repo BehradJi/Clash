@@ -1,0 +1,123 @@
+{
+  "log": {
+    "level": "error"
+  },
+  "dns": {
+    "servers": [
+      {
+        "type": "tls",
+        "tag": "proxyDns",
+        "detour": "Proxy",
+        "server": "8.8.8.8"
+      },
+      {
+        "type": "local",
+        "tag": "localDns"
+      }
+    ],
+    "rules": [
+      {
+        "domain_suffix": ".ir",
+        "rule_set": "geosite-ir",
+        "server": "localDns"
+      }
+    ],
+    "strategy": "ipv4_only"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun",
+      "address": "172.19.0.0/30",
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "gvisor",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 2080
+        }
+      }
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2080
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "Proxy",
+      "outbounds": [
+        "auto",
+        "direct",
+        "{all}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["Europe"]}
+      ]
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter":[
+        {"action":"action":"include","keywords":["Europe"]}
+      ]
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "inbound": [
+          "tun",
+          "mixed-in"
+        ],
+        "action": "sniff"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "domain_suffix": ".ir",
+        "rule_set": [
+          "geoip-ir",
+          "geosite-ir"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geoip-ir",
+        "url": "https://github.com/SagerNet/sing-geoip/raw/refs/heads/rule-set/geoip-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-ir",
+        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-category-ir.srs",
+        "download_detour": "direct"
+      }
+    ],
+    "final": "Proxy",
+    "auto_detect_interface": true,
+    "override_android_vpn": true,
+    "default_domain_resolver": "localDns"
+  }
+}
