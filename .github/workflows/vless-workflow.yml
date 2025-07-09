@@ -58,4 +58,4 @@ jobs:
           author_name: GitHub Actions
           author_email: actions@github.com
           message: 'Update vless_output.txt with decoded VLESS URLs'
-          add: 'vless_output.txt'
+          add: 'cflist.txt'
