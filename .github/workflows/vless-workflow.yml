@@ -1,0 +1,61 @@
+name: Fetch and Decode VLESS URLs
+
+on:
+  workflow_dispatch: # Allows manual triggering
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+
+jobs:
+  fetch-and-decode:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Create script
+        run: |
+          cat > decode_vless.js << 'EOF'
+          async function fetchAndDecodeVless(url) {
+              try {
+                  const response = await fetch(url);
+                  const base64Data = await response.text();
+                  const decodedData = atob(base64Data);
+                  const lines = decodedData.split('\n');
+                  const vlessRegex = /^vless:\/\/[^@]+@([^:]+):(\d+)\?.*?#(.+)$/;
+                  const results = lines
+                      .filter(line => line.startsWith('vless://'))
+                      .map(line => {
+                          const match = line.match(vlessRegex);
+                          if (match) {
+                              const [, ip, port, name] = match;
+                              return `${ip}:${port}#${name}`;
+                          }
+                          return null;
+                      })
+                      .filter(result => result !== null);
+                  return results.join('\n');
+              } catch (error) {
+                  console.error('Error fetching or processing data:', error);
+                  return '';
+              }
+          }
+          fetchAndDecodeVless('https://eg-f4f.pages.dev/bestip/dd55a1e3-ee70-4aa6-8e48-6e5fa0ed03d4')
+              .then(result => require('fs').writeFileSync('vless_output.txt', result))
+              .catch(error => console.error('Error:', error));
+          EOF
+
+      - name: Run script
+        run: node decode_vless.js
+
+      - name: Commit output file
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: GitHub Actions
+          author_email: actions@github.com
+          message: 'Update vless_output.txt with decoded VLESS URLs'
+          add: 'vless_output.txt'
