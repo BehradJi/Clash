@@ -1,42 +1,75 @@
 {
   "log": {
-    "level": "error"
+    "disabled": true
   },
   "dns": {
     "servers": [
       {
-        "type": "tls",
+        "type": "https",
         "tag": "proxyDns",
         "detour": "Proxy",
         "server": "8.8.8.8"
       },
       {
-        "type": "local",
-        "tag": "localDns"
+        "type": "udp",
+        "tag": "localDns",
+        "server": "8.8.8.8"
+      },
+      {
+        "type": "fakeip",
+        "tag": "fakeip",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
       }
     ],
     "rules": [
       {
-        "domain_suffix": ".ir",
-        "rule_set": "geosite-ir",
-        "server": "localDns"
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "fakeip"
       }
     ],
-    "strategy": "ipv4_only"
+    "strategy": "prefer_ipv4",
+    "independent_cache": true
   },
   "inbounds": [
     {
       "type": "tun",
       "tag": "tun",
-      "address": "172.19.0.0/30",
+      "address": [
+        "172.18.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
       "auto_route": true,
       "strict_route": true,
-      "stack": "gvisor",
+      "route_exclude_address": [
+        "10.0.0.0/8",
+        "100.64.0.0/10",
+        "169.254.0.0/16",
+        "172.16.0.0/12",
+        "192.0.0.0/24",
+        "192.168.0.0/16",
+        "224.0.0.0/24",
+        "240.0.0.0/4",
+        "239.255.255.250/32",
+        "255.255.255.255/32",
+        "fe80::/10",
+        "fd00::/8",
+        "ff01::/16",
+        "ff02::/16",
+        "ff03::/16",
+        "ff04::/16",
+        "ff05::/16",
+        "fc00::/7"
+      ],
+      "stack": "system",
       "platform": {
         "http_proxy": {
           "enabled": true,
           "server": "127.0.0.1",
-          "server_port": 2080
+          "server_port": 20120
         }
       }
     },
@@ -44,7 +77,7 @@
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "127.0.0.1",
-      "listen_port": 2080
+      "listen_port": 20120
     }
   ],
   "outbounds": [
@@ -53,8 +86,8 @@
       "tag": "Proxy",
       "outbounds": [
         "auto",
-        "direct",
-        "{all}"
+        "{all}",
+        "direct"
       ],
       "filter":[
         {"action":"include","keywords":["Europe"]}
@@ -82,17 +115,24 @@
           "tun",
           "mixed-in"
         ],
-        "action": "sniff"
+        "action": "resolve",
+        "strategy": "prefer_ipv4"
+      },
+      {
+        "inbound": [
+          "tun",
+          "mixed-in"
+        ],
+        "action": "sniff",
+        "timeout": "1s"
       },
       {
         "protocol": "dns",
         "action": "hijack-dns"
       },
       {
-        "domain_suffix": ".ir",
         "rule_set": [
-          "geoip-ir",
-          "geosite-ir"
+          "geoip-ir"
         ],
         "outbound": "direct"
       },
@@ -105,19 +145,13 @@
       {
         "type": "remote",
         "tag": "geoip-ir",
-        "url": "https://github.com/SagerNet/sing-geoip/raw/refs/heads/rule-set/geoip-ir.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geosite-ir",
-        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-category-ir.srs",
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geoip-ir.srs",
         "download_detour": "direct"
       }
     ],
-    "final": "Proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true,
     "default_domain_resolver": "localDns"
   }
 }
+
