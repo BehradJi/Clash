@@ -3,7 +3,7 @@ name: Fetch and Decode VLESS URLs
 on:
   workflow_dispatch: # Allows manual triggering
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight UTC
+    - cron: '0 * * * *' # Runs daily at midnight UTC
 
 jobs:
   fetch-and-decode:
@@ -58,4 +58,4 @@ jobs:
           author_name: GitHub Actions
           author_email: actions@github.com
           message: 'Update vless_output.txt with decoded VLESS URLs'
-          add: 'cflist.txt'
+          add: 'CloudflareST.csv'
