@@ -45,7 +45,7 @@ jobs:
               }
           }
           fetchAndDecodeVless('https://eg-f4f.pages.dev/bestip/dd55a1e3-ee70-4aa6-8e48-6e5fa0ed03d4')
-              .then(result => require('fs').writeFileSync('vless_output.txt', result))
+              .then(result => require('fs').writeFileSync('CloudflareST.csv', result))
               .catch(error => console.error('Error:', error));
           EOF
 
@@ -57,5 +57,5 @@ jobs:
         with:
           author_name: GitHub Actions
           author_email: actions@github.com
-          message: 'Update vless_output.txt with decoded VLESS URLs'
+          message: 'Update CloudflareST.csv with decoded VLESS URLs'
           add: 'CloudflareST.csv'
