@@ -20,15 +20,17 @@
         "server": "dns-direct"
       }
     ],
-    "strategy": "ipv4_only"
+    "strategy": "prefer_ipv4"
   },
   "inbounds": [
     {
       "type": "tun",
       "tag": "tun",
-      "address": "172.19.0.0/30",
+      "address": [
+        "172.19.0.0/30",
+        "fdfe:dcba:9876::1/126"
+      ],
       "auto_route": true,
-      "strict_route": true,
       "route_exclude_address": [
         "10.0.0.0/8",
         "100.64.0.0/10",
@@ -49,7 +51,7 @@
         "ff05::/16",
         "fc00::/7"
       ],
-      "stack": "system",
+      "stack": "gvisor",
       "platform": {
         "http_proxy": {
           "enabled": true,
@@ -72,9 +74,6 @@
       "outbounds": [
         "auto",
         "{all}"
-      ],
-      "filter":[
-        {"action":"include","keywords":["Europe"]}
       ]
     },
     {
@@ -82,9 +81,6 @@
       "tag": "auto",
       "outbounds": [
         "{all}"
-      ],
-      "filter":[
-        {"action":"include","keywords":["Europe"]}
       ]
     },
     {
@@ -108,14 +104,12 @@
         ],
         "action": "sniff"
       },
-      { 
+      {
         "protocol": "dns",
         "action": "hijack-dns"
       },
       {
-        "rule_set": [
-          "geoip-ir"
-        ],
+        "rule_set": "geoip-ir",
         "outbound": "direct"
       },
       {
@@ -127,7 +121,6 @@
       {
         "type": "remote",
         "tag": "geoip-ir",
-        "format": "binary",
         "url": "https://github.com/SagerNet/sing-geoip/raw/refs/heads/rule-set/geoip-ir.srs",
         "download_detour": "direct"
       }
