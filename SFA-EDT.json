@@ -18,6 +18,10 @@
       {
         "outbound": "any",
         "server": "dns-direct"
+      },
+      {
+        "rule_set": "geoip-ir",
+        "server": "dns-direct"
       }
     ],
     "strategy": "prefer_ipv4"
