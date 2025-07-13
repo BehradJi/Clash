@@ -30,10 +30,8 @@
     {
       "type": "tun",
       "tag": "tun",
-      "address": [
-        "172.19.0.0/30",
-        "fdfe:dcba:9876::1/126"
-      ],
+      "mtu": 9000,
+      "address": "172.19.0.0/30",
       "auto_route": true,
       "route_exclude_address": [
         "10.0.0.0/8",
