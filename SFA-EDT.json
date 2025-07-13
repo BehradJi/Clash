@@ -12,6 +12,10 @@
         "tag": "dns-direct",
         "address": "8.8.8.8",
         "detour": "direct"
+      },
+      {
+        "tag": "dns-fakeip",
+        "address": "fakeip"
       }
     ],
     "rules": [
@@ -22,9 +26,22 @@
       {
         "rule_set": "geoip-ir",
         "server": "dns-direct"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "dns-fakeip"
       }
     ],
-    "strategy": "prefer_ipv4"
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
+    "strategy": "ipv4_only",
+    "independent_cache": true
   },
   "inbounds": [
     {
@@ -33,6 +50,7 @@
       "mtu": 9000,
       "address": "172.19.0.0/30",
       "auto_route": true,
+      "strict_route": true,
       "route_exclude_address": [
         "10.0.0.0/8",
         "100.64.0.0/10",
@@ -76,9 +94,6 @@
       "outbounds": [
         "auto",
         "{all}"
-      ],
-      "filter":[
-        {"action":"include","keywords":["Europe"]}
       ]
     },
     {
@@ -86,9 +101,6 @@
       "tag": "auto",
       "outbounds": [
         "{all}"
-      ],
-      "filter":[
-        {"action":"include","keywords":["Europe"]}
       ]
     },
     {
@@ -99,28 +111,20 @@
   "route": {
     "rules": [
       {
-        "inbound": [
-          "tun",
-          "mixed-in"
-        ],
         "action": "resolve"
       },
       {
-        "inbound": [
-          "tun",
-          "mixed-in"
-        ],
         "action": "sniff"
       },
       {
         "type": "logical",
         "mode": "or",
-        "rules":[
-          {
-            "port":53
-          },
+        "rules": [
           {
             "protocol": "dns"
+          },
+          {
+            "port": 53
           }
         ],
         "action": "hijack-dns"
@@ -143,8 +147,8 @@
         "download_detour": "direct"
       }
     ],
-    "final": "Proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true
   }
 }
+
