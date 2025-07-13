@@ -94,6 +94,9 @@
       "outbounds": [
         "auto",
         "{all}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["Europe"]}
       ]
     },
     {
@@ -101,6 +104,9 @@
       "tag": "auto",
       "outbounds": [
         "{all}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["Europe"]}
       ]
     },
     {
