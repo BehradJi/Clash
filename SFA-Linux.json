@@ -9,12 +9,7 @@
         "address": "tls://8.8.8.8"
       },
       {
-        "tag": "dns-local",
-        "address": "local",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-direct",
+        "tag": "dns-domain",
         "address": "8.8.8.8",
         "detour": "direct"
       }
@@ -22,11 +17,7 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "dns-direct"
-      },
-      {
-        "rule_set": "geoip-ir",
-        "server": "dns-local"
+        "server": "dns-domain"
       }
     ],
     "strategy": "ipv4_only"
@@ -95,7 +86,8 @@
         "outbound": "direct"
       },
       {
-        "action": "resolve"
+        "action": "resolve",
+        "server": "dns-remote"
       }
     ],
     "rule_set": [
