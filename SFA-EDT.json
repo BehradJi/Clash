@@ -12,10 +12,6 @@
         "tag": "dns-direct",
         "address": "8.8.8.8",
         "detour": "direct"
-      },
-      {
-        "tag": "dns-fakeip",
-        "address": "fakeip"
       }
     ],
     "rules": [
@@ -26,22 +22,9 @@
       {
         "rule_set": "geoip-ir",
         "server": "dns-direct"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
-        "server": "dns-fakeip"
       }
     ],
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
-    },
-    "strategy": "ipv4_only",
-    "independent_cache": true
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
@@ -69,7 +52,7 @@
         "ff05::/16",
         "fc00::/7"
       ],
-      "stack": "gvisor",
+      "stack": "system",
       "platform": {
         "http_proxy": {
           "enabled": true,
