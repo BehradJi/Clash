@@ -10,7 +10,7 @@
       },
       {
         "tag": "dns-direct",
-        "address": "local",
+        "address": "8.8.8.8",
         "detour": "direct"
       }
     ],
@@ -20,7 +20,7 @@
         "server": "dns-direct"
       },
       {
-        "rule_set": "geosite-ir",
+        "rule_set": "geoip-ir",
         "server": "dns-direct"
       }
     ],
@@ -29,16 +29,28 @@
   "inbounds": [
     {
       "type": "tun",
-      "tag": "tun",
       "address": "172.19.0.0/30",
       "auto_route": true,
       "strict_route": true,
       "route_exclude_address": [
-        "192.168.0.0/16",
         "10.0.0.0/8",
+        "100.64.0.0/10",
+        "169.254.0.0/16",
         "172.16.0.0/12",
-        "224.0.0.251/32",
-        "239.255.255.250/32"
+        "192.0.0.0/24",
+        "192.168.0.0/16",
+        "224.0.0.0/24",
+        "240.0.0.0/4",
+        "239.255.255.250/32",
+        "255.255.255.255/32",
+        "fe80::/10",
+        "fd00::/8",
+        "ff01::/16",
+        "ff02::/16",
+        "ff03::/16",
+        "ff04::/16",
+        "ff05::/16",
+        "fc00::/7"
       ],
       "stack": "system",
       "platform": {
@@ -51,7 +63,6 @@
     },
     {
       "type": "mixed",
-      "tag": "mixed-in",
       "listen": "127.0.0.1",
       "listen_port": 2080
     }
@@ -80,21 +91,26 @@
   "route": {
     "rules": [
       {
-        "inbound": [
-          "tun",
-          "mixed-in"
-        ],
+        "action": "resolve"
+      },
+      {
         "action": "sniff"
       },
-      { 
-        "protocol": "dns",
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
         "action": "hijack-dns"
       },
       {
-        "rule_set": [
-          "geoip-ir",
-          "geosite-ir"
-        ],
+        "rule_set": "geoip-ir",
         "outbound": "direct"
       },
       {
@@ -105,20 +121,12 @@
     "rule_set": [
       {
         "type": "remote",
+        "format": "binary",
         "tag": "geoip-ir",
-        "format": "binary",
         "url": "https://github.com/SagerNet/sing-geoip/raw/refs/heads/rule-set/geoip-ir.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geosite-ir",
-        "format": "binary",
-        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-category-ir.srs",
         "download_detour": "direct"
       }
     ],
-    "final": "Proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true
   }
