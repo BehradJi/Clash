@@ -12,12 +12,24 @@
         "tag": "dns-direct",
         "address": "8.8.8.8",
         "detour": "direct"
+      },
+      {
+        "tag": "dns-radar",
+        "address": "10.202.10.10",
+        "detour": "direct"
       }
     ],
     "rules": [
       {
         "outbound": "any",
         "server": "dns-direct"
+      },
+      {
+        "rule_set": [
+          "openai",
+          "xai"
+        ],
+        "server": "dns-radar"
       },
       {
         "rule_set": "geoip-ir",
@@ -116,7 +128,11 @@
         "action": "hijack-dns"
       },
       {
-        "rule_set": "geoip-ir",
+        "rule_set": [
+          "geoip-ir",
+          "openai",
+          "xai"
+        ],
         "outbound": "direct"
       },
       {
@@ -131,10 +147,23 @@
         "tag": "geoip-ir",
         "url": "https://github.com/SagerNet/sing-geoip/raw/refs/heads/rule-set/geoip-ir.srs",
         "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "tag": "openai",
+        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-openai.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "tag": "xai",
+        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-xai.srs",
+        "download_detour": "direct"
       }
     ],
     "auto_detect_interface": true,
     "override_android_vpn": true
   }
 }
-
