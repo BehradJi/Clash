@@ -15,7 +15,7 @@
       },
       {
         "tag": "dns-radar",
-        "address": "178.22.122.100",
+        "address": "10.202.10.10",
         "detour": "direct"
       }
     ],
