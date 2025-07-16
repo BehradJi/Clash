@@ -15,7 +15,7 @@
       },
       {
         "tag": "dns-radar",
-        "address": "10.202.10.10",
+        "address": "178.22.122.100",
         "detour": "direct"
       }
     ],
@@ -27,7 +27,8 @@
       {
         "rule_set": [
           "openai",
-          "xai"
+          "xai",
+          "gemini"
         ],
         "server": "dns-radar"
       },
@@ -64,7 +65,7 @@
         "ff05::/16",
         "fc00::/7"
       ],
-      "stack": "system",
+      "stack": "gvisor",
       "platform": {
         "http_proxy": {
           "enabled": true,
@@ -131,7 +132,8 @@
         "rule_set": [
           "geoip-ir",
           "openai",
-          "xai"
+          "xai",
+          "gemini"
         ],
         "outbound": "direct"
       },
@@ -160,6 +162,13 @@
         "format": "binary",
         "tag": "xai",
         "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-xai.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "tag": "gemini",
+        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-google-gemini.srs",
         "download_detour": "direct"
       }
     ],
