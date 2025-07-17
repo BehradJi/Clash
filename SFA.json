@@ -65,6 +65,7 @@
         "ff05::/16",
         "fc00::/7"
       ],
+      "stack": "system",
       "platform": {
         "http_proxy": {
           "enabled": true,
