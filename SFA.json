@@ -28,7 +28,8 @@
         "rule_set": [
           "openai",
           "xai",
-          "gemini"
+          "gemini",
+          "anthropic"
         ],
         "server": "dns-radar"
       },
@@ -119,7 +120,8 @@
           "geoip-ir",
           "openai",
           "xai",
-          "gemini"
+          "gemini",
+          "anthropic"
         ],
         "outbound": "direct"
       },
@@ -156,9 +158,17 @@
         "tag": "gemini",
         "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-google-gemini.srs",
         "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "tag": "anthropic",
+        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-anthropic.srs",
+        "download_detour": "direct"
       }
     ],
     "auto_detect_interface": true,
     "override_android_vpn": true
   }
 }
+
