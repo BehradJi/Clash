@@ -96,7 +96,8 @@
       "tag": "auto",
       "outbounds": [
         "{all}"
-      ]
+      ],
+      "interval": "10m0s"
     },
     {
       "type": "direct",
