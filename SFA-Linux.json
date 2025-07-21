@@ -56,26 +56,17 @@
   "route": {
     "rules": [
       {
-        "action": "sniff",
-        "inbound": "mixed-in"
+        "action": "sniff"
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 53
-          },
-          {
-            "protocol": "dns"
-          }
-        ],
+        "action": "resolve"
+      },
+      {
+        "protocol": "dns",
         "action": "hijack-dns"
       },
       {
-        "rule_set": [
-          "geoip-ir"
-        ],
+        "rule_set": "geoip-ir",
         "outbound": "direct"
       },
       {
