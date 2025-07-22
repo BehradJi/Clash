@@ -45,6 +45,7 @@
     {
       "type": "tun",
       "address": "172.19.0.0/30",
+      "mtu": 1280,
       "auto_route": true,
       "strict_route": true,
       "route_exclude_address": [
@@ -169,8 +170,8 @@
         "download_detour": "direct"
       }
     ],
-    "auto_detect_interface": true,
-    "override_android_vpn": true
+    "final": "Proxy",
+    "auto_detect_interface": true
   }
 }
 
