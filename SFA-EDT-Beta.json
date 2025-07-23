@@ -103,6 +103,7 @@
         "{all}"
       ],
       "interval": "10m0s",
+      "tolerance": 10,
       "filter":[
         {"action":"include","keywords":["Europe"]}
       ]
