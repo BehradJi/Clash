@@ -5,43 +5,47 @@
   "dns": {
     "servers": [
       {
-        "type": "https",
-        "tag": "proxyDns",
+        "type": "tls",
+        "tag": "dns-remote",
         "detour": "Proxy",
         "server": "8.8.8.8"
       },
       {
+        "tag": "dns-local",
+        "type": "local"
+      },
+      {
         "type": "udp",
-        "tag": "localDns",
+        "tag": "dns-direct",
         "server": "8.8.8.8"
       },
       {
-        "type": "fakeip",
-        "tag": "fakeip",
-        "inet4_range": "198.18.0.0/15",
-        "inet6_range": "fc00::/18"
+        "type": "udp",
+        "tag": "dns-radar",
+        "server": "10.202.10.10"
       }
     ],
     "rules": [
       {
-        "query_type": [
-          "A",
-          "AAAA"
+        "rule_set": [
+          "openai",
+          "xai",
+          "gemini",
+          "anthropic"
         ],
-        "server": "fakeip"
+        "server": "dns-radar"
+      },
+      {
+        "rule_set": "geoip-ir",
+        "server": "dns-local"
       }
     ],
-    "strategy": "prefer_ipv4",
-    "independent_cache": true
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
       "type": "tun",
-      "tag": "tun",
-      "address": [
-        "172.18.0.1/30",
-        "fdfe:dcba:9876::1/126"
-      ],
+      "address": "172.19.0.0/30",
       "auto_route": true,
       "strict_route": true,
       "route_exclude_address": [
@@ -69,7 +73,7 @@
         "http_proxy": {
           "enabled": true,
           "server": "127.0.0.1",
-          "server_port": 20120
+          "server_port": 2080
         }
       }
     },
@@ -77,7 +81,7 @@
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "127.0.0.1",
-      "listen_port": 20120
+      "listen_port": 2080
     }
   ],
   "outbounds": [
@@ -86,8 +90,7 @@
       "tag": "Proxy",
       "outbounds": [
         "auto",
-        "{all}",
-        "direct"
+        "{all}"
       ]
     },
     {
@@ -95,7 +98,8 @@
       "tag": "auto",
       "outbounds": [
         "{all}"
-      ]
+      ],
+      "interval": "10m0s"
     },
     {
       "type": "direct",
@@ -105,20 +109,10 @@
   "route": {
     "rules": [
       {
-        "inbound": [
-          "tun",
-          "mixed-in"
-        ],
-        "action": "resolve",
-        "strategy": "prefer_ipv4"
+        "action": "resolve"
       },
       {
-        "inbound": [
-          "tun",
-          "mixed-in"
-        ],
-        "action": "sniff",
-        "timeout": "1s"
+        "action": "sniff"
       },
       {
         "protocol": "dns",
@@ -126,7 +120,11 @@
       },
       {
         "rule_set": [
-          "geoip-ir"
+          "geoip-ir",
+          "openai",
+          "xai",
+          "gemini",
+          "anthropic"
         ],
         "outbound": "direct"
       },
@@ -139,13 +137,38 @@
       {
         "type": "remote",
         "tag": "geoip-ir",
-        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/geoip-ir.srs",
+        "url": "https://github.com/SagerNet/sing-geoip/raw/refs/heads/rule-set/geoip-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "openai",
+        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-openai.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "xai",
+        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-xai.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "gemini",
+        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-google-gemini.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "anthropic",
+        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-anthropic.srs",
         "download_detour": "direct"
       }
     ],
+    "final": "Proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true,
-    "default_domain_resolver": "localDns"
+    "default_domain_resolver": "dns-direct"
   }
 }
 
