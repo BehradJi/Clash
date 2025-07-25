@@ -101,7 +101,6 @@
       "outbounds": [
         "{all}"
       ],
-      "interval": "10m0s",
       "filter":[
         {"action":"include","keywords":["Europe"]}
       ]
