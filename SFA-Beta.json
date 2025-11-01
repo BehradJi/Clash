@@ -18,23 +18,9 @@
         "type": "udp",
         "tag": "dns-direct",
         "server": "8.8.8.8"
-      },
-      {
-        "type": "udp",
-        "tag": "dns-radar",
-        "server": "10.202.10.10"
       }
     ],
     "rules": [
-      {
-        "rule_set": [
-          "openai",
-          "xai",
-          "gemini",
-          "anthropic"
-        ],
-        "server": "dns-radar"
-      },
       {
         "rule_set": "geoip-ir",
         "server": "dns-local"
