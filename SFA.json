@@ -13,11 +13,6 @@
         "tag": "dns-direct",
         "address": "8.8.8.8",
         "detour": "direct"
-      },
-      {
-        "tag": "dns-radar",
-        "address": "10.202.10.10",
-        "detour": "direct"
       }
     ],
     "rules": [
@@ -27,13 +22,6 @@
       },
       {
         "rule_set": [
-          "openai",
-          "xai",
-          "gemini",
-          "anthropic"
-        ],
-        "server": "dns-radar"
-      },
       {
         "rule_set": "geoip-ir",
         "server": "dns-direct"
