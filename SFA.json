@@ -21,8 +21,6 @@
         "server": "dns-direct"
       },
       {
-        "rule_set": [
-      {
         "rule_set": "geoip-ir",
         "server": "dns-direct"
       }
