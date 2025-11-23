@@ -7,22 +7,19 @@
       {
         "type": "tls",
         "tag": "dns-remote",
-        "detour": "Proxy",
         "server": "8.8.8.8"
       },
       {
         "tag": "dns-local",
         "type": "local"
-      },
-      {
-        "type": "udp",
-        "tag": "dns-direct",
-        "server": "8.8.8.8"
       }
     ],
     "rules": [
       {
-        "rule_set": "geoip-ir",
+        "rule_set": [
+          "geoip-ir",
+          "geosite-ir"
+        ],
         "server": "dns-local"
       }
     ],
@@ -54,20 +51,7 @@
         "ff05::/16",
         "fc00::/7"
       ],
-      "stack": "system",
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 2080
-        }
-      }
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "127.0.0.1",
-      "listen_port": 2080
+      "stack": "gvisor"
     }
   ],
   "outbounds": [
@@ -107,10 +91,7 @@
       {
         "rule_set": [
           "geoip-ir",
-          "openai",
-          "xai",
-          "gemini",
-          "anthropic"
+          "geosite-ir"
         ],
         "outbound": "direct"
       },
@@ -128,33 +109,15 @@
       },
       {
         "type": "remote",
-        "tag": "openai",
-        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-openai.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "xai",
-        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-xai.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "gemini",
-        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-google-gemini.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "anthropic",
-        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-anthropic.srs",
+        "tag": "geosite-ir",
+        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-category-ir.srs",
         "download_detour": "direct"
       }
     ],
     "final": "Proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true,
-    "default_domain_resolver": "dns-direct"
+    "default_domain_resolver": "dns-remote"
   }
 }
 
