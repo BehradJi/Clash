@@ -52,7 +52,7 @@
         "ff05::/16",
         "fc00::/7"
       ],
-      "stack": "gvisor"
+      "stack": "system"
     }
   ],
   "outbounds": [
