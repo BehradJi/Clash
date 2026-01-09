@@ -1,82 +1,79 @@
-visa.com:2083#%E8%8A%82%E7%82%B9%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%2Fguide https://t.me/edtunnel/7462
-visa.com:2083#Channel https://t.me/edtunnel_chat anycast
-13.250.131.37:443#Asia Pacific-Singapore-SIN 1
-108.160.139.154:8443#Asia Pacific-Hong Kong-HKG 2
-61.245.11.69:2053#Asia Pacific-Hong Kong-HKG 3
-160.16.123.65:443#Asia Pacific-Hong Kong-HKG 4
-146.56.162.25:443#Asia Pacific-Tokyo-NRT 5
-64.110.104.30:443#Asia Pacific-Hong Kong-HKG 6
-5.223.49.4:2053#Asia Pacific-Singapore-SIN 7
-91.194.160.121:2053#Asia Pacific-Osaka-KIX 8
-154.31.113.72:443#Asia Pacific-Tokyo-NRT 9
-45.82.252.110:2053#Asia Pacific-Hong Kong-HKG 10
-156.255.90.175:8443#Asia Pacific-Hong Kong-HKG 11
-45.39.198.40:8080#Asia Pacific-Hong Kong-HKG 12
-147.45.147.212:2053#Asia Pacific-Krasnoyarsk-KJA 13
-185.18.222.208:2053#Asia Pacific-Osaka-KIX 14
-148.113.43.228:2053#Asia Pacific-Mumbai-BOM 15
-94.131.2.187:2053#Asia Pacific-Aktobe-AKX 16
-45.76.198.248:443#Asia Pacific-Hong Kong-HKG 17
-23.226.8.80:443#Asia Pacific-Hong Kong-HKG 18
-203.194.112.119:2053#Asia Pacific-Jakarta-CGK 19
-213.35.107.73:443#Asia Pacific-Singapore-SIN 20
-2.56.91.89:8443#Asia Pacific-Hong Kong-HKG 21
-15.235.199.103:2053#Asia Pacific-Singapore-SIN 22
-141.11.91.67:8080#Asia Pacific-Hong Kong-HKG 23
-149.28.21.106:443#Asia Pacific-Hong Kong-HKG 24
-216.10.243.159:443#Asia Pacific-Mumbai-BOM 25
-51.68.162.33:443#Europe-Frankfurt-FRA 1
-185.103.100.101:443#Europe-Frankfurt-FRA 2
-212.34.153.121:443#Europe-Amsterdam-AMS 3
-79.132.139.52:443#Europe-Amsterdam-AMS 4
-95.163.242.122:8443#Europe-Frankfurt-FRA 5
-176.105.253.102:2053#Europe-Warsaw-WAW 6
-195.54.175.79:2053#Europe-Amsterdam-AMS 7
-37.27.4.238:443#Europe-Stockholm-ARN 8
-5.34.209.18:8443#Europe-Vilnius-VNO 9
-195.20.208.151:2053#Europe-Riga-RIX 10
-185.231.204.186:443#Europe-Madrid-MAD 11
-109.120.184.120:8443#Europe-Stockholm-ARN 12
-193.233.115.129:2053#Europe-Stockholm-ARN 13
-94.23.164.46:2053#Europe-Paris-CDG 14
-81.200.158.206:2053#Europe-Frankfurt-FRA 15
-91.184.240.150:443#Europe-Frankfurt-FRA 16
-213.148.10.177:443#Europe-Warsaw-WAW 17
-141.94.220.57:2053#Europe-Paris-CDG 18
-80.211.249.240:2053#Europe-Frankfurt-FRA 19
-147.45.43.232:443#Europe-Frankfurt-FRA 20
-188.132.192.195:2053#Europe-Istanbul-IST 21
-89.22.224.54:2053#Europe-Stockholm-ARN 22
-147.45.77.138:8443#Europe-Stockholm-ARN 23
-51.38.51.14:8443#Europe-Paris-CDG 24
-45.147.199.13:443#Europe-Amsterdam-AMS 25
-207.231.109.22:443#North America-Dallas-DFW 1
-199.59.231.120:443#North America-San Jose-SJC 2
-91.149.239.70:443#North America-Los Angeles-LAX 3
-192.9.250.241:443#North America-San Jose-SJC 4
-5.8.63.23:443#North America-Ashburn-IAD 5
-66.98.121.132:8443#North America-Los Angeles-LAX 6
-194.113.211.115:8443#North America-Newark-EWR 7
+visa.com:8443#%E8%8A%82%E7%82%B9%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%2Fguide https://t.me/edtunnel/7462
+visa.com:8443#Channel https://t.me/edtunnel_chat anycast
+148.113.43.228:8443#Asia Pacific-Mumbai-BOM 1
+194.36.178.36:8443#Asia Pacific-Singapore-SIN 2
+65.20.76.125:8443#Asia Pacific-Mumbai-BOM 3
+216.10.243.159:443#Asia Pacific-Mumbai-BOM 4
+147.45.147.212:8443#Asia Pacific-Krasnoyarsk-KJA 5
+31.192.238.71:8443#Asia Pacific-Singapore-SIN 7
+15.235.199.103:8443#Asia Pacific-Singapore-SIN 8
+2.56.91.89:8443#Asia Pacific-Hong Kong-HKG 17
+38.180.37.102:8443#Asia Pacific-Almaty-ALA 10
+203.194.112.119:8443#Asia Pacific-Jakarta-CGK 11
+213.35.107.73:443#Asia Pacific-Singapore-SIN 12
+217.142.236.93:443#Asia Pacific-Tokyo-NRT 13
+168.138.165.174:443#Asia Pacific-Singapore-SIN 14
+168.138.46.67:443#Asia Pacific-Tokyo-NRT 15
+95.164.114.50:8443#Asia Pacific-Aktobe-AKX 16
+178.128.80.43:443#Asia Pacific-Singapore-SIN 18
+160.16.123.65:443#Asia Pacific-Hong Kong-HKG 19
+43.156.116.194:443#Asia Pacific-Singapore-SIN 20
+152.69.199.70:8443#Asia Pacific-Osaka-KIX 21
+141.11.77.248:8080#Asia Pacific-Hong Kong-HKG 22
+13.250.131.37:443#Asia Pacific-Singapore-SIN 23
+47.57.13.107:443#Asia Pacific-Hong Kong-HKG 24
+141.11.78.77:8080#Asia Pacific-Hong Kong-HKG 25
+31.128.37.116:2053#Europe-Stockholm-ARN 1
+81.22.132.44:443#Europe-Amsterdam-AMS 2
+172.233.45.197:8443#Europe-Amsterdam-AMS 3
+37.1.198.51:443#Europe-Frankfurt-FRA 4
+185.8.129.187:2053#Europe-Istanbul-IST 5
+89.42.142.220:443#Europe-Amsterdam-AMS 6
+185.225.201.204:443#Europe-Frankfurt-FRA 7
+91.197.3.168:8443#Europe-Vilnius-VNO 8
+159.100.9.253:2053#Europe-Frankfurt-FRA 9
+45.86.229.28:443#Europe-Madrid-MAD 10
+23.88.112.241:8443#Europe-Frankfurt-FRA 11
+77.91.78.18:2053#Europe-Stockholm-ARN 12
+45.85.93.96:443#Europe-Lyon-LYS 13
+162.19.66.26:8443#Europe-Paris-CDG 14
+185.195.69.200:2053#Europe-Zurich-ZRH 15
+38.180.105.201:443#Europe-Istanbul-IST 16
+141.94.63.242:2053#Europe-Amsterdam-AMS 17
+141.95.127.112:8443#Europe-Frankfurt-FRA 18
+195.200.17.63:443#Europe-Amsterdam-AMS 19
+185.174.137.106:8443#Europe-Stockholm-ARN 20
+54.37.64.97:2053#Europe-Frankfurt-FRA 21
+212.118.40.20:8443#Europe-Amsterdam-AMS 22
+165.232.123.155:443#Europe-Frankfurt-FRA 23
+5.180.182.128:443#Europe-Amsterdam-AMS 24
+31.133.0.167:2053#Europe-Warsaw-WAW 25
+173.44.141.156:8443#North America-Dallas-DFW 1
+107.175.158.215:443#North America-Toronto-YYZ 2
+107.174.63.237:443#North America-Toronto-YYZ 3
+67.226.221.231:80#North America-San Jose-SJC 4
+204.110.223.100:80#North America-Chicago-ORD 5
+54.167.43.59:443#North America-Ashburn-IAD 6
+35.182.7.190:443#North America-Toronto-YYZ 7
 147.75.230.160:443#North America-San Jose-SJC 8
-204.110.222.26:80#North America-Ashburn-IAD 9
-159.100.199.200:443#North America-San Jose-SJC 10
-91.149.239.64:443#North America-Los Angeles-LAX 11
-67.226.221.104:80#North America-San Jose-SJC 12
-18.236.13.188:443#North America-Portland-PDX 13
-91.149.239.62:443#North America-Los Angeles-LAX 14
-156.154.245.83:443#North America-San Jose-SJC 15
-204.110.223.105:443#North America-Toronto-YYZ 16
-34.69.150.180:443#North America-Chicago-ORD 17
-107.175.35.49:443#North America-Toronto-YYZ 18
-193.32.177.79:443#North America-Newark-EWR 19
-3.101.133.120:80#North America-San Jose-SJC 20
-15.204.67.30:2083#North America-Portland-PDX 21
-104.224.177.224:8443#North America-Los Angeles-LAX 22
-154.91.34.39:8443#North America-Los Angeles-LAX 23
-62.146.172.119:443#North America-Seattle-SEA 24
-45.154.214.116:443#North America-Seattle-SEA 25
-132.226.163.224:8443#South America-SÃ£o Paulo-GRU 3
-146.235.59.153:8443#South America-SÃ£o Paulo-GRU 7
-38.180.78.255:443#South America-SÃ£o Paulo-GRU 4
+35.247.124.181:443#North America-Seattle-SEA 9
+54.203.85.46:443#North America-Portland-PDX 23
+204.110.222.26:80#North America-Ashburn-IAD 11
+54.193.104.34:80#North America-San Jose-SJC 12
+50.19.193.95:443#North America-Ashburn-IAD 13
+34.69.150.180:443#North America-Chicago-ORD 14
+199.48.102.83:443#North America-MontrÃ©al-YUL 15
+192.158.242.133:443#North America-San Jose-SJC 16
+204.110.222.125:80#North America-Ashburn-IAD 17
+66.98.121.132:8443#North America-Los Angeles-LAX 18
+104.234.240.179:2053#North America-Toronto-YYZ 19
+18.207.186.154:443#North America-Ashburn-IAD 20
+104.234.50.97:2053#North America-Miami-MIA 21
+54.176.205.20:80#North America-San Jose-SJC 22
+91.149.239.122:443#North America-Los Angeles-LAX 24
+51.81.209.21:8443#North America-Portland-PDX 25
+146.235.59.153:2053#South America-SÃ£o Paulo-GRU 4
+168.138.141.235:2053#South America-SÃ£o Paulo-GRU 2
+132.226.163.224:2053#South America-SÃ£o Paulo-GRU 6
 38.180.79.9:443#South America-SÃ£o Paulo-GRU 5
-168.138.141.235:2053#South America-SÃ£o Paulo-GRU 6
+38.180.78.255:443#South America-SÃ£o Paulo-GRU 7
