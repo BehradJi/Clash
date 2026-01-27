@@ -11,16 +11,13 @@
         "server": "8.8.8.8"
       },
       {
-        "tag": "dns-local",
-        "type": "local"
+        "type": "local",
+        "tag": "dns-local"
       }
     ],
     "rules": [
       {
-        "rule_set": [
-          "geoip-ir",
-          "geosite-ir"
-        ],
+        "rule_set": "geoip-ir",
         "server": "dns-local"
       }
     ],
@@ -52,7 +49,7 @@
         "ff05::/16",
         "fc00::/7"
       ],
-      "stack": "system"
+      "stack": "gvisor"
     }
   ],
   "outbounds": [
@@ -72,16 +69,9 @@
       ],
       "interval": "10m0s"
     },
-    {
-      "type": "direct",
-      "tag": "direct"
-    }
   ],
   "route": {
     "rules": [
-      {
-        "action": "resolve"
-      },
       {
         "action": "sniff"
       },
@@ -90,10 +80,7 @@
         "action": "hijack-dns"
       },
       {
-        "rule_set": [
-          "geoip-ir",
-          "geosite-ir"
-        ],
+        "rule_set": "geoip-ir",
         "outbound": "direct"
       },
       {
@@ -107,18 +94,11 @@
         "tag": "geoip-ir",
         "url": "https://github.com/SagerNet/sing-geoip/raw/refs/heads/rule-set/geoip-ir.srs",
         "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geosite-ir",
-        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/geosite-category-ir.srs",
-        "download_detour": "direct"
       }
     ],
     "final": "Proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true,
-    "default_domain_resolver": "dns-remote"
+    "default_domain_resolver": "dns-local"
   }
 }
-
