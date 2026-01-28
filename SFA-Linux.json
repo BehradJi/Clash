@@ -5,15 +5,10 @@
   "dns": {
     "servers": [
       {
+        "type": "udp",
         "tag": "dns-remote",
-        "address": "127.0.0.1",
-        "detour": "direct"
-      }
-    ],
-    "rules": [
-      {
-        "outbound": "any",
-        "server": "dns-remote"
+        "detour": "direct",
+        "server": "127.0.0.1"
       }
     ],
     "strategy": "ipv4_only"
@@ -33,9 +28,6 @@
       "outbounds": [
         "auto",
         "{all}"
-      ],
-      "filter":[
-        {"action":"include","keywords":["Europe"]}
       ]
     },
     {
@@ -43,9 +35,6 @@
       "tag": "auto",
       "outbounds": [
         "{all}"
-      ],
-      "filter":[
-        {"action":"include","keywords":["Europe"]}
       ]
     },
     {
@@ -78,13 +67,13 @@
       {
         "type": "remote",
         "tag": "geoip-ir",
-        "format": "binary",
         "url": "https://github.com/SagerNet/sing-geoip/raw/refs/heads/rule-set/geoip-ir.srs",
         "download_detour": "direct"
       }
     ],
     "final": "Proxy",
-    "auto_detect_interface": true
+    "auto_detect_interface": true,
+    "default_domain_resolver": "dns-remote"
   },
   "experimental": {
     "cache_file": {
@@ -95,3 +84,5 @@
     }
   }
 }
+
+
