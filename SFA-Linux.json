@@ -1,17 +1,68 @@
 {
   "log": {
-    "disabled": true
+    "disabled": true,
+    "timestamp": true
   },
   "dns": {
     "servers": [
       {
-        "type": "udp",
+        "type": "tls",
         "tag": "dns-remote",
-        "detour": "direct",
-        "server": "127.0.0.1"
+        "detour": "Proxy",
+        "server": "8.8.8.8"
+      },
+      {
+        "type": "udp",
+        "tag": "dns-direct",
+        "server": "8.8.8.8"
+      },
+      {
+        "type": "fakeip",
+        "tag": "dns-fake",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
       }
     ],
-    "strategy": "ipv4_only"
+    "rules": [
+      {
+        "clash_mode": "Direct",
+        "server": "dns-direct"
+      },
+      {
+        "clash_mode": "Global",
+        "server": "dns-remote"
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geosite-ir"
+          },
+          {
+            "rule_set": "geoip-ir"
+          }
+        ],
+        "server": "dns-direct"
+      },
+      {
+        "inbound": "mixed-in",
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "dns-fake"
+      }
+    ],
+    "strategy": "prefer_ipv4",
+    "independent_cache": true
+  },
+  "ntp": {
+    "enabled": true,
+    "interval": "30m0s",
+    "server": "time.cloudflare.com",
+    "server_port": 123,
+    "domain_resolver": "dns-direct"
   },
   "inbounds": [
     {
@@ -45,42 +96,70 @@
   "route": {
     "rules": [
       {
-        "action": "sniff"
+        "ip_cidr": "172.19.0.2",
+        "action": "hijack-dns"
       },
       {
-        "action": "resolve"
+        "clash_mode": "Direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "Global",
+        "outbound": "Proxy"
+      },
+      {
+        "action": "sniff"
       },
       {
         "protocol": "dns",
         "action": "hijack-dns"
       },
       {
-        "rule_set": "geoip-ir",
+        "ip_is_private": true,
         "outbound": "direct"
       },
       {
-        "ip_is_private": true,
+        "network": "udp",
+        "action": "reject"
+      },
+      {
+        "rule_set": "geosite-ir",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geoip-ir",
         "outbound": "direct"
       }
     ],
     "rule_set": [
       {
         "type": "remote",
+        "tag": "geosite-ir",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
         "tag": "geoip-ir",
-        "url": "https://github.com/SagerNet/sing-geoip/raw/refs/heads/rule-set/geoip-ir.srs",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
         "download_detour": "direct"
       }
     ],
     "final": "Proxy",
     "auto_detect_interface": true,
-    "default_domain_resolver": "dns-remote"
+    "default_domain_resolver": {
+      "server": "dns-direct",
+      "strategy": "prefer_ipv4",
+      "rewrite_ttl": 60
+    }
   },
   "experimental": {
     "cache_file": {
-      "enabled": true
+      "enabled": true,
+      "store_fakeip": true
     },
     "clash_api": {
-      "external_controller": "127.0.0.1:9090"
+      "default_mode": "Rule"
     }
   }
 }
