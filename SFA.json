@@ -114,11 +114,13 @@
     "rule_set": [
       {
         "type": "remote",
+        "format": "binary",
         "tag": "geosite-ir",
         "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs"
       },
       {
         "type": "remote",
+        "format": "binary",
         "tag": "geoip-ir",
         "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs"
       }
