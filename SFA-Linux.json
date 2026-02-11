@@ -1,7 +1,6 @@
 {
   "log": {
-    "disabled": true,
-    "timestamp": true
+    "disabled": true
   },
   "dns": {
     "servers": [
@@ -15,23 +14,9 @@
         "type": "udp",
         "tag": "dns-direct",
         "server": "8.8.8.8"
-      },
-      {
-        "type": "fakeip",
-        "tag": "dns-fake",
-        "inet4_range": "198.18.0.0/15",
-        "inet6_range": "fc00::/18"
       }
     ],
     "rules": [
-      {
-        "clash_mode": "Direct",
-        "server": "dns-direct"
-      },
-      {
-        "clash_mode": "Global",
-        "server": "dns-remote"
-      },
       {
         "type": "logical",
         "mode": "and",
@@ -44,25 +29,9 @@
           }
         ],
         "server": "dns-direct"
-      },
-      {
-        "inbound": "mixed-in",
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
-        "server": "dns-fake"
       }
     ],
-    "strategy": "prefer_ipv4",
-    "independent_cache": true
-  },
-  "ntp": {
-    "enabled": true,
-    "interval": "30m0s",
-    "server": "time.cloudflare.com",
-    "server_port": 123,
-    "domain_resolver": "dns-direct"
+    "strategy": "prefer_ipv4"
   },
   "inbounds": [
     {
@@ -96,18 +65,6 @@
   "route": {
     "rules": [
       {
-        "ip_cidr": "172.19.0.2",
-        "action": "hijack-dns"
-      },
-      {
-        "clash_mode": "Direct",
-        "outbound": "direct"
-      },
-      {
-        "clash_mode": "Global",
-        "outbound": "Proxy"
-      },
-      {
         "action": "sniff"
       },
       {
@@ -117,10 +74,6 @@
       {
         "ip_is_private": true,
         "outbound": "direct"
-      },
-      {
-        "network": "udp",
-        "action": "reject"
       },
       {
         "rule_set": "geosite-ir",
@@ -155,12 +108,10 @@
   },
   "experimental": {
     "cache_file": {
-      "enabled": true,
-      "store_fakeip": true
+      "enabled": true
     },
     "clash_api": {
-      "external_controller": "127.0.0.1:9090",
-      "default_mode": "Rule"
+      "external_controller": "127.0.0.1:9090"
     }
   }
 }
