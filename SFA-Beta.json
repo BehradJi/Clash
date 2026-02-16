@@ -11,28 +11,9 @@
         "server": "8.8.8.8"
       },
       {
-        "type": "local",
-        "tag": "dns-local"
-      },
-      {
         "type": "udp",
         "tag": "dns-direct",
         "server": "8.8.8.8"
-      }
-    ],
-    "rules": [
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "geosite-ir"
-          },
-          {
-            "rule_set": "geoip-ir"
-          }
-        ],
-        "server": "dns-local"
       }
     ],
     "strategy": "ipv4_only"
@@ -40,6 +21,7 @@
   "inbounds": [
     {
       "type": "tun",
+      "mtu": 1500,
       "address": "172.19.0.1/28",
       "auto_route": true,
       "route_exclude_address": [
@@ -61,7 +43,9 @@
         "ff04::/16",
         "ff05::/16",
         "fc00::/7"
-      ]
+      ],
+      "exclude_package": "com.google.android.projection.gearhead",
+      "stack": "system"
     }
   ],
   "outbounds": [
@@ -79,10 +63,6 @@
       "outbounds": [
         "{all}"
       ]
-    },
-    {
-      "type": "direct",
-      "tag": "direct"
     }
   ],
   "route": {
@@ -99,20 +79,11 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "geosite-ir",
-        "outbound": "direct"
-      },
-      {
         "rule_set": "geoip-ir",
         "outbound": "direct"
       }
     ],
     "rule_set": [
-      {
-        "type": "remote",
-        "tag": "geosite-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs"
-      },
       {
         "type": "remote",
         "tag": "geoip-ir",
