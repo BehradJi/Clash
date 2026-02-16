@@ -28,7 +28,8 @@
         "query_type": "HTTPS",
         "server": "dns-ech"
       }
-    ]
+    ],
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
