@@ -14,9 +14,21 @@
         "type": "udp",
         "tag": "dns-direct",
         "server": "8.8.8.8"
+      },
+      {
+        "type": "https",
+        "tag": "dns-ech",
+        "domain_resolver": "dns-direct",
+        "server": "doh.cmliussss.net",
+        "path": "CMLiussss"
       }
     ],
-    "strategy": "ipv4_only"
+    "rules": [
+      {
+        "query_type": "HTTPS",
+        "server": "dns-ech"
+      }
+    ]
   },
   "inbounds": [
     {
