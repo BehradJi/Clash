@@ -13,30 +13,12 @@
         "tag": "dns-direct",
         "address": "8.8.8.8",
         "detour": "direct"
-      },
-      {
-        "tag": "dns-local",
-        "address": "local",
-        "detour": "direct"
       }
     ],
     "rules": [
       {
         "outbound": "any",
         "server": "dns-direct"
-      },
-            {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "geosite-ir"
-          },
-          {
-            "rule_set": "geoip-ir"
-          }
-        ],
-        "server": "dns-local"
       }
     ],
     "strategy": "ipv4_only"
@@ -65,7 +47,8 @@
         "ff04::/16",
         "ff05::/16",
         "fc00::/7"
-      ]
+      ],
+      "stack": "system"
     }
   ],
   "outbounds": [
@@ -103,21 +86,11 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "geosite-ir",
-        "outbound": "direct"
-      },
-      {
         "rule_set": "geoip-ir",
         "outbound": "direct"
       }
     ],
     "rule_set": [
-      {
-        "type": "remote",
-        "format": "binary",
-        "tag": "geosite-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs"
-      },
       {
         "type": "remote",
         "format": "binary",
