@@ -16,21 +16,6 @@
         "server": "8.8.8.8"
       }
     ],
-    "rules": [
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "geosite-ir"
-          },
-          {
-            "rule_set": "geoip-ir"
-          }
-        ],
-        "server": "dns-direct"
-      }
-    ],
     "strategy": "prefer_ipv4"
   },
   "inbounds": [
@@ -76,21 +61,11 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "geosite-ir",
-        "outbound": "direct"
-      },
-      {
         "rule_set": "geoip-ir",
         "outbound": "direct"
       }
     ],
     "rule_set": [
-      {
-        "type": "remote",
-        "tag": "geosite-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
-        "download_detour": "direct"
-      },
       {
         "type": "remote",
         "tag": "geoip-ir",
@@ -100,11 +75,7 @@
     ],
     "final": "Proxy",
     "auto_detect_interface": true,
-    "default_domain_resolver": {
-      "server": "dns-direct",
-      "strategy": "prefer_ipv4",
-      "rewrite_ttl": 60
-    }
+    "default_domain_resolver": "dns-direct"
   },
   "experimental": {
     "cache_file": {
