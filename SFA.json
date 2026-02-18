@@ -1,54 +1,63 @@
 {
   "log": {
-    "disabled": true
+    "level": "warn",
+    "timestamp": true
   },
   "dns": {
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "tls://8.8.8.8",
+        "address": "https://8.8.8.8/dns-query",
         "detour": "Proxy"
       },
       {
         "tag": "dns-direct",
         "address": "8.8.8.8",
         "detour": "direct"
-      }
+      },
+      {
+        "tag": "dns-ech",
+        "address": "https://doh.cmliussss.net/CMLiussss",
+        "domain_resolver": "dns-direct",
+        "detour": "direct"
+      },
     ],
     "rules": [
+      {
+        "query_type": "HTTPS",
+        "server": "dns-ech"
+      },
+      {
+        "rule_set": "geosite-ir",
+        "server": "dns-direct"
+      },
       {
         "outbound": "any",
         "server": "dns-direct"
       }
     ],
-    "strategy": "ipv4_only"
+    "strategy": "prefer_ipv4"
   },
   "inbounds": [
     {
       "type": "tun",
-      "address": "172.19.0.0/30",
+      "tag": "tun-in",
+      "mtu": 1400,
+      "address": "172.19.0.1/28",
       "auto_route": true,
       "route_exclude_address": [
         "10.0.0.0/8",
-        "100.64.0.0/10",
-        "169.254.0.0/16",
         "172.16.0.0/12",
-        "192.0.0.0/24",
         "192.168.0.0/16",
+        "169.254.0.0/16",
         "224.0.0.0/24",
-        "240.0.0.0/4",
-        "239.255.255.250/32",
-        "255.255.255.255/32",
-        "fe80::/10",
-        "fd00::/8",
-        "ff01::/16",
-        "ff02::/16",
-        "ff03::/16",
-        "ff04::/16",
-        "ff05::/16",
-        "fc00::/7"
+        "ff02::/16"
       ],
-      "stack": "system"
+      "exclude_package": [
+        "com.google.android.projection.gearhead",
+        "com.nutomic.syncthingandroid",
+        "org.localsend.localsend_app"
+      ]
     }
   ],
   "outbounds": [
@@ -65,7 +74,8 @@
       "tag": "auto",
       "outbounds": [
         "{all}"
-      ]
+      ],
+      "interval": "10m0s"
     },
     {
       "type": "direct",
@@ -75,7 +85,14 @@
   "route": {
     "rules": [
       {
-        "action": "sniff"
+        "inbound": "tun-in",
+        "action": "resolve",
+        "strategy": "ipv4_only"
+      },
+      {
+        "inbound": "tun-in",
+        "action": "sniff",
+        "timeout": "1s"
       },
       {
         "protocol": "dns",
@@ -86,11 +103,20 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "geoip-ir",
+        "rule_set": [
+          "geoip-ir",
+          "geosite-ir"
+        ],
         "outbound": "direct"
       }
     ],
     "rule_set": [
+      {
+        "type": "remote",
+        "format": "binary",
+        "tag": "geosite-ir",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs"
+      },
       {
         "type": "remote",
         "format": "binary",
