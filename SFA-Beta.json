@@ -5,7 +5,7 @@
   "dns": {
     "servers": [
       {
-        "type": "tls",
+        "type": "https",
         "tag": "dns-remote",
         "detour": "Proxy",
         "server": "8.8.8.8"
@@ -16,48 +16,44 @@
         "server": "8.8.8.8"
       },
       {
-        "type": "https",
-        "tag": "dns-ech",
-        "domain_resolver": "dns-direct",
-        "server": "doh.cmliussss.net",
-        "path": "CMLiussss"
+        "type": "fakeip",
+        "tag": "dns-fake",
+        "inet4_range": "198.18.0.0/15"
       }
     ],
     "rules": [
       {
-        "query_type": "HTTPS",
-        "server": "dns-ech"
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geosite-ir"
+          },
+          {
+            "rule_set": "geoip-ir"
+          }
+        ],
+        "server": "dns-direct"
+      },
+      {
+        "inbound": "tun-in",
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "dns-fake"
       }
     ],
-    "strategy": "ipv4_only"
+    "strategy": "ipv4_only",
+    "independent_cache": true
   },
   "inbounds": [
     {
       "type": "tun",
-      "mtu": 1500,
+      "tag": "tun-in",
       "address": "172.19.0.1/28",
       "auto_route": true,
-      "route_exclude_address": [
-        "10.0.0.0/8",
-        "100.64.0.0/10",
-        "169.254.0.0/16",
-        "172.16.0.0/12",
-        "192.0.0.0/24",
-        "192.168.0.0/16",
-        "224.0.0.0/24",
-        "240.0.0.0/4",
-        "239.255.255.250/32",
-        "255.255.255.255/32",
-        "fe80::/10",
-        "fd00::/8",
-        "ff01::/16",
-        "ff02::/16",
-        "ff03::/16",
-        "ff04::/16",
-        "ff05::/16",
-        "fc00::/7"
-      ],
-      "exclude_package": "com.google.android.projection.gearhead",
+      "strict_route": true,
       "stack": "system"
     }
   ],
@@ -66,16 +62,18 @@
       "type": "selector",
       "tag": "Proxy",
       "outbounds": [
-        "Auto",
+        "auto",
         "{all}"
       ]
     },
     {
       "type": "urltest",
-      "tag": "Auto",
+      "tag": "auto",
       "outbounds": [
         "{all}"
-      ]
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m30s"
     },
     {
       "type": "direct",
@@ -84,6 +82,10 @@
   ],
   "route": {
     "rules": [
+      {
+        "ip_cidr": "172.19.0.2",
+        "action": "hijack-dns"
+      },
       {
         "action": "sniff"
       },
@@ -96,6 +98,14 @@
         "outbound": "direct"
       },
       {
+        "network": "udp",
+        "action": "reject"
+      },
+      {
+        "rule_set": "geosite-ir",
+        "outbound": "direct"
+      },
+      {
         "rule_set": "geoip-ir",
         "outbound": "direct"
       }
@@ -103,14 +113,24 @@
     "rule_set": [
       {
         "type": "remote",
+        "tag": "geosite-ir",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
         "tag": "geoip-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs"
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
+        "download_detour": "direct"
       }
     ],
     "final": "Proxy",
     "auto_detect_interface": true,
-    "override_android_vpn": true,
-    "default_domain_resolver": "dns-direct"
+    "default_domain_resolver": {
+      "server": "dns-direct",
+      "strategy": "ipv4_only",
+      "rewrite_ttl": 60
+    }
   }
 }
 
