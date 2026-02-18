@@ -33,7 +33,7 @@
       },
       {
         "outbound": "any",
-        "server": "dns-direct"
+        "server": "dns-ech"
       }
     ],
     "strategy": "prefer_ipv4"
@@ -45,6 +45,7 @@
       "mtu": 1400,
       "address": "172.19.0.1/28",
       "auto_route": true,
+      "strict_route": true,
       "route_exclude_address": [
         "10.0.0.0/8",
         "172.16.0.0/12",
@@ -52,11 +53,6 @@
         "169.254.0.0/16",
         "224.0.0.0/24",
         "ff02::/16"
-      ],
-      "exclude_package": [
-        "com.google.android.projection.gearhead",
-        "com.nutomic.syncthingandroid",
-        "org.localsend.localsend_app"
       ]
     }
   ],
