@@ -18,7 +18,6 @@
       {
         "tag": "dns-ech",
         "address": "https://doh.cmliussss.net/CMLiussss",
-        "domain_resolver": "dns-direct",
         "detour": "direct"
       }
     ],
