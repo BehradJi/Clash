@@ -1,11 +1,12 @@
 {
   "log": {
-    "disabled": true
+    "level": "warn",
+    "timestamp": true
   },
   "dns": {
     "servers": [
       {
-        "type": "tls",
+        "type": "https",
         "tag": "dns-remote",
         "detour": "Proxy",
         "server": "8.8.8.8"
@@ -14,6 +15,23 @@
         "type": "udp",
         "tag": "dns-direct",
         "server": "8.8.8.8"
+      },
+      {
+        "type": "https",
+        "tag": "dns-ech",
+        "domain_resolver": "dns-direct",
+        "server": "doh.cmliussss.net",
+        "path": "CMLiussss"
+      }
+    ],
+    "rules": [
+      {
+        "query_type": "HTTPS",
+        "server": "dns-ech"
+      },
+      {
+        "rule_set": "geosite-ir",
+        "server": "dns-direct"
       }
     ],
     "strategy": "prefer_ipv4"
@@ -40,7 +58,8 @@
       "tag": "auto",
       "outbounds": [
         "{all}"
-      ]
+      ],
+      "interval": "10m0s"
     },
     {
       "type": "direct",
@@ -50,7 +69,14 @@
   "route": {
     "rules": [
       {
-        "action": "sniff"
+        "inbound": "mixed-in",
+        "action": "resolve",
+        "strategy": "ipv4_only"
+      },
+      {
+        "inbound": "mixed-in",
+        "action": "sniff",
+        "timeout": "1s"
       },
       {
         "protocol": "dns",
@@ -61,21 +87,33 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "geoip-ir",
+        "rule_set": [
+          "geoip-ir",
+          "geosite-ir"
+        ],
         "outbound": "direct"
       }
     ],
     "rule_set": [
       {
         "type": "remote",
+        "tag": "geosite-ir",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs"
+      },
+      {
+        "type": "remote",
         "tag": "geoip-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
-        "download_detour": "direct"
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs"
       }
     ],
     "final": "Proxy",
     "auto_detect_interface": true,
-    "default_domain_resolver": "dns-direct"
+    "override_android_vpn": true,
+    "default_domain_resolver": {
+      "server": "dns-ech",
+      "strategy": "ipv4_only",
+      "rewrite_ttl": 300
+    }
   },
   "experimental": {
     "cache_file": {
@@ -86,5 +124,4 @@
     }
   }
 }
-
 
