@@ -20,7 +20,7 @@
         "address": "https://doh.cmliussss.net/CMLiussss",
         "domain_resolver": "dns-direct",
         "detour": "direct"
-      },
+      }
     ],
     "rules": [
       {
