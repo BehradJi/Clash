@@ -15,6 +15,13 @@
         "tag": "dns-direct",
         "server": "8.8.8.8"
       },
+            {
+        "type": "https",
+        "tag": "dns-ech",
+        "domain_resolver": "dns-direct",
+        "server": "doh.cmliussss.net",
+        "path": "CMLiussss"
+      },
       {
         "type": "fakeip",
         "tag": "dns-fake",
@@ -22,6 +29,10 @@
       }
     ],
     "rules": [
+      {
+        "query_type": "HTTPS",
+        "server": "dns-ech"
+      },
       {
         "type": "logical",
         "mode": "and",
