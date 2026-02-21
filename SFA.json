@@ -25,6 +25,7 @@
     "rules": [
       {
         "query_type": "HTTPS",
+        "domain_suffix": "pages.dev",
         "server": "dns-ech"
       },
       {
