@@ -12,7 +12,7 @@
         "server": "8.8.8.8"
       },
       {
-        "type": "udp",
+        "type": "https",
         "tag": "dns-direct",
         "server": "8.8.8.8"
       },
@@ -27,6 +27,7 @@
     "rules": [
       {
         "query_type": "HTTPS",
+        "domain_suffix": "pages.dev",
         "server": "dns-ech"
       },
       {
@@ -41,7 +42,7 @@
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "127.0.0.1",
-      "listen_port": 7890
+      "listen_port": 2080
     }
   ],
   "outbounds": [
@@ -69,12 +70,20 @@
   "route": {
     "rules": [
       {
-        "inbound": "mixed-in",
+        "ip_cidr": "172.19.0.2",
+        "action": "hijack-dns"
+      },
+      {
+        "inbound": [
+          "mixed-in"
+        ],
         "action": "resolve",
         "strategy": "ipv4_only"
       },
       {
-        "inbound": "mixed-in",
+        "inbound": [
+          "mixed-in"
+        ],
         "action": "sniff",
         "timeout": "1s"
       },
@@ -92,6 +101,11 @@
           "geosite-ir"
         ],
         "outbound": "direct"
+      },
+      {
+        "network": "udp",
+        "action": "reject",
+        "method": "drop"
       }
     ],
     "rule_set": [
@@ -108,13 +122,14 @@
     ],
     "final": "Proxy",
     "auto_detect_interface": true,
+    "override_android_vpn": true,
     "default_domain_resolver": {
-      "server": "dns-ech",
+      "server": "dns-direct",
       "strategy": "ipv4_only",
       "rewrite_ttl": 300
     }
   },
-  "experimental": {
+    "experimental": {
     "cache_file": {
       "enabled": true
     },
@@ -123,4 +138,3 @@
     }
   }
 }
-
