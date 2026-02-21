@@ -34,7 +34,9 @@
       },
       {
         "outbound": "any",
-        "server": "dns-ech"
+        "server": "dns-ech",
+        "strategy": "ipv4_only",
+        "rewrite_ttl": 300
       }
     ],
     "strategy": "prefer_ipv4"
@@ -54,7 +56,21 @@
         "169.254.0.0/16",
         "224.0.0.0/24",
         "ff02::/16"
-      ]
+      ],
+      "udp_timeout": "15s",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 2080
+        }
+      }
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2080
     }
   ],
   "outbounds": [
@@ -82,12 +98,22 @@
   "route": {
     "rules": [
       {
-        "inbound": "tun-in",
+        "ip_cidr": "172.19.0.2",
+        "action": "hijack-dns"
+      },
+      {
+        "inbound": [
+          "mixed-in",
+          "tun-in"
+        ],
         "action": "resolve",
         "strategy": "ipv4_only"
       },
       {
-        "inbound": "tun-in",
+        "inbound": [
+          "mixed-in",
+          "tun-in"
+        ],
         "action": "sniff",
         "timeout": "1s"
       },
@@ -105,6 +131,11 @@
           "geosite-ir"
         ],
         "outbound": "direct"
+      },
+      {
+        "network": "udp",
+        "action": "reject",
+        "method": "drop"
       }
     ],
     "rule_set": [
