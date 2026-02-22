@@ -19,6 +19,7 @@
         "tag": "dns-ech",
         "address": "https://doh.cmliussss.net/CMLiussss",
         "address_resolver": "dns-direct",
+        "strategy": "ipv4_only",
         "detour": "direct"
       }
     ],
@@ -35,7 +36,6 @@
       {
         "outbound": "any",
         "server": "dns-ech",
-        "strategy": "ipv4_only",
         "rewrite_ttl": 300
       }
     ],
