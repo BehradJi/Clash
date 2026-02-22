@@ -27,7 +27,11 @@
     "rules": [
       {
         "query_type": "HTTPS",
-        "domain_suffix": "pages.dev",
+        "domain_suffix": [
+          "pages.dev",
+          "workers.dev",
+          "ddns-ip.net"
+        ],
         "server": "dns-ech"
       },
       {
