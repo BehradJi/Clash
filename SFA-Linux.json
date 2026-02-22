@@ -70,10 +70,6 @@
   "route": {
     "rules": [
       {
-        "ip_cidr": "172.19.0.2",
-        "action": "hijack-dns"
-      },
-      {
         "inbound": [
           "mixed-in"
         ],
