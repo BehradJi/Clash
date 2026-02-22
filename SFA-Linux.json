@@ -12,7 +12,7 @@
         "server": "8.8.8.8"
       },
       {
-        "type": "https",
+        "type": "udp",
         "tag": "dns-direct",
         "server": "8.8.8.8"
       },
@@ -42,7 +42,7 @@
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "127.0.0.1",
-      "listen_port": 2080
+      "listen_port": 7890
     }
   ],
   "outbounds": [

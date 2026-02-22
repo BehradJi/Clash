@@ -12,7 +12,7 @@
         "server": "8.8.8.8"
       },
       {
-        "type": "https",
+        "type": "udp",
         "tag": "dns-direct",
         "server": "8.8.8.8"
       },
