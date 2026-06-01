@@ -1,7 +1,6 @@
 {
   "log": {
-    "level": "warn",
-    "timestamp": true
+    "disabled": true
   },
   "dns": {
     "servers": [
@@ -12,9 +11,8 @@
         "server": "8.8.8.8"
       },
       {
-        "type": "udp",
-        "tag": "dns-direct",
-        "server": "8.8.8.8"
+        "type": "local",
+        "tag": "dns-direct"
       },
       {
         "type": "https",
@@ -136,11 +134,6 @@
           "geosite-ir"
         ],
         "outbound": "direct"
-      },
-      {
-        "network": "udp",
-        "action": "reject",
-        "method": "drop"
       }
     ],
     "rule_set": [
