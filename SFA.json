@@ -12,7 +12,7 @@
       },
       {
         "tag": "dns-direct",
-        "address": "local",
+        "address": "udp://8.8.8.8",
         "detour": "direct"
       },
       {
