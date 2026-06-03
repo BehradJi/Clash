@@ -131,6 +131,11 @@
           "geosite-ir"
         ],
         "outbound": "direct"
+      },
+      {
+        "network": "udp",
+        "action": "reject",
+        "method": "drop"
       }
     ],
     "rule_set": [
