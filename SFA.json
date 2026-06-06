@@ -1,7 +1,6 @@
 {
   "log": {
-    "level": "warn",
-    "timestamp": true
+    "disabled": true
   },
   "dns": {
     "servers": [
@@ -12,7 +11,7 @@
       },
       {
         "tag": "dns-direct",
-        "address": "udp://8.8.8.8",
+        "address": "local",
         "detour": "direct"
       },
       {
