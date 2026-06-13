@@ -57,7 +57,7 @@
   "outbounds": [
     {
       "type": "selector",
-      "tag": "✅ Selector",
+      "tag": "Proxy",
       "outbounds": [
         "auto",
         "{all}"
