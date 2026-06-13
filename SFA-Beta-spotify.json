@@ -88,6 +88,15 @@
         "action": "hijack-dns"
       },
       {
+        "action": "sniff",
+        "sniffer": "tls"
+      },
+      {
+        "rule_set": "spotify-ads",
+        "action": "reject",
+        "method": "drop"
+      },
+      {
         "ip_is_private": true,
         "outbound": "direct"
       },
@@ -117,6 +126,13 @@
         "type": "remote",
         "tag": "geoip-ir",
         "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
+        "download_detour": "direct",
+        "update_interval": "72h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "spotify-ads",
+        "url": "https://github.com/BehradJi/Clash/raw/refs/heads/main/spotify.srs",
         "download_detour": "direct",
         "update_interval": "72h0m0s"
       }
