@@ -13,37 +13,28 @@
       {
         "type": "local",
         "tag": "dns-direct"
-      },
-      {
-        "type": "https",
-        "tag": "dns-ech",
-        "domain_resolver": "dns-direct",
-        "server": "doh.cmliussss.net",
-        "path": "CMLiussss"
       }
     ],
     "rules": [
       {
-        "query_type": "HTTPS",
-        "domain_suffix": [
-          "pages.dev",
-          "workers.dev",
-          "ddns-ip.net"
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geosite-ir"
+          },
+          {
+            "rule_set": "geoip-ir"
+          }
         ],
-        "server": "dns-ech"
-      },
-      {
-        "rule_set": "geosite-ir",
         "server": "dns-direct"
       }
     ],
-    "strategy": "prefer_ipv4"
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
       "type": "tun",
-      "tag": "tun-in",
-      "mtu": 1400,
       "address": "172.19.0.1/28",
       "auto_route": true,
       "strict_route": true,
@@ -58,32 +49,23 @@
       "exclude_package": [
         "com.google.android.projection.gearhead",
         "com.nutomic.syncthingandroid",
-        "org.localsend.localsend_app"
-      ],
-      "udp_timeout": "15s",
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 2080
-        }
-      }
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "127.0.0.1",
-      "listen_port": 2080
+        "org.localsend.localsend_app",
+        "org.kde.kdeconnect_tp"
+      ]
     }
   ],
   "outbounds": [
     {
       "type": "selector",
-      "tag": "Proxy",
+      "tag": "✅ Selector",
       "outbounds": [
         "auto",
         "{all}"
       ]
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
     },
     {
       "type": "urltest",
@@ -91,11 +73,8 @@
       "outbounds": [
         "{all}"
       ],
+      "url": "https://www.gstatic.com/generate_204",
       "interval": "10m0s"
-    },
-    {
-      "type": "direct",
-      "tag": "direct"
     }
   ],
   "route": {
@@ -105,34 +84,28 @@
         "action": "hijack-dns"
       },
       {
-        "inbound": [
-          "mixed-in",
-          "tun-in"
-        ],
-        "action": "resolve",
-        "strategy": "ipv4_only"
-      },
-      {
-        "inbound": [
-          "mixed-in",
-          "tun-in"
-        ],
-        "action": "sniff",
-        "timeout": "1s"
-      },
-      {
         "protocol": "dns",
         "action": "hijack-dns"
+      },
+      {
+        "action": "sniff",
+        "sniffer": "tls"
+      },
+      {
+        "rule_set": "spotify-ads",
+        "action": "reject",
+        "method": "drop"
       },
       {
         "ip_is_private": true,
         "outbound": "direct"
       },
       {
-        "rule_set": [
-          "geoip-ir",
-          "geosite-ir"
-        ],
+        "rule_set": "geosite-ir",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geoip-ir",
         "outbound": "direct"
       },
       {
@@ -145,21 +118,32 @@
       {
         "type": "remote",
         "tag": "geosite-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs"
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour": "direct",
+        "update_interval": "72h0m0s"
       },
       {
         "type": "remote",
         "tag": "geoip-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs"
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
+        "download_detour": "direct",
+        "update_interval": "72h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "spotify-ads",
+        "url": "https://github.com/BehradJi/Clash/raw/refs/heads/main/spotify.srs",
+        "download_detour": "direct",
+        "update_interval": "72h0m0s"
       }
     ],
     "final": "Proxy",
     "auto_detect_interface": true,
-    "override_android_vpn": true,
     "default_domain_resolver": {
       "server": "dns-direct",
       "strategy": "ipv4_only",
-      "rewrite_ttl": 300
+      "rewrite_ttl": 600
     }
   }
 }
+

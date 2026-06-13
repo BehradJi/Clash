@@ -13,38 +13,33 @@
         "tag": "dns-direct",
         "address": "local",
         "detour": "direct"
-      },
-      {
-        "tag": "dns-ech",
-        "address": "https://doh.cmliussss.net/CMLiussss",
-        "address_resolver": "dns-direct",
-        "strategy": "ipv4_only",
-        "detour": "direct"
       }
     ],
     "rules": [
       {
-        "query_type": "HTTPS",
-        "domain_suffix": "pages.dev",
-        "server": "dns-ech"
-      },
-      {
-        "rule_set": "geosite-ir",
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geosite-ir"
+          },
+          {
+            "rule_set": "geoip-ir"
+          }
+        ],
         "server": "dns-direct"
       },
       {
         "outbound": "any",
         "server": "dns-direct",
-        "rewrite_ttl": 300
+        "rewrite_ttl": 600
       }
     ],
-    "strategy": "prefer_ipv4"
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
       "type": "tun",
-      "tag": "tun-in",
-      "mtu": 1400,
       "address": "172.19.0.1/28",
       "auto_route": true,
       "strict_route": true,
@@ -55,21 +50,7 @@
         "169.254.0.0/16",
         "224.0.0.0/24",
         "ff02::/16"
-      ],
-      "udp_timeout": "15s",
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 2080
-        }
-      }
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "127.0.0.1",
-      "listen_port": 2080
+      ]
     }
   ],
   "outbounds": [
@@ -101,22 +82,6 @@
         "action": "hijack-dns"
       },
       {
-        "inbound": [
-          "mixed-in",
-          "tun-in"
-        ],
-        "action": "resolve",
-        "strategy": "ipv4_only"
-      },
-      {
-        "inbound": [
-          "mixed-in",
-          "tun-in"
-        ],
-        "action": "sniff",
-        "timeout": "1s"
-      },
-      {
         "protocol": "dns",
         "action": "hijack-dns"
       },
@@ -125,10 +90,11 @@
         "outbound": "direct"
       },
       {
-        "rule_set": [
-          "geoip-ir",
-          "geosite-ir"
-        ],
+        "rule_set": "geosite-ir",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geoip-ir",
         "outbound": "direct"
       },
       {
