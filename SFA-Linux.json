@@ -1,6 +1,6 @@
 {
   "log": {
-    "disabled": true 
+    "disabled": true
   },
   "dns": {
     "servers": [
@@ -81,12 +81,14 @@
       {
         "type": "remote",
         "tag": "geosite-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs"
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geoip-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs"
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
+        "download_detour": "direct"
       }
     ],
     "final": "Proxy",
@@ -97,9 +99,11 @@
       "rewrite_ttl": 300
     }
   },
-    "experimental": {
+  "experimental": {
     "clash_api": {
       "external_controller": "127.0.0.1:9090"
     }
   }
 }
+
+
