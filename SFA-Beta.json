@@ -51,8 +51,7 @@
         "com.nutomic.syncthingandroid",
         "org.localsend.localsend_app",
         "org.kde.kdeconnect_tp"
-      ],
-      "stack":"system"
+      ]
     }
   ],
   "outbounds": [
