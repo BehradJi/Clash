@@ -1,7 +1,6 @@
 {
   "log": {
-    "level": "warn",
-    "timestamp": true
+    "disabled": true 
   },
   "dns": {
     "servers": [
@@ -12,26 +11,22 @@
         "server": "8.8.8.8"
       },
       {
-        "type": "udp",
-        "tag": "dns-direct",
-        "server": "8.8.8.8"
-      },
-      {
-        "type": "https",
-        "tag": "dns-ech",
-        "domain_resolver": "dns-direct",
-        "server": "doh.cmliussss.net",
-        "path": "CMLiussss"
+        "type": "local",
+        "tag": "dns-direct"
       }
     ],
     "rules": [
       {
-        "query_type": "HTTPS",
-        "domain_suffix": "pages.dev",
-        "server": "dns-ech"
-      },
-      {
-        "rule_set": "geosite-ir",
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geosite-ir"
+          },
+          {
+            "rule_set": "geoip-ir"
+          }
+        ],
         "server": "dns-direct"
       }
     ],
@@ -47,16 +42,8 @@
   ],
   "outbounds": [
     {
-      "type": "selector",
-      "tag": "Proxy",
-      "outbounds": [
-        "auto",
-        "{all}"
-      ]
-    },
-    {
       "type": "urltest",
-      "tag": "auto",
+      "tag": "Proxy",
       "outbounds": [
         "{all}"
       ],
@@ -69,20 +56,6 @@
   ],
   "route": {
     "rules": [
-      {
-        "inbound": [
-          "mixed-in"
-        ],
-        "action": "resolve",
-        "strategy": "ipv4_only"
-      },
-      {
-        "inbound": [
-          "mixed-in"
-        ],
-        "action": "sniff",
-        "timeout": "1s"
-      },
       {
         "protocol": "dns",
         "action": "hijack-dns"
@@ -119,15 +92,12 @@
     "final": "Proxy",
     "auto_detect_interface": true,
     "default_domain_resolver": {
-      "server": "dns-ech",
+      "server": "dns-direct",
       "strategy": "ipv4_only",
       "rewrite_ttl": 300
     }
   },
     "experimental": {
-    "cache_file": {
-      "enabled": true
-    },
     "clash_api": {
       "external_controller": "127.0.0.1:9090"
     }
