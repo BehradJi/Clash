@@ -1,0 +1,279 @@
+{
+  "log": {
+    "disabled": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "type": "https",
+        "tag": "dns-remote",
+        "detour": "Proxy",
+        "server": "8.8.8.8"
+      },
+      {
+        "type": "local",
+        "tag": "dns-direct"
+      },
+      {
+        "type": "fakeip",
+        "tag": "dns-fakeip",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
+      }
+    ],
+    "rules": [
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geosite-ir"
+          },
+          {
+            "rule_set": "geoip-ir"
+          }
+        ],
+        "server": "dns-direct"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "dns-fakeip"
+      }
+    ],
+    "strategy": "ipv4_only",
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "mtu": 1420,
+      "address": "172.19.0.1/30",
+      "auto_route": true,
+      "strict_route": true,
+      "route_exclude_address": [
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "192.168.0.0/16",
+        "169.254.0.0/16",
+        "224.0.0.0/24",
+        "ff02::/16"
+      ],
+      "exclude_package": [
+        "com.google.android.projection.gearhead",
+        "com.nutomic.syncthingandroid",
+        "org.localsend.localsend_app",
+        "org.kde.kdeconnect_tp"
+      ]
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "Proxy",
+      "outbounds": [
+        "auto",
+        "💦 1 - VLESS - Domain : 443",
+        "💦 2 - VLESS - Domain : 443",
+        "💦 3 - VLESS - IPv4 : 443",
+        "💦 4 - VLESS - IPv4 : 443"
+      ]
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "💦 1 - VLESS - Domain : 443",
+        "💦 2 - VLESS - Domain : 443",
+        "💦 3 - VLESS - IPv4 : 443",
+        "💦 4 - VLESS - IPv4 : 443"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "10m0s"
+    },
+    {
+      "type": "vless",
+      "tag": "💦 1 - VLESS - Domain : 443",
+      "tcp_fast_open": true,
+      "server": "04s7yg2jjkap4kjm369hjuymxvsk-7z1.gz97mn7o3aug.workers.dev",
+      "server_port": 443,
+      "uuid": "bf3c4668-abda-4426-8900-718e10186ac1",
+      "network": "tcp",
+      "tls": {
+        "enabled": true,
+        "server_name": "04s7Yg2jJKaP4KJm369HJUYmXVsk-7z1.gZ97Mn7o3aUG.WOrkErS.deV",
+        "alpn": "http/1.1",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/eyJqdW5rIjoiYUNOV2ZDa3QiLCJwcm90b2NvbCI6InZsIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6W119",
+        "headers": {
+          "Host": "04s7yg2jjkap4kjm369hjuymxvsk-7z1.gz97mn7o3aug.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "💦 2 - VLESS - Domain : 443",
+      "tcp_fast_open": true,
+      "server": "www.speedtest.net",
+      "server_port": 443,
+      "uuid": "bf3c4668-abda-4426-8900-718e10186ac1",
+      "network": "tcp",
+      "tls": {
+        "enabled": true,
+        "server_name": "04s7yG2JJKaP4KJM369hJUYmxVSK-7z1.gz97mn7o3AUg.WORkeRs.dEv",
+        "alpn": "http/1.1",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/eyJqdW5rIjoiUHA0aENYTUdyNUVYOUpEIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOltdfQ==",
+        "headers": {
+          "Host": "04s7yg2jjkap4kjm369hjuymxvsk-7z1.gz97mn7o3aug.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "💦 3 - VLESS - IPv4 : 443",
+      "tcp_fast_open": true,
+      "server": "104.21.46.168",
+      "server_port": 443,
+      "uuid": "bf3c4668-abda-4426-8900-718e10186ac1",
+      "network": "tcp",
+      "tls": {
+        "enabled": true,
+        "server_name": "04S7YG2jjKap4KJm369hjUYMxVsK-7z1.gZ97mN7o3AUg.woRKeRs.Dev",
+        "alpn": "http/1.1",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/eyJqdW5rIjoiVkk5ZW1ZTlUiLCJwcm90b2NvbCI6InZsIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6W119",
+        "headers": {
+          "Host": "04s7yg2jjkap4kjm369hjuymxvsk-7z1.gz97mn7o3aug.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "💦 4 - VLESS - IPv4 : 443",
+      "tcp_fast_open": true,
+      "server": "172.67.140.191",
+      "server_port": 443,
+      "uuid": "bf3c4668-abda-4426-8900-718e10186ac1",
+      "network": "tcp",
+      "tls": {
+        "enabled": true,
+        "server_name": "04S7yG2Jjkap4kjM369HJuymXVsK-7Z1.gZ97mN7o3Aug.woRkeRS.DEv",
+        "alpn": "http/1.1",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/eyJqdW5rIjoiZXFROWEzNFUiLCJwcm90b2NvbCI6InZsIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6W119",
+        "headers": {
+          "Host": "04s7yg2jjkap4kjm369hjuymxvsk-7z1.gz97mn7o3aug.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
+        "action": "hijack-dns"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-ir",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geoip-ir",
+        "outbound": "direct"
+      },
+      {
+        "network": "udp",
+        "action": "reject",
+        "method": "drop"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geosite-ir",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour": "direct",
+        "update_interval": "72h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-ir",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
+        "download_detour": "direct",
+        "update_interval": "72h0m0s"
+      }
+    ],
+    "final": "Proxy",
+    "auto_detect_interface": true,
+    "default_domain_resolver": {
+      "server": "dns-direct",
+      "strategy": "ipv4_only",
+      "rewrite_ttl": 600
+    }
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "store_fakeip": true
+    }
+  }
+}
