@@ -43,14 +43,15 @@
         "server": "dns-fakeip"
       }
     ],
-    "strategy": "ipv4_only",
     "independent_cache": true
   },
   "inbounds": [
     {
       "type": "tun",
-      "mtu": 1420,
-      "address": "172.19.0.1/30",
+      "address": [
+        "172.18.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
       "auto_route": true,
       "strict_route": true,
       "route_exclude_address": [
@@ -88,7 +89,6 @@
       "outbounds": [
         "{all}"
       ],
-      "url": "https://www.gstatic.com/generate_204",
       "interval": "10m0s"
     }
   ],
@@ -146,16 +146,10 @@
     ],
     "final": "Proxy",
     "auto_detect_interface": true,
+    "override_android_vpn": true,
     "default_domain_resolver": {
       "server": "dns-direct",
-      "strategy": "ipv4_only",
-      "rewrite_ttl": 600
-    }
-  },
-  "experimental": {
-    "cache_file": {
-      "enabled": true,
-      "store_fakeip": true
+      "strategy": "ipv4_only"
     }
   }
 }

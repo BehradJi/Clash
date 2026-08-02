@@ -36,7 +36,7 @@
       {
         "outbound": "any",
         "server": "dns-direct",
-        "rewrite_ttl": 600
+        "strategy": "ipv4_only"
       },
             {
         "query_type": [
@@ -51,15 +51,16 @@
       "inet4_range": "198.18.0.0/15",
       "inet6_range": "fc00::/18"
     },
-    "strategy": "ipv4_only",
     "independent_cache": true
 
   },
   "inbounds": [
     {
       "type": "tun",
-      "mtu": 1420,
-      "address": "172.19.0.1/30",
+      "address": [
+        "172.18.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
       "auto_route": true,
       "strict_route": true,
       "route_exclude_address": [
@@ -146,12 +147,6 @@
     ],
     "final": "Proxy",
     "auto_detect_interface": true
-  },
-  "experimental": {
-    "cache_file": {
-      "enabled": true,
-      "store_fakeip": true
-    }
   }
 }
 
