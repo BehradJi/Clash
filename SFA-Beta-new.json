@@ -11,49 +11,25 @@
         "server": "8.8.8.8"
       },
       {
-        "type": "local",
-        "tag": "dns-direct"
-      },
-      {
-        "type": "fakeip",
-        "tag": "dns-fakeip",
-        "inet4_range": "198.18.0.0/15",
-        "inet6_range": "fc00::/18"
+        "type": "udp",
+        "tag": "dns-direct",
+        "server": "8.8.8.8"
       }
     ],
     "rules": [
       {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "geosite-ir"
-          },
-          {
-            "rule_set": "geoip-ir"
-          }
-        ],
+        "rule_set": "geosite-ir",
         "server": "dns-direct"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
-        "server": "dns-fakeip"
       }
     ],
-    "independent_cache": true
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
       "type": "tun",
-      "address": [
-        "172.18.0.1/30",
-        "fdfe:dcba:9876::1/126"
-      ],
+      "mtu": 1400,
+      "address": "172.18.0.1/30",
       "auto_route": true,
-      "strict_route": true,
       "route_exclude_address": [
         "10.0.0.0/8",
         "172.16.0.0/12",
@@ -67,7 +43,8 @@
         "com.nutomic.syncthingandroid",
         "org.localsend.localsend_app",
         "org.kde.kdeconnect_tp"
-      ]
+      ],
+      "stack": "system"
     }
   ],
   "outbounds": [
@@ -80,16 +57,16 @@
       ]
     },
     {
-      "type": "direct",
-      "tag": "direct"
-    },
-    {
       "type": "urltest",
       "tag": "auto",
       "outbounds": [
         "{all}"
       ],
-      "interval": "10m0s"
+      "interval": "15m0s"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
     }
   ],
   "route": {
@@ -98,16 +75,7 @@
         "action": "sniff"
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "protocol": "dns"
-          },
-          {
-            "port": 53
-          }
-        ],
+        "protocol": "dns",
         "action": "hijack-dns"
       },
       {
@@ -146,11 +114,7 @@
     ],
     "final": "Proxy",
     "auto_detect_interface": true,
-    "override_android_vpn": true,
-    "default_domain_resolver": {
-      "server": "dns-direct",
-      "strategy": "ipv4_only"
-    }
+    "default_domain_resolver": "dns-direct"
   }
 }
 
