@@ -11,38 +11,45 @@
       },
       {
         "tag": "dns-direct",
-        "address": "local",
+        "address": "udp://8.8.8.8",
         "detour": "direct"
+      },
+      {
+        "address": "fakeip",
+        "tag": "fakeip"
       }
     ],
     "rules": [
       {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "geosite-ir"
-          },
-          {
-            "rule_set": "geoip-ir"
-          }
-        ],
+        "rule_set": "geosite-ir",
         "server": "dns-direct"
       },
       {
         "outbound": "any",
-        "server": "dns-direct",
-        "rewrite_ttl": 600
+        "server": "dns-direct"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "fakeip"
       }
     ],
-    "strategy": "ipv4_only"
+     "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15"
+     },
+     "reverse_mapping": true,
+     "strategy": "ipv4_only",
+     "independent_cache": true,
+     "cache_capacity": 4096
   },
   "inbounds": [
     {
       "type": "tun",
-      "address": "172.19.0.1/28",
+      "address": "172.18.0.1/30",
       "auto_route": true,
-      "strict_route": true,
       "route_exclude_address": [
         "10.0.0.0/8",
         "172.16.0.0/12",
@@ -50,7 +57,9 @@
         "169.254.0.0/16",
         "224.0.0.0/24",
         "ff02::/16"
-      ]
+      ],
+      "stack": "system",
+      "endpoint_independent_nat": true
     }
   ],
   "outbounds": [
@@ -67,8 +76,7 @@
       "tag": "auto",
       "outbounds": [
         "{all}"
-      ],
-      "interval": "10m0s"
+      ]
     },
     {
       "type": "direct",
@@ -78,11 +86,19 @@
   "route": {
     "rules": [
       {
-        "ip_cidr": "172.19.0.2",
-        "action": "hijack-dns"
+        "action": "sniff"
       },
       {
-        "protocol": "dns",
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
         "action": "hijack-dns"
       },
       {

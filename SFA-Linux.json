@@ -11,26 +11,32 @@
         "server": "8.8.8.8"
       },
       {
-        "type": "local",
-        "tag": "dns-direct"
+        "type": "udp",
+        "tag": "dns-direct",
+        "server": "8.8.8.8"
+      },
+      {
+        "type": "fakeip",
+        "tag": "dns-fakeip",
+        "inet4_range": "198.18.0.0/15"
       }
     ],
     "rules": [
       {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "geosite-ir"
-          },
-          {
-            "rule_set": "geoip-ir"
-          }
-        ],
+        "rule_set": "geosite-ir",
         "server": "dns-direct"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "dns-fakeip"
       }
     ],
-    "strategy": "prefer_ipv4"
+    "reverse_mapping": true,
+    "strategy": "ipv4_only",
+    "independent_cache": true
   },
   "inbounds": [
     {
@@ -42,22 +48,41 @@
   ],
   "outbounds": [
     {
-      "type": "urltest",
+      "type": "selector",
       "tag": "Proxy",
       "outbounds": [
+        "auto",
         "{all}"
-      ],
-      "interval": "10m0s"
+      ]
     },
     {
       "type": "direct",
       "tag": "direct"
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "{all}"
+      ]
     }
   ],
   "route": {
     "rules": [
       {
-        "protocol": "dns",
+        "action": "sniff"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
         "action": "hijack-dns"
       },
       {
@@ -65,10 +90,11 @@
         "outbound": "direct"
       },
       {
-        "rule_set": [
-          "geoip-ir",
-          "geosite-ir"
-        ],
+        "rule_set": "geosite-ir",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geoip-ir",
         "outbound": "direct"
       },
       {
@@ -82,28 +108,32 @@
         "type": "remote",
         "tag": "geosite-ir",
         "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "72h0m0s"
       },
       {
         "type": "remote",
         "tag": "geoip-ir",
         "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "72h0m0s"
       }
     ],
     "final": "Proxy",
     "auto_detect_interface": true,
     "default_domain_resolver": {
-      "server": "dns-direct",
-      "strategy": "ipv4_only",
-      "rewrite_ttl": 300
+      "server": "dns-direct"
     }
   },
   "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "store_fakeip": true,
+      "store_rdrc": true
+    },
     "clash_api": {
       "external_controller": "127.0.0.1:9090"
     }
   }
 }
-
 
