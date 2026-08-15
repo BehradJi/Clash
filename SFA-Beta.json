@@ -11,9 +11,13 @@
         "server": "8.8.8.8"
       },
       {
-        "type": "udp",
-        "tag": "dns-direct",
+        "type": "https",
+        "tag": "dns-ech",
         "server": "8.8.8.8"
+      },
+      {
+        "type": "local",
+        "tag": "dns-direct"
       },
       {
         "type": "fakeip",
@@ -28,7 +32,7 @@
           "workers.dev",
           "pages.dev"
         ],
-        "server": "dns-direct"
+        "server": "dns-ech"
       },
       {
         "type": "logical",
@@ -51,16 +55,8 @@
         "server": "dns-fakeip"
       }
     ],
-    "reverse_mapping": true,
     "strategy": "ipv4_only",
-    "independent_cache": true,
-    "cache_capacity": 4096
-  },
-  "ntp": {
-    "enabled": true,
-    "server": "time.cloudflare.com",
-    "server_port": 123,
-    "domain_resolver": "dns-direct"
+    "independent_cache": true
   },
   "inbounds": [
     {
@@ -82,8 +78,7 @@
         "org.localsend.localsend_app",
         "org.kde.kdeconnect_tp"
       ],
-      "stack": "gvisor",
-      "endpoint_independent_nat": true
+      "stack": "gvisor"
     }
   ],
   "outbounds": [
@@ -162,13 +157,12 @@
     "final": "Proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true,
-    "default_domain_resolver": "dns-direct"
+    "default_domain_resolver": "dns-ech"
   },
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "store_fakeip": true,
-      "store_rdrc": true
+      "store_fakeip": true
     }
   }
 }

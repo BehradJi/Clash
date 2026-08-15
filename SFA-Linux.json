@@ -11,13 +11,13 @@
         "server": "8.8.8.8"
       },
       {
-        "type": "udp",
-        "tag": "dns-direct",
+        "type": "https",
+        "tag": "dns-ech",
         "server": "8.8.8.8"
       },
       {
         "type": "local",
-        "tag": "dns-local"
+        "tag": "dns-direct"
       },
       {
         "type": "fakeip",
@@ -32,7 +32,7 @@
           "workers.dev",
           "pages.dev"
         ],
-        "server": "dns-direct"
+        "server": "dns-ech"
       },
       {
         "type": "logical",
@@ -45,7 +45,7 @@
             "rule_set": "geoip-ir"
           }
         ],
-        "server": "dns-local"
+        "server": "dns-direct"
       },
       {
         "query_type": [
@@ -55,15 +55,8 @@
         "server": "dns-fakeip"
       }
     ],
-    "reverse_mapping": true,
     "strategy": "ipv4_only",
     "independent_cache": true
-  },
-  "ntp": {
-    "enabled": true,
-    "server": "time.cloudflare.com",
-    "server_port": 123,
-    "domain_resolver": "dns-direct"
   },
   "inbounds": [
     {
@@ -149,14 +142,13 @@
     "final": "Proxy",
     "auto_detect_interface": true,
     "default_domain_resolver": {
-      "server": "dns-direct"
+      "server": "dns-ech"
     }
   },
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "store_fakeip": true,
-      "store_rdrc": true
+      "store_fakeip": true
     },
     "clash_api": {
       "external_controller": "127.0.0.1:9090"
