@@ -21,6 +21,14 @@
     ],
     "rules": [
       {
+        "query_type": "HTTPS",
+        "domain_suffix": [
+          "workers.dev",
+          "pages.dev"
+        ],
+        "server": "dns-direct"
+      },
+      {
         "rule_set": "geosite-ir",
         "server": "dns-direct"
       },
@@ -44,6 +52,12 @@
      "strategy": "ipv4_only",
      "independent_cache": true,
      "cache_capacity": 4096
+  },
+  "ntp": {
+    "enabled": true,
+    "server": "time.cloudflare.com",
+    "server_port": 123,
+    "domain_resolver": "dns-direct"
   },
   "inbounds": [
     {
