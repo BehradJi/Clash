@@ -29,6 +29,9 @@
         "server": "dns-direct"
       },
       {
+        "domain_suffix": [
+          "time.cloudflare.com"
+        ],
         "rule_set": "geosite-ir",
         "server": "dns-direct"
       },
@@ -56,8 +59,7 @@
   "ntp": {
     "enabled": true,
     "server": "time.cloudflare.com",
-    "server_port": 123,
-    "domain_resolver": "dns-direct"
+    "server_port": 123
   },
   "inbounds": [
     {
