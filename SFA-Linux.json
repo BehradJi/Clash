@@ -7,12 +7,6 @@
       {
         "type": "https",
         "tag": "dns-remote",
-        "detour": "Proxy",
-        "server": "8.8.8.8"
-      },
-      {
-        "type": "https",
-        "tag": "dns-ech",
         "server": "8.8.8.8"
       },
       {
@@ -26,14 +20,6 @@
       }
     ],
     "rules": [
-            {
-        "query_type": "HTTPS",
-        "domain_suffix": [
-          "workers.dev",
-          "pages.dev"
-        ],
-        "server": "dns-ech"
-      },
       {
         "type": "logical",
         "mode": "and",
@@ -141,7 +127,7 @@
     "final": "Proxy",
     "auto_detect_interface": true,
     "default_domain_resolver": {
-      "server": "dns-ech"
+      "server": "dns-remote"
     }
   },
   "experimental": {

@@ -7,12 +7,6 @@
       {
         "type": "https",
         "tag": "dns-remote",
-        "detour": "Proxy",
-        "server": "8.8.8.8"
-      },
-      {
-        "type": "https",
-        "tag": "dns-ech",
         "server": "8.8.8.8"
       },
       {
@@ -26,14 +20,6 @@
       }
     ],
     "rules": [
-      {
-        "query_type": "HTTPS",
-        "domain_suffix": [
-          "workers.dev",
-          "pages.dev"
-        ],
-        "server": "dns-ech"
-      },
       {
         "type": "logical",
         "mode": "and",
@@ -62,6 +48,7 @@
     {
       "type": "tun",
       "address": "172.18.0.1/24",
+      "mtu": 1400,
       "auto_route": true,
       "strict_route": true,
       "route_exclude_address": [
@@ -156,7 +143,7 @@
     "final": "Proxy",
     "auto_detect_interface": true,
     "override_android_vpn": true,
-    "default_domain_resolver": "dns-ech"
+    "default_domain_resolver": "dns-remote"
   },
   "experimental": {
     "cache_file": {
