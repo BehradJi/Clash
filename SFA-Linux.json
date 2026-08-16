@@ -119,8 +119,7 @@
       },
       {
         "network": "udp",
-        "action": "reject",
-        "method": "drop"
+        "action": "reject"
       }
     ],
     "rule_set": [
