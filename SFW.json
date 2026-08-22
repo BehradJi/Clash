@@ -37,6 +37,7 @@
         "server": "dns-fakeip"
       }
     ],
+    "optimistic": true,
     "strategy": "ipv4_only"
   },
   "http_clients": [
