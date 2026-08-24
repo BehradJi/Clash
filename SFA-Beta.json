@@ -7,11 +7,7 @@
       {
         "type": "https",
         "tag": "dns-remote",
-        "server": "8.8.8.8"
-      },
-      {
-        "type": "local",
-        "tag": "dns-direct"
+        "server": "9.9.9.9"
       },
       {
         "type": "fakeip",
@@ -21,8 +17,13 @@
     ],
     "rules": [
       {
-        "rule_set": "geosite-ir",
-        "server": "dns-direct"
+        "action": "evaluate",
+        "server": "dns-remote"
+      },
+      {
+        "rule_set": "geoip-ir",
+        "match_response": true,
+        "server": "dns-remote"
       },
       {
         "query_type": [
@@ -65,7 +66,7 @@
         "org.localsend.localsend_app",
         "org.kde.kdeconnect_tp"
       ],
-      "stack": "gvisor"
+      "stack": "system"
     }
   ],
   "outbounds": [
@@ -112,10 +113,6 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "geosite-ir",
-        "outbound": "direct"
-      },
-      {
         "rule_set": "geoip-ir",
         "outbound": "direct"
       },
@@ -127,10 +124,7 @@
     "rule_set": [
       {
         "type": "remote",
-        "tag": [
-          "geoip-ir",
-          "geosite-ir"
-        ],
+        "tag": "geoip-ir",
         "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/{tag}.srs",
         "update_interval": "72h0m0s"
       }
