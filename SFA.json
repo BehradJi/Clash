@@ -7,11 +7,7 @@
       {
         "type": "https",
         "tag": "dns-remote",
-        "server": "8.8.8.8"
-      },
-      {
-        "type": "local",
-        "tag": "dns-direct"
+        "server": "9.9.9.9"
       },
       {
         "type": "fakeip",
@@ -21,17 +17,13 @@
     ],
     "rules": [
       {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "geosite-ir"
-          },
-          {
-            "rule_set": "geoip-ir"
-          }
-        ],
-        "server": "dns-direct"
+        "action": "evaluate",
+        "server": "dns-remote"
+      },
+      {
+        "rule_set": "geoip-ir",
+        "match_response": true,
+        "server": "dns-remote"
       },
       {
         "query_type": [
@@ -42,13 +34,22 @@
       }
     ],
     "strategy": "ipv4_only",
-    "independent_cache": true
+    "optimistic": true
   },
+  "http_clients": [
+    {
+      "tag": "default",
+      "version": 2,
+      "detour": "Proxy",
+      "stream_receive_window": 0,
+      "connection_receive_window": 0
+    }
+  ],
   "inbounds": [
     {
       "type": "tun",
-      "address": "172.18.0.1/24",
       "mtu": 1400,
+      "address": "172.18.0.1/24",
       "auto_route": true,
       "strict_route": true,
       "route_exclude_address": [
@@ -65,7 +66,7 @@
         "org.localsend.localsend_app",
         "org.kde.kdeconnect_tp"
       ],
-      "stack": "gvisor"
+      "stack": "system"
     }
   ],
   "outbounds": [
@@ -74,6 +75,7 @@
       "tag": "Proxy",
       "outbounds": [
         "auto",
+        "gemini",
         "{all}"
       ]
     },
@@ -112,8 +114,12 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "geosite-ir",
-        "outbound": "direct"
+        "domain": [
+          "signaler-pa.googleapis.com",
+          "robinfrontend-pa.googleapis.com"
+        ],
+        "rule_set": "geosite-google-gemini",
+        "outbound": "gemini"
       },
       {
         "rule_set": "geoip-ir",
@@ -127,16 +133,11 @@
     "rule_set": [
       {
         "type": "remote",
-        "tag": "geosite-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
-        "download_detour": "direct",
-        "update_interval": "72h0m0s"
-      },
-      {
-        "type": "remote",
-        "tag": "geoip-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
-        "download_detour": "direct",
+        "tag": [
+          "geoip-ir",
+          "geosite-google-gemini"
+        ],
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/{tag}.srs",
         "update_interval": "72h0m0s"
       }
     ],
@@ -148,7 +149,8 @@
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "store_fakeip": true
+      "store_fakeip": true,
+      "store_dns": true
     }
   }
 }

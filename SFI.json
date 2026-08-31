@@ -5,71 +5,51 @@
   "dns": {
     "servers": [
       {
+        "type": "https",
         "tag": "dns-remote",
-        "address": "https://8.8.8.8/dns-query",
-        "detour": "Proxy"
+        "server": "9.9.9.9"
       },
       {
-        "tag": "dns-ech",
-        "address": "https://8.8.8.8/dns-query",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-direct",
-        "address": "local",
-        "detour": "direct"
-      },
-      {
-        "address": "fakeip",
-        "tag": "fakeip"
+        "type": "fakeip",
+        "tag": "dns-fakeip",
+        "inet4_range": "198.18.0.0/15"
       }
     ],
     "rules": [
       {
-        "query_type": "HTTPS",
-        "domain_suffix": [
-          "workers.dev",
-          "pages.dev"
-        ],
-        "server": "dns-ech"
-      },
-            {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "geosite-ir"
-          },
-          {
-            "rule_set": "geoip-ir"
-          }
-        ],
-        "server": "dns-direct"
+        "action": "evaluate",
+        "server": "dns-remote"
       },
       {
-        "outbound": "any",
-        "server": "dns-ech"
+        "rule_set": "geoip-ir",
+        "match_response": true,
+        "server": "dns-remote"
       },
       {
         "query_type": [
           "A",
           "AAAA"
         ],
-        "server": "fakeip"
+        "server": "dns-fakeip"
       }
     ],
-     "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15"
-     },
-     "strategy": "ipv4_only",
-     "independent_cache": true
+    "strategy": "ipv4_only",
+    "optimistic": true
   },
+  "http_clients": [
+    {
+      "tag": "default",
+      "version": 2,
+      "detour": "Proxy",
+      "stream_receive_window": 0,
+      "connection_receive_window": 0
+    }
+  ],
   "inbounds": [
     {
       "type": "tun",
-      "address": "172.18.0.1/30",
       "mtu": 1280,
+      "address": "172.18.0.1/24",
       "auto_route": true,
       "strict_route": true,
       "route_exclude_address": [
@@ -89,6 +69,7 @@
       "tag": "Proxy",
       "outbounds": [
         "auto",
+        "gemini",
         "{all}"
       ]
     },
@@ -127,8 +108,12 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "geosite-ir",
-        "outbound": "direct"
+        "domain": [
+          "signaler-pa.googleapis.com",
+          "robinfrontend-pa.googleapis.com"
+        ],
+        "rule_set": "geosite-google-gemini",
+        "outbound": "gemini"
       },
       {
         "rule_set": "geoip-ir",
@@ -142,19 +127,24 @@
     "rule_set": [
       {
         "type": "remote",
-        "format": "binary",
-        "tag": "geosite-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs"
-      },
-      {
-        "type": "remote",
-        "format": "binary",
-        "tag": "geoip-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs"
+        "tag": [
+          "geoip-ir",
+          "geosite-google-gemini"
+        ],
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/{tag}.srs",
+        "update_interval": "72h0m0s"
       }
     ],
     "final": "Proxy",
-    "auto_detect_interface": true
+    "auto_detect_interface": true,
+    "default_domain_resolver": "dns-remote"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "store_fakeip": true,
+      "store_dns": true
+    }
   }
 }
 
