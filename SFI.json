@@ -69,7 +69,6 @@
       "tag": "Proxy",
       "outbounds": [
         "auto",
-        "gemini",
         "{all}"
       ]
     },
@@ -106,14 +105,6 @@
       {
         "ip_is_private": true,
         "outbound": "direct"
-      },
-      {
-        "domain": [
-          "signaler-pa.googleapis.com",
-          "robinfrontend-pa.googleapis.com"
-        ],
-        "rule_set": "geosite-google-gemini",
-        "outbound": "gemini"
       },
       {
         "rule_set": "geoip-ir",
