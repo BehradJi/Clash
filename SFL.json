@@ -59,6 +59,7 @@
       "tag": "Proxy",
       "outbounds": [
         "auto",
+        "gemini",
         "{all}"
       ]
     },
@@ -72,6 +73,41 @@
     {
       "type": "direct",
       "tag": "direct"
+    },
+    {
+      "tag": "gemini",
+      "type": "vless",
+      "server": "2s1o8vms-y2077yu0drmvpjak5j.weathered-moon-3b44.workers.dev",
+      "server_port": 443,
+      "tcp_fast_open": true,
+      "uuid": "08df6635-3793-4eb0-af66-e40a5be76385",
+      "packet_encoding": "",
+      "network": "tcp",
+      "tls": {
+        "enabled": true,
+        "server_name": "2s1o8VMS-Y2077Yu0dRmvPjAK5j.weATHeReD-MooN-3b44.wORkeRs.dev",
+        "record_fragment": false,
+        "insecure": false,
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "ech": {
+          "enabled": true
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vl/ZtBCIaa4AoOA6y3A07CQhL",
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol",
+        "headers": {
+          "Host": "2s1o8vms-y2077yu0drmvpjak5j.weathered-moon-3b44.workers.dev"
+        }
+      }
     }
   ],
   "route": {
@@ -95,6 +131,14 @@
       {
         "ip_is_private": true,
         "outbound": "direct"
+      },
+      {
+        "domain": [
+          "signaler-pa.googleapis.com",
+          "robinfrontend-pa.googleapis.com"
+        ],
+        "rule_set": "geosite-google-gemini",
+        "outbound": "gemini"
       },
       {
         "rule_set": "geoip-ir",
