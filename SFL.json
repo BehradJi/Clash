@@ -153,7 +153,8 @@
       {
         "type": "remote",
         "tag": [
-          "geoip-ir"
+          "geoip-ir",
+          "geosite-google-gemini"
         ],
         "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/{tag}.srs",
         "update_interval": "72h0m0s"

@@ -6,7 +6,7 @@
     "servers": [
       {
         "type": "https",
-        "tag": "dns-remote",
+        "tag": "dns-direct",
         "server": "9.9.9.9"
       },
       {
@@ -16,15 +16,6 @@
       }
     ],
     "rules": [
-      {
-        "action": "evaluate",
-        "server": "dns-remote"
-      },
-      {
-        "rule_set": "geoip-ir",
-        "match_response": true,
-        "server": "dns-remote"
-      },
       {
         "query_type": [
           "A",
@@ -40,7 +31,6 @@
     {
       "tag": "default",
       "version": 2,
-      "detour": "Proxy",
       "stream_receive_window": 0,
       "connection_receive_window": 0
     }
@@ -48,10 +38,8 @@
   "inbounds": [
     {
       "type": "tun",
-      "mtu": 1280,
       "address": "172.18.0.1/24",
       "auto_route": true,
-      "strict_route": true,
       "route_exclude_address": [
         "10.0.0.0/8",
         "172.16.0.0/12",
@@ -59,8 +47,7 @@
         "169.254.0.0/16",
         "224.0.0.0/24",
         "ff02::/16"
-      ],
-      "stack": "system"
+      ]
     }
   ],
   "outbounds": [
@@ -84,59 +71,46 @@
       "type": "direct",
       "tag": "direct"
     },
-        {
-      "tag": "gemini",
+    {
       "type": "vless",
-      "server": "2s1o8vms-y2077yu0drmvpjak5j.weathered-moon-3b44.workers.dev",
-      "server_port": 443,
+      "tag": "gemini",
       "tcp_fast_open": true,
       "tcp_multi_path": true,
+      "server": "2s1o8vms-y2077yu0drmvpjak5j.weathered-moon-3b44.workers.dev",
+      "server_port": 443,
       "uuid": "08df6635-3793-4eb0-af66-e40a5be76385",
-      "packet_encoding": "",
       "network": "tcp",
       "tls": {
         "enabled": true,
         "server_name": "2s1o8VMS-Y2077Yu0dRmvPjAK5j.weATHeReD-MooN-3b44.wORkeRs.dev",
-        "record_fragment": false,
-        "insecure": false,
-        "alpn": [
-          "http/1.1"
-        ],
+        "alpn": "http/1.1",
+        "ech": {
+          "enabled": true
+        },
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
-        },
-        "ech": {
-          "enabled": true
         }
       },
       "transport": {
         "type": "ws",
         "path": "/vl/ZtBCIaa4AoOA6y3A07CQhL",
-        "max_early_data": 2560,
-        "early_data_header_name": "Sec-WebSocket-Protocol",
         "headers": {
           "Host": "2s1o8vms-y2077yu0drmvpjak5j.weathered-moon-3b44.workers.dev"
-        }
-      }
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
     }
   ],
   "route": {
     "rules": [
       {
-        "action": "sniff"
+        "action": "resolve"
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "protocol": "dns"
-          },
-          {
-            "port": 53
-          }
-        ],
+        "protocol": "dns",
         "action": "hijack-dns"
       },
       {
@@ -152,6 +126,10 @@
         "outbound": "gemini"
       },
       {
+        "package_name": "com.metrolist.music",
+        "outbound": "gemini"
+      },
+      {
         "rule_set": "geoip-ir",
         "outbound": "direct"
       },
@@ -163,17 +141,20 @@
     "rule_set": [
       {
         "type": "remote",
-        "tag": [
-          "geoip-ir",
-          "geosite-google-gemini"
-        ],
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/{tag}.srs",
+        "tag": "geosite-google-gemini",
+        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/{tag}.srs",
+        "update_interval": "72h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-ir",
+        "url": "https://github.com/SagerNet/sing-geoip/raw/refs/heads/rule-set/{tag}.srs",
         "update_interval": "72h0m0s"
       }
     ],
     "final": "Proxy",
     "auto_detect_interface": true,
-    "default_domain_resolver": "dns-remote"
+    "default_domain_resolver": "dns-direct"
   },
   "experimental": {
     "cache_file": {
