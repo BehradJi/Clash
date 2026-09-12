@@ -1,0 +1,171 @@
+{
+  "log": {
+    "disabled": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "type": "https",
+        "tag": "dns-direct",
+        "server": "9.9.9.9"
+      },
+      {
+        "type": "fakeip",
+        "tag": "dns-fakeip",
+        "inet4_range": "198.18.0.0/15"
+      }
+    ],
+    "rules": [
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "dns-fakeip"
+      }
+    ],
+    "strategy": "ipv4_only",
+    "optimistic": true
+  },
+  "http_clients": [
+    {
+      "tag": "default",
+      "version": 2,
+      "stream_receive_window": 0,
+      "connection_receive_window": 0
+    }
+  ],
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun",
+      "address": "172.18.0.1/24",
+      "auto_route": true,
+      "strict_route": true,
+      "route_exclude_address": [
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "192.168.0.0/16",
+        "169.254.0.0/16",
+        "224.0.0.0/24",
+        "ff02::/16"
+      ],
+      "stack": "system"
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "Proxy",
+      "outbounds": [
+        "auto",
+        "gemini",
+        "{all}"
+      ]
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "{all}"
+      ]
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "vless",
+      "tag": "gemini",
+      "tcp_fast_open": true,
+      "tcp_multi_path": true,
+      "server": "2s1o8vms-y2077yu0drmvpjak5j.weathered-moon-3b44.workers.dev",
+      "server_port": 443,
+      "uuid": "08df6635-3793-4eb0-af66-e40a5be76385",
+      "network": "tcp",
+      "tls": {
+        "enabled": true,
+        "server_name": "2s1o8VMS-Y2077Yu0dRmvPjAK5j.weATHeReD-MooN-3b44.wORkeRs.dev",
+        "alpn": "http/1.1",
+        "ech": {
+          "enabled": true
+        },
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vl/ZtBCIaa4AoOA6y3A07CQhL",
+        "headers": {
+          "Host": "2s1o8vms-y2077yu0drmvpjak5j.weathered-moon-3b44.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "inbound": "tun",
+        "action": "resolve"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "domain": [
+          "signaler-pa.googleapis.com",
+          "robinfrontend-pa.googleapis.com"
+        ],
+        "rule_set": "geosite-google-gemini",
+        "outbound": "gemini"
+      },
+      {
+        "package_name": "com.metrolist.music",
+        "outbound": "gemini"
+      },
+      {
+        "rule_set": "geoip-ir",
+        "outbound": "direct"
+      },
+      {
+        "network": "udp",
+        "action": "reject"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geosite-google-gemini",
+        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/{tag}.srs",
+        "update_interval": "72h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-ir",
+        "url": "https://github.com/SagerNet/sing-geoip/raw/refs/heads/rule-set/{tag}.srs",
+        "update_interval": "72h0m0s"
+      }
+    ],
+    "final": "Proxy",
+    "auto_detect_interface": true,
+    "default_domain_resolver": "dns-direct"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "store_fakeip": true,
+      "store_dns": true
+    }
+  }
+}
+
