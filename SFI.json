@@ -38,6 +38,7 @@
   "inbounds": [
     {
       "type": "tun",
+      "tag": "tun",
       "address": "172.18.0.1/24",
       "auto_route": true,
       "route_exclude_address": [
@@ -107,6 +108,7 @@
   "route": {
     "rules": [
       {
+        "inbound": "tun",
         "action": "resolve"
       },
       {
