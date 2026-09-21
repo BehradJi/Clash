@@ -109,7 +109,7 @@
     "rules": [
       {
         "inbound": "tun",
-        "action": "resolve"
+        "action": "sniff"
       },
       {
         "protocol": "dns",
@@ -128,8 +128,8 @@
         "outbound": "gemini"
       },
       {
-        "package_name": "com.metrolist.music",
-        "outbound": "gemini"
+        "rule_set": "geosite-ir",
+        "outbound": "direct"
       },
       {
         "rule_set": "geoip-ir",
@@ -143,18 +143,15 @@
     "rule_set": [
       {
         "type": "remote",
-        "tag": "geosite-google-gemini",
-        "url": "https://github.com/SagerNet/sing-geosite/raw/refs/heads/rule-set/{tag}.srs",
-        "update_interval": "72h0m0s"
-      },
-      {
-        "type": "remote",
-        "tag": "geoip-ir",
-        "url": "https://github.com/SagerNet/sing-geoip/raw/refs/heads/rule-set/{tag}.srs",
+        "tag": [
+          "geoip-ir",
+          "geosite-ir",
+          "geosite-google-gemini"
+        ],
+        "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/{tag}.srs",
         "update_interval": "72h0m0s"
       }
     ],
-    "final": "Proxy",
     "auto_detect_interface": true,
     "default_domain_resolver": "dns-direct"
   },
