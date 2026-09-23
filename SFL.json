@@ -27,6 +27,11 @@
     "strategy": "ipv4_only",
     "optimistic": true
   },
+  "ntp": {
+    "enabled": true,
+    "server": "pool.ntp.org",
+    "server_port": 0
+  },
   "http_clients": [
     {
       "tag": "default",
@@ -100,11 +105,24 @@
   "route": {
     "rules": [
       {
-        "inbound": "mixed-in",
+        "inbound": "tun",
         "action": "sniff"
       },
       {
-        "protocol": "dns",
+        "inbound": "tun",
+        "action": "resolve"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
         "action": "hijack-dns"
       },
       {
@@ -120,10 +138,6 @@
         "outbound": "gemini"
       },
       {
-        "rule_set": "geosite-ir",
-        "outbound": "direct"
-      },
-      {
         "rule_set": "geoip-ir",
         "outbound": "direct"
       },
@@ -137,14 +151,12 @@
         "type": "remote",
         "tag": [
           "geoip-ir",
-          "geosite-ir",
           "geosite-google-gemini"
         ],
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/{tag}.srs",
         "update_interval": "72h0m0s"
       }
     ],
-    "final": "Proxy",
     "auto_detect_interface": true,
     "default_domain_resolver": "dns-direct"
   },
@@ -154,10 +166,8 @@
       "store_fakeip": true,
       "store_dns": true
     },
-        "clash_api": {
+    "clash_api": {
       "external_controller": "127.0.0.1:9090"
     }
   }
 }
-
-
