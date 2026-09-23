@@ -27,6 +27,11 @@
     "strategy": "ipv4_only",
     "optimistic": true
   },
+  "ntp": {
+    "enabled": true,
+    "server": "pool.ntp.org",
+    "server_port": 0
+  },
   "http_clients": [
     {
       "tag": "default",
@@ -112,7 +117,20 @@
         "action": "sniff"
       },
       {
-        "protocol": "dns",
+        "inbound": "tun",
+        "action": "resolve"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
         "action": "hijack-dns"
       },
       {
@@ -128,10 +146,6 @@
         "outbound": "gemini"
       },
       {
-        "rule_set": "geosite-ir",
-        "outbound": "direct"
-      },
-      {
         "rule_set": "geoip-ir",
         "outbound": "direct"
       },
@@ -145,7 +159,6 @@
         "type": "remote",
         "tag": [
           "geoip-ir",
-          "geosite-ir",
           "geosite-google-gemini"
         ],
         "url": "https://github.com/Chocolate4U/Iran-sing-box-rules/raw/refs/heads/rule-set/{tag}.srs",
