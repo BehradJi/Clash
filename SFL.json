@@ -105,11 +105,11 @@
   "route": {
     "rules": [
       {
-        "inbound": "tun",
+        "inbound": "mixed-in",
         "action": "sniff"
       },
       {
-        "inbound": "tun",
+        "inbound": "mixed-in",
         "action": "resolve"
       },
       {
