@@ -76,35 +76,33 @@
     {
       "type": "vless",
       "tag": "gemini",
-      "tcp_fast_open": true,
-      "tcp_multi_path": true,
-      "server": "2s1o8vms-y2077yu0drmvpjak5j.weathered-moon-3b44.workers.dev",
+      "server": "104.25.246.48",
       "server_port": 443,
-      "uuid": "08df6635-3793-4eb0-af66-e40a5be76385",
-      "network": "tcp",
+      "uuid": "fa0b3b02-14b4-41c0-8dd3-c7d37137bb46",
       "tls": {
         "enabled": true,
-        "server_name": "2s1o8VMS-Y2077Yu0dRmvPjAK5j.weATHeReD-MooN-3b44.wORkeRs.dev",
-        "alpn": "http/1.1",
-        "ech": {
-          "enabled": true
-        },
+        "server_name": "edge-4c86ccff.asiehji.workers.dev",
+        "insecure": false,
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
+        },
+        "ech": {
+          "enabled": true,
+          "pq_signature_schemes_enabled": false,
+          "dynamic_record_sizing_disabled": false
         }
       },
       "transport": {
         "type": "ws",
-        "path": "/vl/ZtBCIaa4AoOA6y3A07CQhL",
+        "path": "/?ed=2048",
         "headers": {
-          "Host": "2s1o8vms-y2077yu0drmvpjak5j.weathered-moon-3b44.workers.dev"
+          "Host": "edge-4c86ccff.asiehji.workers.dev"
         },
-        "max_early_data": 2560,
+        "max_early_data": 2048,
         "early_data_header_name": "Sec-WebSocket-Protocol"
-      },
-      "packet_encoding": ""
-    }
+      }
+    },
   ],
   "route": {
     "rules": [
