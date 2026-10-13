@@ -27,11 +27,6 @@
     "strategy": "ipv4_only",
     "optimistic": true
   },
-  "ntp": {
-    "enabled": true,
-    "server": "pool.ntp.org",
-    "server_port": 0
-  },
   "http_clients": [
     {
       "tag": "default",
