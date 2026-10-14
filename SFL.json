@@ -67,34 +67,30 @@
     {
       "type": "vless",
       "tag": "gemini",
-      "tcp_fast_open": true,
-      "tcp_multi_path": true,
-      "server": "2s1o8vms-y2077yu0drmvpjak5j.weathered-moon-3b44.workers.dev",
+      "server": "withered-union-acac.weathered-moon-3b44.workers.dev",
       "server_port": 443,
-      "uuid": "08df6635-3793-4eb0-af66-e40a5be76385",
-      "network": "tcp",
+      "uuid": "dd55a1e3-ee70-4aa6-8e48-6e5fa0ed03d4",
+      "transport": {
+        "path": "/upload",
+        "type": "ws",
+        "headers": {
+          "Host": "withered-union-acac.weathered-moon-3b44.workers.dev"
+        }
+      },
       "tls": {
         "enabled": true,
-        "server_name": "2s1o8VMS-Y2077Yu0dRmvPjAK5j.weATHeReD-MooN-3b44.wORkeRs.dev",
-        "alpn": "http/1.1",
-        "ech": {
-          "enabled": true
-        },
+        "server_name": "withered-union-acac.weathered-moon-3b44.workers.dev",
+        "insecure": true,
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
+        },
+        "ech": {
+          "enabled": true,
+          "query_server_name": "cloudflare-ech.com"
         }
       },
-      "transport": {
-        "type": "ws",
-        "path": "/vl/ZtBCIaa4AoOA6y3A07CQhL",
-        "headers": {
-          "Host": "2s1o8vms-y2077yu0drmvpjak5j.weathered-moon-3b44.workers.dev"
-        },
-        "max_early_data": 2560,
-        "early_data_header_name": "Sec-WebSocket-Protocol"
-      },
-      "packet_encoding": ""
+      "network": "tcp"
     }
   ],
   "route": {

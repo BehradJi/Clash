@@ -41,6 +41,8 @@
       "tag": "tun",
       "address": "172.18.0.1/24",
       "auto_route": true,
+      "strict_route": true,
+      "auto_redirect": true,
       "route_exclude_address": [
         "10.0.0.0/8",
         "172.16.0.0/12",
@@ -78,35 +80,33 @@
       "type": "direct",
       "tag": "direct"
     },
- {
+    {
       "type": "vless",
       "tag": "gemini",
-      "server": "104.19.203.170",
+      "server": "withered-union-acac.weathered-moon-3b44.workers.dev",
       "server_port": 443,
-      "uuid": "dd311aa7-dc7f-4955-8839-ede31dd33f89",
+      "uuid": "dd55a1e3-ee70-4aa6-8e48-6e5fa0ed03d4",
+      "transport": {
+        "path": "/upload",
+        "type": "ws",
+        "headers": {
+          "Host": "withered-union-acac.weathered-moon-3b44.workers.dev"
+        }
+      },
       "tls": {
         "enabled": true,
-        "server_name": "edge-567a6986.behradji.workers.dev",
-        "insecure": false,
+        "server_name": "withered-union-acac.weathered-moon-3b44.workers.dev",
+        "insecure": true,
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
         },
         "ech": {
           "enabled": true,
-          "pq_signature_schemes_enabled": false,
-          "dynamic_record_sizing_disabled": false
+          "query_server_name": "cloudflare-ech.com"
         }
       },
-      "transport": {
-        "type": "ws",
-        "path": "/?ed=2048",
-        "headers": {
-          "Host": "edge-567a6986.behradji.workers.dev"
-        },
-        "max_early_data": 2048,
-        "early_data_header_name": "Sec-WebSocket-Protocol"
-      }
+      "network": "tcp"
     }
   ],
   "route": {
