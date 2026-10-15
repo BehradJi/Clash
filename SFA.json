@@ -41,7 +41,6 @@
       "tag": "tun",
       "address": "172.18.0.1/24",
       "auto_route": true,
-      "strict_route": true,
       "auto_redirect": true,
       "route_exclude_address": [
         "10.0.0.0/8",
@@ -174,13 +173,13 @@
       }
     ],
     "auto_detect_interface": true,
+    "overdrive_android_vpn": true,
     "default_domain_resolver": "dns-direct"
   },
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "store_fakeip": true,
-      "store_dns": true
+      "store_fakeip": true
     }
   }
 }
