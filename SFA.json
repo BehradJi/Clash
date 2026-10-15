@@ -173,7 +173,7 @@
       }
     ],
     "auto_detect_interface": true,
-    "overdrive_android_vpn": true,
+    "override_android_vpn": true,
     "default_domain_resolver": "dns-direct"
   },
   "experimental": {
